@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="http://google.github.io/traceur-compiler/bin/traceur.js" type="text/javascript"></script>
+	<script src="http://google.github.io/traceur-compiler/src/bootstrap.js" type="text/javascript"></script>
+	<!--值是否无穷，NaN
+	概念提升:ES6在Number对象上，新提供了Number.isFinite()和Number.isNaN()两个方法，用来检查Infinite和NaN这两个特殊值。
+	基本概念:
+		1.Number.isFinite()用来检查一个数值是否非无穷（infinity）。
+	代码实现:
+	<script>
+		Number.isFinite(15); // true
+		Number.isFinite(0.8); // true
+		Number.isFinite(NaN); // false
+		Number.isFinite(Infinity); // false
+		Number.isFinite(-Infinity); // false
+		Number.isFinite("foo"); // false
+		Number.isFinite("15"); // false
+		Number.isFinite(true); // false
+	</script>
+		2.Number.isNaN()用来检查一个值是否为NaN。
+	代码实现:
+	<script>
+		Number.isNaN(NaN);
+		Number.isNaN(15);
+		Number.isNaN("15");
+		Number.isNaN(true);
+	</script>-->
+	<script>
+		document.write(Number.isFinite(15));
+		var a = Number.isFinite(15);
+		console.log(a);
+	</script>
+	都能输出!
+	<body>
+	</body>
+</html>

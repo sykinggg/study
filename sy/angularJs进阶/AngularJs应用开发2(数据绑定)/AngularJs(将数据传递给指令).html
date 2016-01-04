@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+		<style>
+			.namecard {
+				border: 1px solid #000;
+				border-radius: 10px;
+				padding: 10px;
+				width: 300px;
+				background: #f0f0f0;
+			}
+		</style>
+	</head>
+	<body ng-app="ezstuff">
+		<ez-namecard data="window.sb"></ez-namecard>
+	</body>
+	<script>
+		var sb = {
+			name : "somebody",
+			gender : "male",
+			age : 28
+		};
+		angular.module("ezstuff",[])
+		.directive("ezNamecard", function(){
+			return {
+				restrict : "E",
+				template : "<div class='namecard'>",
+				replace : true,
+				link : function(scope,element,attrs){
+					var sb = eval(attrs.data);
+					element.append("<div>name : " + sb.name + "</div>")
+						.append("<div>gender : " + sb.gender + "</div>")
+						.append("<div>age : " + sb.age + "</div>")
+				}
+			};
+		});
+		
+	</script>
+</html>

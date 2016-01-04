@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	basename函数的基本用法
+	基本概念:basename函数可返回路径中的最后一部分，并且可以对其进行条件排除
+	代码实现:
+	例1：path.basename('路径字符串');
+	例2：path.basename('路径字符串', '[ext]')<排除[ext]后缀字符串>;
+	<script>
+		var path = require('path');
+		var data1 = path.basename('/foo/strong/basename/index.html');
+		var data2 = path.basename('/foo/strong/basename/index.html', 'html');
+		console.log(data1);
+		console.log(data2);
+	</script>
+	运行结果:
+	'index.html'
+	'index.'
+	<body>
+	</body>
+</html>

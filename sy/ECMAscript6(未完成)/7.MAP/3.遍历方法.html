@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	遍历方法
+	基本概念:Map原生提供三个遍历器
+		1.keys()：返回键名的遍历器
+		2.values()：返回键值的遍历器
+		3.entries()：返回所有成员的遍历器
+	代码示例:
+	<script>
+		let map = new Map([
+			['F', 'no'],
+			['T', 'yes'],
+		]);
+		for (let key of map.keys()) {
+			document.write(key);
+		}
+		// 'E'
+		// 'T'
+		for (let value of map.values()) {
+			document.write(value);
+		}
+		// 'no'
+		// 'yes'
+		for (let item of map.entries()) {
+			document.write(item[0], item[1]);
+		}
+		// 'E' "no"
+		// 'T' "yes"
+		// 或者
+		for (let [key, value] of map.entries()) {
+			document.write(key, value);
+		}
+		// 等同于使用map.entries()
+		for (let [key, value] of map) {
+			document.write(key, value);
+		}
+	</script>
+	注意:Map结构转为数组结构，比较快速的方法是结合使用扩展运算符（...）
+	代码实现:
+	<script>
+		let map = new Map([
+			[1, 'one'],
+			[2, 'two'],
+			[3, 'three'],
+		]);
+		[...map.keys()]
+		// [1, 2, 3]
+		[...map.values()]
+		// ['one', 'two', 'three']
+		[...map.entries()]
+		// [[1, 'one'], [2, 'two'], [3, 'three']]
+		[...map]
+		// [[1, 'one'], [2, 'two'], [3, 'three']]
+	</script>
+	注意:Map还有一个forEach方法，与数组的forEach方法类似，也可以实现遍历
+	代码示例:
+	<script>
+		map.forEach(function(value, key, map)) {
+			document.write("key: %s, Value: %s", key, value);
+		};
+	</script>
+	<body>
+	</body>
+</html>

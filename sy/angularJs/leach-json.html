@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html ng-app = 'apps'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'appctrl'>
+		<p ng-repeat = 'p in people'>
+			<!-- json 过滤器可以将一个JSON或JavaScript对象转换成字符串。 -->
+			a:{{p.a | json}}  asd:{{p.asd | json}}
+			a:{{p.a }}  asd:{{p.asd }}
+			{{ {'name': 'Ari', 'City': 'SanFrancisco'} | json }}
+		</p>
+		{{ {'name': 'Ari', 'City': 'SanFrancisco'} | json }}
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('apps',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.people = [
+			{'a':'asd','asd':'a'},
+			{'a':'zxc','asd':'z'},
+			{'a':'qwe','asd':'q'}
+			]
+		})
+	</script>
+</html>

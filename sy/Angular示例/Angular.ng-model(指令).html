@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	在AngularJS中，只需要使用ng-model指令就可以把应用程序数据绑定到HTML元素，实现model和view的双向绑定。
+	<body>
+		<!--示例：ng-model的单向绑定(view->model)-->
+		<div ng-app="">
+			请输入任意值： <input type="text" ng-model = "name" />
+			你输入的为：<p>{{name}}</p>
+		</div>
+	</body>
+	<script src = "angular.js"></script>
+</html>

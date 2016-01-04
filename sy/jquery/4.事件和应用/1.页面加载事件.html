@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	页面加载事件
+	概念:在jQuery中页面加载事件是ready()。
+	关键联系:ready()事件类似于就JavaScript中的onLoad()事件.
+		千万注意:前者只要页面的DOM结构加载后便触发
+		 	       后者必须在页面全部元素加载成功才触发
+		另外:ready()可以写多个，按顺序执行.
+	ready()方法的几种写法：
+	写法一:
+	<script>
+		$(document).ready(function(){
+			//代码部分
+		})
+	</script>
+	写法二:
+	<script>
+		$(function(){
+			//代码部分
+		})
+	</script>
+	<body>
+	</body>
+</html>

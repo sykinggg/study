@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	开关 : .toggle input[type="checkbox"]
+		开关通常用来设置两种状态 - 开启和关闭：
+		例如： <img src="image/ionic.toggle(开关).png" alt="" />
+		正如上图中所见，开关的可视部件包括两部分：滑轨（.track）和手柄（.handle）。 
+		ionic使用如下HTML模板创建开关组件：
+		<any class = "toggle">
+			<input type="checkbox" />
+			<any class = "track">
+				<any class = "handle"></any>
+			</any>
+		</any>
+	注意：开关也有配色方案样式：.toggle-{color}，用来改变滑轨的背景色。
+	<body>
+		<div class = "bar bar-header bar-stable">
+			<button class = "button button-clear button-positive icon ion-ios-arrow-left">设置</button>
+			<h1 class = "title">信息</h1>
+		</div>
+		<div class = "scroll-content has-header">
+			<ul class = "list">
+				<li class = "item item-toggle">
+					iMessage
+					<label for="" class = "toggle toggle-balanced">
+						<input type="checkout" />
+						<div class = "track">
+							<div class = "handle"></div>
+						</div>
+					</label>
+				</li>
+				<li class = "item item-divider">短信/彩信</li>
+				<li class = "item item-toggle">
+					字符计数
+					<label for="" class = "toggle toggle-balanced">
+						<input type="checkbox" checked />
+						<div class = "track">
+							<div class = "handle"></div>
+						</div>
+					</label>
+				</li>
+				<li class = "item item-toggle item-button-right">
+					黑名单
+					<a href="" class = "button button-clear icon ion-ios-arrow-right"></a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	实现图像移动
+	特别注意原理：通过mouseup事件获取新的位置，然后通过jQuery的offset方法来完成元素偏移。
+	示例：
+	<script>
+		moving = function(e) {
+			var mouse = {};
+			e.preventDefault();
+			e.stopPropagation();
+			mouse.x = (e.clientX || e.pageX) + $(window).scrollLeft();
+			mouse.Y = (e.clientY || e.pageY) + $(window).scrollTop();
+			$container.offect({
+				'left':mouse.x - (event_state.mouse_x - event_state.container_left),
+				'top':mouse.y - (event_state.mouse_y - event_state.container_top)
+			})
+		}
+	</script>
+	<body>
+	</body>
+</html>

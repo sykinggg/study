@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	元素替换
+	注意:replaceWith()和replaceAll()方法都可以但它们调用时，内容和被替换元素所在的位置不同.
+	使用说明:参数selector为被替换的元素，content为替换的内容。
+	replaceWith()语法形式：$(selector).replaceWith(content)
+	replaceAll()语法形式：$(content).replaceAll(selector)
+	示例如下:
+	<script>
+		$(function(){
+			$("#me").replaceWith("<div>*********</div>");
+			$("<div>*********</div>").replaceAll($("yi"));
+		})
+	</script>
+	<body>
+	</body>
+</html>

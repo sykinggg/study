@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--<html ng-app = "ionicApp">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+		<style>
+			
+		</style>
+	</head>
+	<body ng-controller = "myCtrl" class = "paddig">
+		<div class = "bar bar-header bar-positive">
+			<h1 class = "title" ng-bind = "lastEventCalled"></h1>
+		</div>
+		<ion-content id = "eventPlaceholder" has-bouncing = "false"></ion-content>
+	</body>
+	<script src = "js/ionic.js"></script>
+	<script src="js/鼠标点击后移动事件.js"></script>
+</html>-->
+<html ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Ionic $ionicGesture example: 1.0.0-beta.14</title>
+   <link rel="stylesheet" href="css/鼠标手样式.css" />
+    <link href="http://code.ionicframework.com/1.0.0-beta.14/css/ionic.css" rel="stylesheet">
+    <script src="js/鼠标捕获插件.js">
+    </script>
+  </head>
+
+  <body ng-controller="MyCtrl" class="padding">
+    <div class="bar bar-header bar-positive">
+      <h1 class="title">{{lastEventCalled}}</h1>
+    </div>
+    <ion-content id="eventPlaceholder" has-bouncing="false"></ion-content>
+  </body>
+  <script src = "js/鼠标点击后移动事件.js"></script>
+</html>

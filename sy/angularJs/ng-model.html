@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<form name = 'myform' ng-app = ''>
+			<label for="username">姓名：</label>
+			<input type="text" name = 'username' ng-model = 'name'>
+			<label for="password">密码：</label>
+			<input type="password" name = 'password' ng-model = 'psd'>
+			<p ng-bind = 'name'></p>
+			<p ng-bind = 'psd'></p>
+			<input name = 'email' type="email" ng-modle = 'person.email'>
+			<span ng-show = '!myform.email.$valid'>错误</span>
+			<span ng-show = 'myform.email.$error.required'>必填</span>
+			<span ng-show = 'myform.email.$error.email'>邮箱添加错误</span>
+		</form>
+		<div id='test'>
+			<span></span>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+	</script>
+</html>

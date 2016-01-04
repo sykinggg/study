@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- ngModel 是一个用法特殊的指令， 它提供更底层的API来处理控制器内的数据。 -->
+		<!-- 当我们在指令中使用 ngModel 时能够访问一个特殊的API，这个API用来处理数据绑定、验证、CSS更新等不实际操作DOM的事情。 -->
+		<!-- 如果不设置 require 选项， ngModelController 就不会被注入到指令中。-->
+		<!-- 注意，这个指令没有隔离作用域。如果给这个指令设置隔离作用域，将导致内部 ngModel 无法更新外部 ngModel 的对应值：AngularJS会在本地作用域以外查询值。 -->
+
+
+
+		<!-- 为了设置作用域中的视图值，需要调用 ngModel.$setViewValue() 函数。 -->
+		 <!-- ngModel.$setViewValue() 函数可以接受一个参数 -->
+		 <!-- value （字符串）： value 参数是我们想要赋值给 ngModel 实例的实际值。这个方法会更新控制器上本地的 $viewValue ，然后将值传递给每一个 $parser 函数（包括验证器） 。 -->
+		 <!-- 最后，所有步骤都完成后， $viewChangeListeners 中所有的监听器都会被调用。 -->
+		 <!-- 注意，单独调用 $setViewValue() 不会唤起一个新的digest循环，因此如果想更新指令，需要在设置 $viewValue 后手动触发digest。 -->
+		 <!-- 注意：$setViewValue() 方法适合于在自定义指令中监听自定义事件（比如使用具有回调函数的jQuery插件） ，我们会希望在回调时设置 $viewValue 并执行digest循环。 -->
+		<div test></div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.directive('test',function () {
+			return{
+				require:'?ngModel',
+				link:function(scope, ele, attrs, ngModel){
+					if(!ngModel) return;
+				}
+			};
+		});
+		app.directive('myDirective', function(){
+			return{
+				require:'?ngModel',
+				link:function(scope, ele, attrs, ngModel){
+					if(!ngModel) return;
+
+					$(function(){
+						ele.datapicker({
+							onSelect:function(data){
+								设置视图和调用apply
+								scope.$apply(function(){
+									ngModel.$setViewValue(data);
+								});
+							}
+						});
+					});
+				}
+			};
+		});
+	</script>
+</html>

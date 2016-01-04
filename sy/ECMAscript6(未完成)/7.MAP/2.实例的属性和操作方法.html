@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	实例的属性和操作方法
+	基本概念:Map结构的实例有以下属性和操作方法。
+		1.size：返回成员总数
+		2.set(key, value)：设置key所对应的键值，然后返回整个Map结构
+			如果key已经有值，则键值会被更新，否则就新生成该键
+		3.get(key)：读取key对应的键值，如果找不到key，返回undefined
+		4.has(key)：返回一个布尔值，表示某个键是否在Map数据结构中
+		5.delete(key)：删除某个键，返回true。如果删除失败，返回false
+		6.clear()：清除所有成员，没有返回值
+	注意:set()方法返回的是Map本身，因此可以采用链式写法
+	代码示例:
+	<script>
+		let map = new Map()
+			.set(1, 'a')
+			.set(2, 'b')
+			.set(3, 'c');
+			document.write(map);
+	</script>
+	注意:has()和delete()的例子
+	代码示例:
+	<script>
+		var m = new Map();
+ 
+		m.set("edition", 6)        // 键是字符串
+		m.set(262, "standard")     // 键是数值
+		m.set(undefined, "nah")    // 键是undefined
+		 
+		var hello = function() {document.write("hello");}
+		m.set(hello, "Hello ES6!") // 键是函数
+		 
+		m.has("edition")     // true
+		m.has("years")       // false
+		m.has(262)           // true
+		m.has(undefined)     // true
+		m.has(hello)         // true
+		 
+		m.delete(undefined)
+		m.has(undefined)       // false
+		 
+		m.get(hello)  // Hello ES6!
+		m.get("edition")  // 6
+	</script>
+	注意:size属性和clear方法的例子
+	<script>
+		let map = new Map();
+		map.set('foo', true);
+		map.set('bar', false);
+		map.size // 2
+		map.clear()
+		map.size // 0
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	向元素中追加内容
+	主旨:如果在页面中增加某个元素，只需要找到元素的上级节点，
+		然后通过append()向指定的元素中追加内容或者通过appendTo()把内容追加到指定元素内。
+	说明:
+	append()语法形式：$(html).append(content)
+	appendTo()语法形式：$(content).appendTo(html)
+	before()的语法形式：$(html).before(content)
+	after()的语法形式：$(html).after(content)
+	注意:参数html用于找到需要追加内容的元素字符串，
+		参数content是追加的内容，可以是字符、HTML元素标记还可以是一个返回字符串内容的函数。
+	示例如下:
+	<script>
+		var $content =  "**我是append()方法追加的内容**";
+		var $contentTo = "**我是appendTo()方法追加的内容**";
+		var $before = "**我是before()方法追加到前面的内容**";
+		var $after = "**我是before()方法追加到后面的内容**";
+		$("#id1").append($content);
+		$($contentTo).appendTo("id1");
+		$("#id3").before($before);
+		$("#id4").after($after);
+	</script>
+	<body>
+	</body>
+</html>

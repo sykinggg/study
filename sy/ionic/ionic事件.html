@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>ionic事件</title>
+		<link rel="stylesheet" href="css/ionic.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+	</head>
+	<body ng-controller = "myCtrl">
+		<div >
+			<!--on-hold-->
+			<!--同一位置触摸时间超过500ms，类似于angular和jquery中的long touch。-->
+			<button on-hlod = "onHold()" class = "button ">on-Hold</button>	
+		</div>		
+	</body>
+	<script src="js/ionic.js"></script>
+	<script>
+		var app = angular.module("myApp", ['ionic']);
+		app.controller("myCtrl", function($scope) {
+			$scope.onHlod = function() {
+				alert("on-hold事件");
+			};
+		});
+	</script>
+</html>

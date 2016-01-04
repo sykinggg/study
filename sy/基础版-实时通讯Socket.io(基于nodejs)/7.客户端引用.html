@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	客户端引用
+	基本原理:服务端运行后会在根目录动态生成socket.io的客户端js文件，客户端可以通过固定路径/socket.io/socket.io.js添加引用。
+	代码实现:
+	1.添加网页index.html,并在网页中引用客户端js文件：
+	<script src="/socket.io/socket.io.js"></script>
+	2.注意:一般情况下推荐引用动态生成的客户端文件，因为这样客户端和服务端的版本可以保持一致，减少出错的几率。
+	<script src="https://cdn.socket.io/socket.io-1.2.1.js"></script>
+	<body>
+	</body>
+</html>

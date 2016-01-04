@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	WeakMap
+	基本概念:WeakMap结构与Map结构基本类似
+		唯一的区别是它只接受对象作为键名（null除外），不接受原始类型的值作为键名，而且键名所指向的对象，不计入垃圾回收机制
+		注意:set()和get()分别用来添加数据和获取数据
+	代码示例:
+	<script>
+		var map = new WeakMap(),
+			element = document.querySelector(".element");
+		map.set(element, "Original");
+		// 下面就可以使用了
+		var value = map.get(element);
+		document.write(value); 
+		// "Original"
+	</script>
+	概念总结:
+		WeakMap与Map在API上的区别主要是两个
+			一是没有遍历操作（即没有key()、values()和entries()方法），也没有size属性
+			二是无法清空，即不支持clear方法。这与WeakMap的键不被计入引用、被垃圾回收机制忽略有关
+	WeakMap只有四个方法可用：get()、set()、has()、delete()
+	<body>
+	</body>
+</html>

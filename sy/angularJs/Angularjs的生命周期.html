@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 第一个阶段是编译阶段。 -->
+		<!-- 在编译阶段，AngularJS会遍历整个HTML文档并根据JavaScript中的指令定义来处理页面上声明的指令。 -->
+		<!-- 每一个指令的模板中都可能含有另外一个指令，另外一个指令也可能会有自己的模板。 -->
+		<!-- 当AngularJS调用HTML文档根部的指令时，会遍历其中所有的模板，模板中也可能包含带有模板的指令。 -->
+		<!-- 一旦对指令和其中的子模板进行遍历或编译，编译后的模板会返回一个叫做模板函数的函数。 -->.
+		<!-- 我们有机会在指令的模板函数被返回前，对编译后的DOM树进行修改。 -->
+		<!-- 注意：在这个时间点DOM树还没有进行数据绑定，意味着如果此时对DOM树进行操作只会有很少的性能开销。 -->
+		<!-- 基于此点， ng-repeat 和 ng-transclude 等内置指令会在这个时候，也就是还未与任何作用域数据进行绑定时对DOM进行操作。 -->
+		<!-- 以 ng-repeat 为例，它会遍历指定的数组或对象，在数据绑定之前构建出对应的DOM结构。 -->
+		<ul ng-controller = 'array'>
+			<!-- 注意ng-repeat中的关键词是in不是is -->
+			<!-- 如果我们用 ng-repeat 来创建无序列表，其中的每一个 <li> 都会被 ng-click 指令所修饰，这个过程会使得性能比手动创建列表要快得多，尤其是列表中含有上百个元素时。 -->
+			<!-- 一个指令的表现一旦编译完成，马上就可以通过编译函数对其进行访问，编译函数的签名包含有访问指令声明所在的元素（ tElemente）及该元素其他属性（tAttrs）的方法。这个编译函数返回前面提到的模板函数，其中含有完整的解析树。 -->
+
+			<!-- 这里的重点是，由于每个指令都可以有自己的模板和编译函数，每个模板返回的也都是自己的模板函数。链条顶部的指令会将内部子指令的模板合并在一起成为一个模板函数并返回，但在树的内部，只能通过模板函数访问其所处的分支。 -->
+			<li ng-repeat = 't in test'>
+				<p><span ng-bind = 't.name' ng-click = 'click()'></span>  <span ng-bind = 't.city' ng-click = 'click()'></span></p>
+			</li>
+		</ul>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('array',function ($scope) {
+			$scope.test = [
+				{name:'name1',city:'city1'},
+				{name:'name2',city:'city2'},
+				{name:'name3',city:'city3'},
+			]
+			$scope.click = function(){
+				alert('success');
+			};
+		})
+	</script>
+</html>

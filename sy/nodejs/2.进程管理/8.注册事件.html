@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	注册事件
+	问题产生:当需要获取stdout内容的时候
+	代码实现:
+	<script>
+		process.stdout.on('data', function(data){
+			console.log(data);
+		});
+	</script>
+	代码描述:为stdout注册data事件，我们就可以拿到它输出的内容了。
+	<body>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	appendFile函数的基本用法
+	基本概念:fs模块中还有appendFile函数，它可以将新的内容追加到已有的文件中，
+		如果文件不存在，则会创建一个新的文件。
+	代码实现:
+	例:fs.appendFile(文件名,数据,回调函数(err));
+	代码示例:
+	<script>
+		var fs = require("fs");
+		fs.appendFile('text.txt', 'data to append', function(err){
+			if(err) throw err;
+			//数据被添加到文件的尾部
+			console.log('The "data to append" was appended to file!');
+		})
+	</script>
+	注意:编码格式默认为"utf8".
+	<body>
+	</body>
+</html>

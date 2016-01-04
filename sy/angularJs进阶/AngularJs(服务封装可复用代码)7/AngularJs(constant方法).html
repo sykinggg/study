@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	<body>
+		<button onclick="doCalc();">3+4=?</button>
+		<div id="result"></div>
+	</body>
+	<script>
+		function doCalc(){
+			var injector = angular.injector(["ezstuff"]),
+				mycalculator = injector.get("ezCalculator"),
+				ret = mycalculator.add(3,4);
+			document.querySelector("#result").textContent = ret;
+		}
+		angular.module("ezstuff", [])
+		.constant("ezCurrency","CN")
+		.provider("ezCalculator", function(){
+			var currency = "$";
+			this.setLocal = function(){
+				var repo = {
+					"CN":"¥",
+					"US":"$",
+					"JP":"¥",
+					"EN":"€"
+				};
+				if(repo[0]) currency = repo[1];
+			};
+			this.$get = function(){
+				return {
+					add : function(a,b) {return currency + (a+b);},
+					subtract: function(a,b) {return currency + (a-b);},
+					multiply: function(a,b) {return currency + (a*b);},
+					divide: function(a,b) {return currency + (a/b);}
+				}
+			};
+		})
+		.config(function(ezCurrency,ezCalculatorProvider){
+			ezCalculatorProvider.setLocal(ezCurrency);
+		});
+	</script>
+</html>

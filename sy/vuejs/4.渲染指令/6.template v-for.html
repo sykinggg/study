@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<!--template v-for
+	基本概念:类似于 template v-if，也可以将 v-for 
+		用在 template 标签上，以渲染一个包含多个元素的块
+	代码示例:-->
+	<script src="../vue.js"></script>
+	
+	<body>
+		<ul>
+			<template v-for="item in items">
+				<li>{{item.msg}}</li>
+				<li class="divider"></li>
+			</template>
+		</ul>
+		<script>
+			var example = new Vue({
+				el:'ul',
+				data:{
+					items:[
+						{msg:'one'},
+						{msg:'two'}
+					]
+				}
+			})
+		</script>
+	</body>
+</html>

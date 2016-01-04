@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	停止效果
+	基本概念:在jQuery中，提供了stop()方法用于停止动画或效果，在它们完成之前。
+	描述:stop()方法适用于所有的jQuery效果函数，包括滑动淡入淡出和自定义动画。
+	语法使用:$(selector).stop(stopAll,goToEnd);
+	语法描述:stopAll和goToEnd 参数都是可选的。
+		1.stopAll规定是否应该清除动画队列，默认是false，即仅停止活动的动画，允许任何排入队列的动画向后执行
+		2.goToEnd规定是否立即完成当前动画，默认是false。
+		总结:所以默认地stop()会清除在被选元素上指定的当前动画
+	示例如下:
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script>
+		$(function(){
+			$("#flip").click(function(){
+				$("#panel").slideToggle(5000);
+			});
+			$("#stop").click(function(){
+				$("#panel").stop();
+			});
+		})
+	</script>
+	<body>
+	   <h3>停止效果</h3>
+	   <button id="stop">停止滑动</button>
+	   <div id="flip">点击这里，向下滑动面板</div>
+	   <div id="panel">Hello world!</div>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	ionic预定义了两个内容容器样式：
+		1. .content - 流式定位，内容元素在文档流中按顺序定位
+		2. .scroll-content - 绝对定位，内容元素占满整个屏幕
+		
+		.content/.scroll-content
+			位置样式： .has-header
+					  .has-subheader
+					  .has-footer
+					  .has-subfooter
+					  .has-tabs-top
+					  .has-tabs
+	<body class = "stable-bg">
+		<div class = "bar bar-header">
+			<h1 class = "title">.bar .bar-header</h1>
+		</div>
+		样式.has-header是内容体中的上部位置样式
+		.scroll-content是绝对布局全部内容体的容器
+		.content是流式布局仅显示唯一的子容器内容
+		注意：样式.has-header/.has-footer/.has-tabs-top经猜测应该是绝对布局的样式
+		<div class = "content  balanced-bg">
+			<p class = "title">
+				This is a demo!
+			</p>
+		</div>
+		
+		<div class = "content balanced-bg light">
+			asdasdasd
+			<p>THis is a demo!
+				<p>Can you see this line?</p>
+			</p>
+			<p>Can you see this line?</p>
+		</div>
+		
+		<div calss = "content  balanced-bg">
+			<p class = "title">This is a demo!</p>
+		</div>
+		<div class = "bar bar-footer">
+			<h1 class = "title">.bar .bar-footer</h1>
+		</div>
+		<div class = "bar bar-subfooter">
+			<h2 class = "title">.bar .bar-subfooter</h2>
+		</div>
+	</body>
+</html>

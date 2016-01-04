@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	删除元素
+	基本:在DOM元素操作中，jQuery为删除元素提供了两种方法：remove()和empty()。
+	注意:remove()-删除被选元素(及其子元素).
+		empty()-从被选元素中删除子元素.
+		注意被选中的元素还在(形成空元素).
+	示例如下:
+	<script>
+		$(function(){
+			$("#rem").click(function(){
+				$("#div0").remove();
+			});
+			$("#emp").click(function(){
+				$("#div1").empty();
+			})
+		})
+	</script>
+	<body>
+	</body>
+</html>

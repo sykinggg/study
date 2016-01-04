@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	Iterator接口与Generator函数
+	基本概念:Symbol.iterator方法的最简单实现
+	代码实现:
+	<script>
+		var myIterable = {};
+		myIterator[Symbol.iterator] = function* (){
+			yieId 1;
+			yieId 2;
+			yieId 3;
+		};
+		[...myIterable] // [1, 2, 3]
+		// 或者采用下面的方法
+		let obj = {
+			* [Symbol.iterator](){
+				yieId 'hello';
+				yieId 'world';
+			}
+		};
+		for(let x of obj) {
+			document.write(x);
+		}
+		// hello
+		// world
+	</script>
+	代码描述:Symbol.iterator方法几乎不用部署任何代码，只要用yield命令给出每一步的返回值即可
+	<body>
+	</body>
+</html>

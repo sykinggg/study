@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="http://google.github.io/traceur-compiler/bin/traceur.js" type="text/javascript"></script>
+	<script src="http://google.github.io/traceur-compiler/src/bootstrap.js" type="text/javascript"></script>
+	是否包含字符串三种新方法
+	概念上的提升:
+		一.JavaScript只有 indexOf 方法，可以用来确定一个字符串是否包含在另一个字符串中。ES6又提供了三种新方法。
+			1.includes()：返回布尔值，表示是否找到了参数字符串。
+			2.startsWith()：返回布尔值，表示参数字符串是否在源字符串的头部。
+			3.endsWith()：返回布尔值，表示参数字符串是否在源字符串的尾部。
+	代码实现:
+	<script>
+		var str = "Hello world!";
+		var a = str.startsWith("Hello");
+		var b =  str.endsWith("!");
+		var c =  str.includes("o");
+		console.log('a:' + a + ' b:' + b + ' c:' + c);
+		document.write('a:' + a + ' b:' + b + ' c:' + c);
+	</script>
+	运行结果:
+	console- a:true b:true c:true
+	document- a:true b:true c:true
+		二.这三个方法都支持第二个参数，表示开始搜索的位置。
+	代码实现:
+	<script>
+		var str = "Hello world!";
+		var a = str.startsWith("Hello", 6);
+		var b = str.endsWith("Hello", 5);
+		var c = str.includes("Hello", 6);
+		console.log('a:' + a + ' b:' + b + ' c:' + c);
+		document.write('a:' + a + ' b:' + b + ' c:' + c);
+	</script>
+	运行结果:
+	console- a:false b:true c:false
+	document- a:false b:true c:false
+	注意:判断机制:endsWith 的行为与其他两个方法有所不同。它针对前n个字符，而其他两个方法针对从第n个位置直到字符串结束。
+	<body>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html ng-app>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 通过 ng-init 指令将 someProperty 的值设置为 true 。 -->
+		<label>someProperty = {{someProperty}}</label>
+		<input type="checkbox" ng-checked = 'someProperty' ng-init = 'someProperty = true' ng-model = 'someProperty'>
+		<!-- 通过 ng-init 指令将 someProperty 的值设置为 false 。 -->
+		<label>anotherProperty = {{anotherProperty}}</label>
+		<input type="checkbox" ng-checked = 'anotherProperty' ng-init = 'anotherProperty = false' ng-model = 'anotherProperty'>
+	</body>
+	<script src = 'angular.js'></script>
+</html>

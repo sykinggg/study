@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	手工引导启动框架
+	原理：在大多数情况下，我们都使用ng-app指令来进行自动引导启动，
+	但是如果一个HTML文件中 有多个ng-app，AngularJS只会自动引导启动它找到的第一个ng-app应用，这是需要手工引导 的一个应用场景。
+	使用：我们可以利用angular.bootstrap()方法进行手动引导:
+	示例：angular.bootstrap(element, [modules], [config]);
+	关键：bootstrap方法有三个参数：
+			1.element ： 一个DOM元素，以这个元素为Angular应用的根，等同自动引导时ng-app所在 的元素。这个参数是必须的。
+				比如：document、document.body等。
+			2.module :  引导时需要载入的模块数组。
+				比如：[]、["ezstuff"]等。
+				解释：由于我们的HTML中引用 了ezstuff模块中定义的ez-duang指令，所以，我们需要指定载入ezstuff模块。
+			3.config : 引导配置项，可选。(先忽略)
+	最终示例：
+			angular.bootstrap(document, ["ezstuff"]);
+	<body>
+		<button id="bootstrap">手动启动AngularJs进程</button>
+		<p>一幅动画</p>
+		<ez-duang></ez-duang>
+	</body>
+	<script>
+		angular.element(document).ready(function(){
+			var a =document.querySelector("#bootstrap");
+			angular.element(a)
+			.on("click", function(){
+				angular.bootstrap(document, ["ezstuff"]);
+			})
+		});
+		angular.module("ezstuff", [])
+		.directive("ezDuang", function(){
+			return {
+				restrict : "E",
+				template : "<img src='http://ww4.sinaimg.cn/bmiddle/757eb2ffjw1eptcr4qobjg209205dthh.gif'>"
+			};
+		});
+	</script>
+</html>

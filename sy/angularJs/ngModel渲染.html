@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 在控制器中定义 $render 方法可以定义视图具体的渲染方式。这个方法会在 $parser 流水线完成后被调用。 -->
+		<!-- 由于这个方法会破坏AngularJS的标准工作方式，因此一定要谨慎使用： -->
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.directive('test',function () {
+			return{
+				require:'?ngModel',
+				link:function(scope, ele, attrs, ngModel){
+					if (!ngModel) return;
+
+					ngModel.$render = function(){
+						element.html(ngModel.$viewValue() || 'None');
+					};
+				}
+			};
+		});
+	</script>
+</html>

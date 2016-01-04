@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	数据结构的默认Iterator接口
+	基本概念:在ES6中，可迭代数据结构(比如数组)都必须实现一个名为Symbol.iterator的方法，该方法返回一个该结构元素的迭代器
+	注意:Symbol.iterator是一个Symbol，Symbol是ES6新加入的原始值类型
+	代码示例:
+	<script>
+		let arr = ['a', 'b', 'c'];
+		let iter = arr[Symbol.iterator]();
+		iter.next(); // {value: 'a', done: false}
+		iter.next(); // {value: 'b', done: false}
+		iter.next(); // {value: 'c', done: false}
+		iter.next(); // {value: undefined, done: true}
+	</script>
+	代码描述:
+		变量arr是一个数组，原生就具有遍历器接口，部署在arr的Symbol.iterator属性上面
+			调用这个属性，就得到遍历器
+	<body>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-app = 'app'>
+		<div ng-controller = 'pc'>
+			<div ng-controller = 'cc' >
+				<a ng-click = 'hello()'>hello</a>
+			</div>
+			{{person.name}}
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+	// angularjs应用javascript的原型继承在同一个模型中可以跨域(控制器)进行操作
+	// 对于对象的查找向上扩散型方式
+	// {{}}的绑定事件相对于ng-bind的的优点是绑定但不擦除DOM域中的其他结构
+		var apps = angular.module('app',[]);
+		apps.controller('pc',function($scope) {
+			$scope.person = {greeted:true}
+			$scope.person.name = 'sss';
+		})
+		apps.controller('cc',function($scope) {
+			$scope.hello = function(){
+				$scope.person.name = 'Ari lerner';
+			};
+		});
+	</script>
+</html>

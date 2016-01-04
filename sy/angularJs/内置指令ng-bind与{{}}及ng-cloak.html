@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<!-- 注意，在屏幕可视的区域内使用 {{ }} 会导致页面加载时未渲染的元素发生闪烁，用 ng-bind可以避免这个问题。 -->
+	<!-- 但{{}}可以用于指令的嵌套指令参数的数据绑定 -->
+	<body ng-controller = 'appctrl'>
+		<p ng-bind = 'hello'></p>
+		<p>{{hello}}</p>
+		<!-- 使用 ng-bind 来避免未渲染元素闪烁，还可以在含有 {{ }} 的元素上使用 ng-cloak 指令 -->
+		<!-- ng-cloak 指令会将内部元素隐藏，直到路由调用对应的页面时才显示出来。 -->
+		<p ng-cloak>{{hello}}</p>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.hello = 'hello world'
+		})
+	</script>
+</html>

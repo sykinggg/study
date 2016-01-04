@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'appctrl'>
+		<!-- ng-select 用来将数据同HTML的 <select> 元素进行绑定。 -->
+
+
+		<!-- 数组作为数据源：
+		  用数组中的值做标签；
+		  用数组中的值作为选中的标签；
+		  用数组中的值做标签组；
+		  用数组中的值作为选中的标签组。 -->
+
+
+		<!-- 对象作为数据源：
+	  用对象的键值（key-value）做标签；
+	  用对象的键值作为选中的标签；
+	  用对象的键值作为标签组；
+	  用对象的键值作为选中的标签组。 -->
+
+		<!-- ng-options指令相对于ng-repeat可直接作用于json -->
+		<select ng-model = 'city' ng-options = 'city.name for city in citite'>
+			<option value="">Choose City</option>
+		</select>
+		Best City: {{ city.name }}
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.citite = [
+			{name:'asd'},
+			{name:'zxc'},
+			{name:'xcv'},
+			{name:'cvb'},
+			{name:'qwe'}
+			]
+		})
+	</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	let
+	let是ES6中新增关键字。
+	它的作用类似于var，用来声明变量，但是所声明的变量，只在let命令所在的代码块内有效。
+	示例:
+	<!--<script>
+		if(true){
+			var a = 1;
+			let b = 2;
+		}
+		document.write(a);
+		document.write(b);// 报错：ReferenceError: b is not defined
+	</script>-->
+	体会下let和var的作用域范围:
+	<!--<script>
+		function f1(){
+			var a = 8;
+			var n = 5;
+			if(true) {
+				let n = 5;
+				var a = 20;
+			}
+			document.write(n);//5
+			document.write(a);//20
+		}
+	</script>-->
+	示例:
+	<script>
+		if(true){
+			var a = 1;
+			let b = 2;
+			document.write(b);
+		}
+		document.write("---------");
+		document.write(a);
+	</script>
+	<body>
+	</body>
+</html>

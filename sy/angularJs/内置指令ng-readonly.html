@@ -1,0 +1,17 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="angular.js"></script>
+</head><!-- www . j av a  2s. com-->
+<body>
+  Type to make input readonly: <br/>
+  输入前的类：ng-pristine ng-valid 输入后的类：ng-valid ng-dirty
+  <input type="text" ng-model="isReadOnly"><br/>
+  输入前的类： 输入后的类：readonly
+  <input type="text" ng-readonly="isReadOnly" value="Some text here"/>
+
+  <script>
+    angular.module('myApp', [])
+  </script>
+</body>
+</html>

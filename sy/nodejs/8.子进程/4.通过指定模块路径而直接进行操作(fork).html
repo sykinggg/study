@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	fork函数的简单用法
+	基本概念:fork函数可直接运行Node.js模块，所以我们可以直接通过指定模块路径而直接进行操作
+	代码实现:
+	<script>
+		var child_process = require("child_process");
+		child_process.fork( modulePath );
+	</script>
+	注意:该方法是spawn()的特殊情景，用于派生Node进程。
+		除了普通ChildProcess实例所具有的所有方法，所返回的对象还具有内建的通讯通道。
+	<body>
+	</body>
+</html>

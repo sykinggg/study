@@ -1,0 +1,66 @@
+<!doctype html>
+<html ng-app>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<form name="signup_form" novalidate ng-submit="signupForm()" ng-controller="signupController">
+			<fieldset>
+				<legend>Signup</legend>
+				<div class="row">
+				<div class="large-12 columns">
+					<label>Your name</label>
+					<input type="text" placeholder="Name" name="name" ng-model="signup.name" ng-minlength=3 ng-maxlength=20 required />
+						<div class="error" ng-show="signup_form.name.$dirty && signup_form.name. $invalid && signup_form.submitted">
+							<small class="error" ng-show="signup_form.name.$error.required">
+								Your name is required.
+							</small>
+							<small class="error" ng-show="signup_form.name.$error.minlength">
+								Your name is required to be at least 3 characters
+							</small>
+							<small class="error" ng-show="signup_form.name.$error.maxlength">
+								Your name cannot be longer than 20 characters 
+							</small>
+						</div>
+					</div>
+				</div>
+				<button type="submit">Submit</button>
+			</fieldset>
+		</form>
+		<form name="signup_form" novalidate ng-submit="signupForm()" ng-controller="signupController">
+			<label>Your name</label>
+			<input type="text" placeholder="Name" name="name" ng-model="signup.name" ng-minlength=3 ng-maxlength=20 required />
+			<div class="error" ng-messages="signup_form.name.$error">
+				<div ng-message="required">Make sure you enter your name</div>
+				<div ng-message="minlength">Your name must be at least 3 characters</div>
+				<div ng-message="maxlength">Your name cannot be longer than 20 characters</div>
+			</div>
+			<button type="submit">Submit</button>
+		</form>
+		<form name="signup_form" novalidate ng-submit="signupForm()" ng-controller="signupController" ensure-unique="/api/checkUsername.json">
+			<label>
+			Your name
+			</label>
+			<input type="text" placeholder="Username" name="username" ng-model="signup.username"
+			ng-minlength=3 ng-maxlength=20 required />
+			<div class="error" ng-messages="signup_form.username.$error">
+				<div ng-message="required">
+				Make sure you enter your username
+				</div>
+				<div ng-message="checkingAvailability">
+				Checking...
+				</div>
+				<div ng-message="usernameAvailablity">
+				The username has already been taken. Please choose another
+				</div>
+			</div>
+			<button type="submit">
+			Submit
+			</button>
+		</form>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+
+	</script>
+</html>

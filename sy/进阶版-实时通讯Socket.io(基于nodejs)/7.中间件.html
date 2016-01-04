@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	中间件
+	基本原理:socket.io提供中间件功能，我们可以通过中间件来对请求进行预处理
+	代码实现:身份验证
+	<script>
+		io.use(function(socket, next){
+			if(socket.require.headers.cookie) return next();
+			next(new Error('Authentication error'));
+		});
+	</script>
+	代码描述:展示了通过中间件进行身份验证，当没有cookie的时候抛出异常
+	<body>
+	</body>
+</html>

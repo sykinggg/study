@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	restrict：限制指令的出现位置
+	定义指令的使用范围：restict属性可以是EACM这四个字母的任意组合，用来限定指令的应用场景。
+	注意：如果不指定这个属性，默认情况下，指令将仅允许被用作元素名和属性名：
+		1.E - 指令可以作为HTML元素使用
+		2.A - 指令可以作为HTML属性使用
+		3.C - 指令可以作为CSS类使用
+		4.M - 指令可以在HTML注释中使用
+	<body ng-app="ezstuff">
+		<div ng-controller="ezCtrl">
+			<ez-customer></ez-customer>
+		</div>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.controller("ezCtrl",["$scope", function($scope) {
+			$scope.customer = {
+				name: "name",
+				address: "address"
+			};
+		}])
+		.directive("ezCustomer", function() {
+			return {
+				restrict: "E",
+				template: "Name: {{customer.name}} Address: {{customer.address}}"
+			};
+		});
+	</script>
+</html>

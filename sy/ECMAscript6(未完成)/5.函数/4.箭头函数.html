@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	箭头函数
+	基本概念:箭头函数是使用=>语法的函数简写形式
+		特点: C#、Java 8 和 CoffeeScript 的相关特性非常相似
+	代码实现:
+	<script>
+		var array = [1, 2, 3];
+		//传统写法
+		array.forEach(function(v, i, a) {
+			document.write(v);
+		});
+		//ES6
+		array.forEach(v => document.write(v));
+	</script>
+	适用范围:同时支持表达式体和语句体
+	特点:与（普通的）函数所不同的是，箭头函数和其上下文中的代码共享同一个具有词法作用域的this
+	代码实现:
+	<script>
+		var evens = [1, 2, 3, 4, 5];
+		var fives = [];
+		//表达式
+		var odds = evens.map(v => v + 1);
+		var nums = evens.map((v, i) => v + i);
+		var pairs = evens.map(v => ({even: v, odd: v + 1}));
+		//语句体
+		nums.forEach(v => {
+			if(v % 5 === 0)
+			fives.push(v);
+		});
+		document.write(fives);
+		//具有此法作用域的this
+		var bob = {
+			_name: "Bob",
+			_friends: ["Amy", "Bob", "Cinne", "Dylan", "Ellen"],
+			printFriends() {
+				this._friends.forEach (f =>
+				document.write(this._name + "knows" + f));
+			}
+		}
+		bob.printFriends();
+	</script>
+	箭头函数有几个使用注意点
+		1.函数体内的this对象，绑定定义时所在的对象，而不是使用时所在的对象
+		2.不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误
+		3.不可以使用arguments对象，该对象在函数体内不存在
+	特别注意:this对象的指向是可变的，但是在箭头函数中，它是固定的
+	<body>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html ng-app='apps'>
+
+<head>
+    <meta charset='utf-8'>
+</head>
+
+<body ng-controller='appctrl1'>
+    <div ng-repeat='bbook in books'>
+        书名{{bbook.book}},作者{{bbook.auther}}
+    </div>
+</body>
+<script src='angular.js'></script>
+<script src='angular-router.js'></script>
+<script src='js/app.js'></script>
+<script src='js/controllers.js'></script>
+
+</html>

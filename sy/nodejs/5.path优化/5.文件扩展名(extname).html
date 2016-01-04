@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	extname函数
+	基本概念:extname函数返回路径中文件的扩展名(以最后一个'.'开始,返回'.'以及'.'以后的所有字符串,如没有'.',则返回空字符串).
+	代码实现:
+	<script>
+		var path = require('path');
+		var data = path.extname('index.html');
+		console.log(data);
+	</script>
+	运行结果:
+	'.html'
+	<body>
+	</body>
+</html>

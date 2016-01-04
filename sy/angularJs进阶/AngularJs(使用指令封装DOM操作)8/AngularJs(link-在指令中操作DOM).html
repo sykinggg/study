@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	link:在指令中操作DOM
+	注意：如果需要在指令中操作DOM，我们需要在对象中定义link属性，link函数的定义如下：
+	示例： function link(scope, iElement, iAttrs, controller, transcludeFn) {...}
+	重点注意：
+			1.scope
+			指令对应的scope对象。如果指令没有定义自己的本地作用域，那么传入的就是外部的 作用域对象。
+			2.iElement
+			指令所在DOM对象的jqLite封装。如果使用了template属性，那么iElement对应 变换后的DOM对象的jqLite封装。
+			3.iAttrs
+			指令所在DOM对象的属性集。这是一个Hash对象，每个键是驼峰规范化后 的属性名。
+	注意实例说明：在右边的示例中，我们实现了一个可以指定显示格式的小时钟指令：ezCurrentTime。
+					我们在link函数中启动定时器，并在定时器中更新DOM。
+	详细说明：
+		1.在scope上使用$watch()方法对format的值进行监听，并使用这个值调整显示格式
+		2.监听element的$destroy事件，这个事件是在DOM对象销毁时触发。
+			注意：在这个事件触发时 销毁定时器以释放资源
+		3.使用了AngularJS内置的$interval服务，而不是setInterval()函数创建定时器。
+		4.使用了AngularJS内置的dateFilter过滤器服务，对时间的显示进行格式化。
+			注意:和$interval一样，dateFilter服务也是通过注入器注入的。
+	<body ng-app="ezstuff">
+		<div ng-controller="ezCtrl">
+			Data format: <input type="text" ng-model="format" /> <hr />
+			Current time is: <span ez-current-time="format"></span>
+		</div>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.controller("ezCtrl", ["$scope", function($scope){
+			$scope.format = "M/d/yy h:mm:ss a";
+		}])
+		.directive("ezCurrentTime", ["$interval", "dataFilter", function($interval, dataFilter) {
+			function link(scope, element, attrs) {
+				var format,
+					timeoutId;
+				function updateTime() {
+					element.text(dateFilter(new Date(), format));
+				}
+				scope.$watch(attrs, ezCurrentTime, function(value) {
+					format = value;
+					updataTime();
+				});
+				element.on("$destroy", function() {
+					$interval.cancel(timeoutId);
+				});
+				timeoutId = $interval(function(){
+					updataTime();
+				}, 1000);
+			};
+			return {
+				link: link
+			};
+		}]);
+	</script>
+</html>

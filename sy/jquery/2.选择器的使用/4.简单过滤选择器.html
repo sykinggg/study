@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		jQuery 简单过滤选择器
+		注意:过滤选择器根据某类g过滤规则进行元素的匹配，书写时都以冒号（:）开头；
+		选择器					功能									返回值
+		first()或:first 			获取第一个元素							单个元素
+		parent>last()或:last 	获取最后一个元素							单个元素
+		:not(selector) 			获取除给定选择器外的所有元素 				元素集合
+		:even 					获取所有索引值为偶数的元素，索引号从0开始		元素集合
+		:odd 					获取所有索引值为奇数的元素，索引号从0开始 		元素集合
+		:eq(index) 				获取指定索引值得元素，索引号从0开始 			单个元素
+		:gt(index) 				获取所有大于给定索引值的元素，索引号从0开始 	元素集合
+		:lt(index) 				获取所有小于给定索引值的元素，索引号从0开始 	元素集合
+		:header 				获取所有标题类型的元素，如h1、h2...... 		元素集合
+		:animated 				获取正在执行动画效果的元素					元素集合
+		示例如下：
+		1.描述：通过简单过滤选择器获取元素，将选中的元素改变其类名称，从而突出其被选中的状态
+		2.代码实现：
+		<script>
+			$(function(){//增加第一个元素的类别
+				$("li:first").addClass("GetFocus");
+			})
+			$(function(){//增加最后一个元素的类别  
+				$("li:last").addClass("GetFocus");
+			})
+			$(function(){//增加去除所有与给定选择器匹配的元素类别
+				$("li:not(.NotClass)").addClass("GetFocus");
+			})
+			$(function(){ //增加所有索引值为偶数的元素类别，从0开始计数
+				$("li:even").addClass("GetFocus");
+			})
+			$(function(){//增加所有索引值为奇数的元素类别，从0开始计数
+				$("li:odd").addClass("GetFocus");
+			})
+			$(function(){//增加一个给定索引值的元素类别，从0开始计数
+				$("li:eq(1)").addClass("GetFocus");
+			})
+			$(function(){//增加所有大于给定索引值的元素类别，从0开始计数
+				$("li:gt(1)").addClass("GetFocus");
+			})
+			$(function(){//增加所有小于给定索引值的元素类别，从0开始计数
+				$("li:lt(4)").addClass("GetFocus");
+			})
+			$(function(){//增加标题类元素类别
+				$("div h1").css("width", "233");
+				$(":header")addClass("GetFocus");
+			})
+			$(function(){ //增加动画效果元素类别
+				animateIt();
+				$("#spanMove:animated").addClass("GetFocus");
+			})
+			$(function(){//动画效果
+				$("#spanMove").slideToggle("slow",animateIt);
+			})
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>		
+	</head>
+	<script src="../vue.js"></script>
+	<!--Style对象语法
+	基本概念:
+		v-bind:style的对象语法十分直观——看着非常像 CSS，其实它是一个JavaScript对象
+	注意:CSS属性名可以用驼峰式（camelCase）或短横分隔命名（kebab-case）
+	代码示例:-->
+	注意:v-bind:style的格式
+	<!--渲染为:
+	<div style="color:red;font-size:30px">Style对象语法</div>-->
+	<body>
+		<div v-bind:style="{color:activeColor,fontSize:fontSize+'px'}">Style对象语法</div>
+		<script>
+				var vm = new Vue({
+					el:'div',
+					data:{
+						activeColor:'red',
+						fontSize:30
+					}
+				})
+		</script>
+	</body>
+</html>

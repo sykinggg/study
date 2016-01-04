@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html ng-app>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.directive('ensureunique',function ($http) {
+			return {
+				require:'ngModel',
+				link:function(scope, ele, attrs, ctrl){
+					ctrl.$parsers.push(function(val){
+						// 在这里添加验证例如
+						// 为了添加自定义错误信息应用到自定义ensureunique指令的ngmodel中
+						if(!val || val.length === 0){
+							return;
+						}
+						ngModel.$setValidity('checkingAvailability', true);
+						ngModel.$setValidity('usernameAvailability', false);
+						$http({
+							nethod:'GET',
+							url:url,
+							params:{
+								username:val
+							}
+						}).success(function(){
+							ngModel.$setValidity('checkingAvailability',false);
+							ngModel.$setValidity('usernameAvailability',true);
+						})['match'](function(){
+							ngModel.$setValidity('checkingAvailability',false);
+							ngModel.$setValidity('usernameAvailability',false);
+						});
+						return val;
+					});
+				};
+			};
+		});
+	</script>
+</html>

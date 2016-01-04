@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	rename函数的基本用法
+	基本概念:rename函数提供修改名称服务：
+	代码实现:
+	<script>
+		var fs = require("fs");
+		fs.rename(旧文件, 新文件, 回调函数(err){
+			if(err) throw err;
+			console.log("Successful modification");
+		});
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	writeFile函数的基本用法
+	基本概念:fs模块提供writeFile函数，可以异步的将数据写入一个文件, 如果文件已经存在则会被替换。
+	代码实现:
+	例:fs.writeFile(filename, data, callback)
+	<script>
+		var fs = require("fs");
+		fs.writeFile('text.txt', 'Hello World', function(err){
+			if(err) throw err;
+			console.log('Saved successfully');//文件被保存
+		});
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	文本输入：堆叠式标签
+	注意：堆叠式标签意味着将描述性标签占据单独的一行：
+		例如：使用.item-stacked-label样式声明堆叠式标签：
+		<any class = "item-input item-stacked-label">
+			<any class = "input-label">...</any>
+			<input type="text" placeholder = "..." />
+		</any>
+	<body>
+		<div class = "scroll-content">
+			<div class = "list">
+				<div class=  "item item-assertive item-button-right">
+					<h1 class = "light">livio</h1>
+				</div>
+				<label for="" class = "item item-input item-stacked-label">
+					<span class = "input-label">Email</span>
+					<input type="text" placeholder = "..." />
+				</label>
+				<label for="" class = "item item-input item-stacked-label">
+					<span class = "input-label">Password</span>
+					<input type="text" placeholder = "..." />
+				</label>
+			</div>
+			<div class = "padding-left padding-right">
+				<button class = "button button-block button-stable">Log in</button>
+			</div>
+		</div>
+	</body>
+</html>

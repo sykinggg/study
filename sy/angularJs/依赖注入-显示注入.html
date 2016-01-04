@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!--显式注入声明-->
+		<!--AngularJS提供了显式的方法来明确定义一个函数在被调用时需要用到的依赖关系。-->
+		<!--通过这种方法声明依赖，即使在源代码被压缩、参数名称发生改变的情况下依然能够正常工作。-->
+		
+		
+		<!--使用！-->
+		<!--可以通过 $inject 属性来实现显式注入声明的功能。-->
+		<!--函数对象的 $inject 属性是一个数组，数组元素的类型是字符串，它们的值就是需要被注入的服务的名称。-->
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+//		举个栗子：
+		var aControllerFactory = function aController($scope, greeter) {
+				console.log('LOAED controller', greeter);
+				//...控制器
+			}
+			aControllerFactory.$inject = ['$scope', 'greeter'];
+			//greeter服务
+			console.log('greeter service')
+			//应用的控制器
+			angular.module('app',[])
+				.controller('MyController', aControllerFactory)
+				.factory('greeter', greeterService);
+			//获取注入器并创建一个新的作用域
+			var injector = angular.injector(['ng', 'myApp']),
+				controller = injector.get('$controller'),
+				rootScope  = injector.get('$rootScope'),
+				newScope = rootScope.$new();
+			//调用控制器
+			controller('MyController', {$scope: newScope});
+	</script>
+	
+	<!--对于这种声明方式来讲，参数顺序是非常重要的，因为 $inject 数组元素的顺序必须和注入参数的顺序一一对应。-->
+	<!--这种声明方式可以在压缩后的代码中运行，因为声明的相关信息已经和函数本身绑定在一起了。-->
+</html>

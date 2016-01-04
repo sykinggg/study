@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	三个新的方法
+	基本概念:ES6提供三个新的方法：
+		1.entries()
+		2.keys()
+		3.values()
+	重点:均用于遍历数组。
+		它们都返回一个遍历器，可以用for...of循环进行遍历
+	重点区别:
+		keys()是对键名的遍历
+		values()是对键值的遍历
+		entries()是对键值对的遍历
+	代码实现:
+	<script>
+		for(let index of ['a', 'b'].keys()) {
+			document.write(index);
+		}
+		// 0
+		// 1
+		for(let elem of ['a', 'b'].value()) {
+			document.write(elem);
+		}
+		// 'a'
+		// 'b'
+		for(let [index, elem] of ['a', 'b'].entries()) {
+			document.write(index, elem);
+		}
+		// 0 "a"
+		// 1 "b"
+	</script>
+	<body>
+	</body>
+</html>

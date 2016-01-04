@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	replace：模板的使用方式
+	该方法的作用：用template完整地替换原始的DOM对象，而不是填充其内容，replace 属性负责这件事。
+	注意：replace属性指明使用template时，如何替换指令元素：
+		1.true - 编译时，将使用template替换指令元素
+		2.false - 编译时，将使用template替换指令元素的内容
+	示例图：<img src="../image/AngularJs(replace-模板的使用方式).png" alt="" />
+	<body ng-app="ezstuff">
+		<div ng-controller="ezCtrl">
+			<ez-customer></ez-customer>
+		</div>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.controller("ezCtrl", ["$scope",function($scope){
+			$scope.customer = {
+				name: "name",
+				address: "address"
+			};
+		}])
+		.directive("ezCustomer", function(){
+			return{
+				restrict : "EA",
+				replace : true,
+				template : "<div>Name: {{customer.name}} Address: {{customer.address}}</div>"
+			}
+		})
+	</script>
+</html>

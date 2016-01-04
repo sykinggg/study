@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$injector API</title>
+	</head>
+	<body>
+		<!--行内注入-->
+		<!--AngularJS提供的注入声明的最后一种方式，是可以随时使用的行内注入声明。-->
+		<!--它同前面提到的通过 $inject 属性进行注入声明的原理是完全一样的-->
+		<!--注意：在函数定义时从行内将参数传入。-->
+		<!--注意：可以避免在定义过程中使用临时变量。-->
+		
+		
+		<!--在定义一个AngularJS的对象时，行内声明的方式允许我们直接传入一个参数数组而不是一个函数。-->
+		<!--数组的元素是字符串，它们代表的是可以被注入到对象中的依赖的名字，最后一个参数就是依赖注入的目标函数对象本身。-->
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('MyController', ['$scope', 'greeter', function($scope, greeter){
+			
+		}])
+//		由于需要处理的是一个字符串组成的列表，行内注入声明也可以在压缩后的代码中正常运行。通常通过括号和声明数组的 [] 符号来使用它。
+	</script>
+	
+	
+	
+	
+	annotate()
+	annotate()方法的返回值是一个有服务名称组成的数组，这些服务会在实例化时被注入到目标函数中。
+	annotate()方法可以帮助$injector判断哪些服务会在函数被调用时注入进去。
+	annotate()方法可以接受一个参数
+	fn（函数或数组）
+	参数fn可以是一个函数，也可以是一个数组。
+	annotate()方法返回一个数组，数组元素的值是在被调用被注入到目标函数中的服务名称。
+	<script>
+		var injector = angular.injector(['ng', 'myApp']);
+		injector.annotate(function($q, greeter){});
+		//['$q', 'myApp']
+	</script>
+	
+	
+	
+	get()
+	get方法返回一个服务实例，可以接收一个参数;
+	name(字符串)
+	参数name是想要获取的实例的名称。
+	get()根据名称返回服务的一个实例。
+	
+	
+	
+	has()
+	has方法返回一个布尔值,在$injector能够从自己的注册列表中找到对应的服务时返回true，否则返回false。它能接收一个参数。
+	name(字符串)
+	参数name是我们想在注入器的注册列表中查询的服务名称。
+	
+	
+	
+	instantise()
+	instantise()方法可以创建某个javascript类型的实例。他通过new操作符调用构造函数，并将所有参数传递给构造函数。它可以接受两个参数。
+	Type()
+	构造函数
+	locals(对象，可选)
+	这是一个可选参数，提供了另一种传递参数的方式。
+	instantise()方法返回Type的一个新实例。
+	
+	
+	
+	inovke()
+	inovke()方法会调用方法并从$injector种添加方法参数。
+	inovke()方法接收三个参数。
+	fn(function)
+	这个函数就是要调用的方法从$injector种添加方法。
+	self  ( object -可选)
+	self 参数允许我们设置调用方法的 this 参数。
+	locals  ( object- 可选)
+	这个可选参数提供另一种方式在函数被调用时传递参数名给该函数。
+	invoke() 方法返回 fn 函数返回的值。
+	
+	
+	
+	
+	ngMin:通过使用 ngMin 这个工具，能够减少我们定义依赖关系所需的工作量。
+	ngMin 是一个为AngularJS应用设计的预压缩工具，它会遍历整个AngularJS应用并帮助我们设置好依赖注入。
+	
+	举个栗子：
+	var app = angular.module('app',[]);
+	app.directive('myDirective', function($http){})
+	app.controller('IndexController',function($scope, $q){});
+	转化为：
+	app.directive('myDirective', ['$http', function ($http) {}])
+	app.controller('myController', ['$scope', '$q', function ($scope, $q) {}])
+	ngMin 可以显著减少代码输入的工作量，并保持源文件的整洁。
+	
+	<!--工作原理：在其内部， ngMin 使用抽象语法树（Abstract Syntax Tree，AST）来遍历JavaScript源代码。借助名为 astral 的AST工具框架的帮助，
+	它可以将必要的声明代码添加进源文件，并用 escodegen将转换后的源文件输出。-->
+</html>

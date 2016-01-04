@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	选择框 : .item-select select
+		在每个平台上，选择框的表现形式都不一样，例如，
+			在PC上，是一个传统的下拉框.
+			在Android 是一个单选弹出窗.
+			iOS上是一个覆盖半个窗体的定制滚动器.
+	通常总是将选择框与文字一起放入列表条目中，使用如下HTML模板创建选择框条目：
+		例如<img src="image/ionic.input(选择框).png" alt="" />
+	<label class = "item-input item-select">
+		<any class = "input-label"></any>
+		<select>
+			<option>...</option>
+			<option>...</option>
+			...
+		</select>
+	</label>
+	<body>
+		<div class = "bar bar-header bar-light">
+			<h1 class = "title">选择框</h1>
+		</div>
+		<div class = "scroll-content has-header">
+			<div class = "list">
+				<label class = "item item-input item-select">
+					<div class = "input-label">
+						前端技术
+					</div>
+					<select>
+						<option>HTML</option>
+						<option selected>CSS</option>
+						<option>javascript</option>
+					</select>
+				</label>
+			</div>
+		</div>
+	</body>
+</html>

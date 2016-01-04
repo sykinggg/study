@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html ng-app>
+	<head>
+		<meta charset = 'utf-8'>
+		<title>表单验证</title>
+		<link rel="stylesheet" href="css/boorstrap.css">
+	</head>
+	<body>
+		<!-- HTML5验证不怎么好的浏览器再来测试一下【本例IE9】，问题来了，某些字段完全没得验证 -->
+		<!-- 必填项HTML5标记 -->
+		<!-- 某个表单输入是否已填写，只要在输入字段元素上添加HTML5标记required即可： -->
+		<input type="text" required ng-model = 'name' value='name'>
+		<!-- 最小长度 -->
+		<!-- 验证表单输入的文本长度是否大于某个最小值，在输入字段上使用指令ng-minleng= "{number}"： -->
+		<input type="text" ng-minlength = '3' ng-model = 'uname'>
+		<!-- 最大长度 -->
+		<!-- 验证表单输入的文本长度是否小于或等于某个最大值，在输入字段上使用指令ng-maxlength="{number}"： -->
+		<input type="text" ng-maxlength = '5' ng-model = 'psd'>
+		<!-- 模式匹配 -->
+		<!-- 使用ng-pattern="/PATTERN/"来确保输入能够匹配指定的正则表达式： -->
+		<input type="text" ng-pattren = '/[a-zA-z]/'>
+		<!-- 电子邮件 -->
+		<!-- 验证输入内容是否是电子邮件，只要像下面这样将input的类型设置为email即可： -->
+		<input type="email" name = 'email' ng-madel='user.email'>
+		<!-- 数字 -->
+		<!-- 验证输入内容是否是数字，将input的类型设置为number： -->
+		<input type="number" name = 'age' ng-model='user.age'>
+		<!-- URl -->
+		<!-- 验证输入内容是否是URL，将input的类型设置为 url： -->
+		<input type="url" name = 'homeage' ng-model = 'user.facebook_url'>
+		<!-- 未修改过的表单 -->
+		<!-- 布尔值属性，表示用户是否修改了表单。如果为ture，表示没有修改过；false表示修改过 -->
+		formName.inputFieldName.$pristine
+		<!-- 修改过的表单 -->
+		<!-- 只要用户修改过表单，无论输入是否通过验证，该值都返回 true  -->
+		formName.inputFieldName.
+		<!-- 经过验证的表单 -->
+		<!-- 布尔型属性即表单是否通过，当表单通过则发挥为true。 -->
+		formName.inputFieldName.$vaild
+		<!-- 未通过验证的表单 -->
+		<!-- 布尔型属性即表单是否通过，当表单通过则发挥为false。 -->
+		formName.inputFieldName.$invaild
+		<!-- 错误 -->
+		<!-- $error对象包含表单的所有验证内容，如果验证失败这个属性的值为true，如果值为false则说明验证通过 -->
+		formName.inputfileldName.$error
+
+		
+		<!-- /////////////////////////////////////////////////////////// -->
+		<!-- //////////////////////综合测试///////////////////////////// -->
+		<!-- /////////////////////////////////////////////////////////// -->
+		<!-- 只有当表达式满足验证，才会实时进行双向绑定。 -->
+		<div class = 'container-fluid'>
+			<div class = 'row'>
+				<div class="col-md-6">
+			        <form role="form" class="form-horizontal">
+			            <div class="form-group">
+			                <div class="col-md-4">
+			                    <label for="name">1.必填项</label>
+			                </div>
+			                <div class="col-md-8">
+			                    <input class="form-control" id="name" type="text" required ng-model='user.name' />
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <div class="col-md-4">
+			                    <label for="minlength">2.最小长度=5</label>
+			                </div>
+			                <div class="col-md-8">
+			                	<!-- 利用angularjs设置最小长度并将value实例化数据模型 -->
+			                    <input type="text" id="minlength" ng-minlength="5" ng-model="user.minlength" class="form-control" />
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <div class="col-md-4">
+			                    <label for="minlength">3.最大长度=20</label>
+			　　　　　　　　　　</div>
+			                <div class="col-md-8">
+			                	<!-- 利用angularjs设置最大长度并将value实例化数据模型 -->
+			                    <input type="text" ng-model="user.maxlength" ng-maxlength="20" class="form-control" />
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <div class="col-md-4">
+			                    <label for="minlength">4. 模式匹配</label>
+			               </div>
+			                <div class="col-md-8">
+			                	<!-- 利用angularjs进行正则表达式的匹配并实例化数据模型 -->
+			                 <input type="text" id="minlength" ng-model="user.pattern" ng-pattern="/^[a-zA-Z]*\d$/" class="form-control" />
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <div class="col-md-4">
+			                    <label for="email">5. 电子邮件</label>
+			　　　　　　　　　　</div>
+			                <div class="col-md-8">
+			                	<!-- 利用html5的内置属性与angularjs相结合 -->
+			                    <input type="email" id="email" name="email" ng-model="user.email" class="form-control" />
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <div class="col-md-4">
+			                    <label for="age">6. 数字</label>
+			　　　　　　　　　　</div>
+			                <div class="col-md-8">
+			                	<!-- 利用html5的内置属性与angularjs相结合 -->
+			                    <input type="number" id="age" name="age" ng-model="user.age" class="form-control" />
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <div class="col-md-4">
+			                    <label for="url"> 7. URL</label>
+			　　　　　　　　　　</div>
+			                <div class="col-md-8">
+			                	<!-- 利用html5的内置属性与angularjs相结合 -->
+			                    <input type="url" id="url" name="homepage" ng-model="user.url" class="form-control" />
+			                </div>
+			            </div>
+			            <div class="form-group text-center">
+			                <input class="btn btn-primary btn-lg" type="submit" value="提交" />
+			            </div>
+			        </form>       
+			    </div>
+			    <div class="col-md-12">
+			        1.必填项:{{user.name}}<br>
+			        2.最小长度=5:{{user.minlength}}<br>
+			        3.最大长度=20:{{user.maxlength}}<br>
+			        4.模式匹配:{{user.pattern}}<br>
+			        5.电子邮件:{{user.email}}<br>
+			        6.数字:{{user.age}}<br>
+			        7.URL:{{user.url}}<br>
+			    </div>
+			</div>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		console.log(name);
+	</script>
+</html>

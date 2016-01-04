@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	以POST方式从服务器发送数据
+	基本概念:与get()方法相比，
+		post()方法多用于以POST方式向服务器发送数据，
+		服务器接收到数据之后，进行处理，并将处理结果返回页面
+	语法使用:$.post(URL, data, callback);
+	语法描述:url参数规定你请求的路径，是必需参数
+			可选的data参数是连同请求发送的数据
+			可选的callback参数为数据请求成功后执行的函数
+	代码实现:
+	<script>
+		$(function(){
+			$("#btn").click(function(){
+				$.post("/example/ajax/post",
+				{
+					name:"xiaoming",
+					city:"china"
+				},
+				function(data, status){
+					alert("***" + data + "***" + status);
+				}
+			);
+			})
+		})
+	</script>
+	<body>
+	</body>
+</html>

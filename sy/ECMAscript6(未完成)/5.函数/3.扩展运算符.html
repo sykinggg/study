@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	扩展运算符
+	基本概念:扩展运算符（spread）是三个点（...）。.
+		拓展概念:相当于与rest参数的逆运算，将一个数组转为用逗号分隔的参数序列
+		主要用于:函数调用
+	优点:允许传递数组或者类数组直接做为函数的参数而不用通过apply
+	代码示例:
+	<script>
+		var people = ['张三', '李四', '王五'];
+		//sayHello函数本来接收三个单独的参数people1，people2和people3
+		function sayHello(people1, people2, pelple3) {
+			document.write(`Hello ${people1}, ${people2}, ${people3}`);
+		}
+		//但是我们将一个数组以拓展参数的形式传递，它能很好地映射到每个单独的参数
+		syaHello(...people); 		//输出：Hello 张三,李四,王五
+		//而在以前，如果需要传递数组当参数，我们需要使用函数的apply方法
+		sayHello.apply(null, people); 	//输出：Hello 张三,李四,王五 
+	</script>
+	<body>
+	</body>
+</html>

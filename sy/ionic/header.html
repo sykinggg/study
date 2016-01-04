@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ion-header-bar</title>
+		<!--在内容顶部添加一个固定header栏。-->
+		<!--如果应用'bar-subheader'类，就可以成为一个subheader（在下面）。-->
+		<!--举个栗子：-->
+		<link rel="stylesheet" href="css/ionic.css" />
+		<ion-header-bar align-title='right' class = 'bar-positive'>
+			<div calss = 'buttons'>
+				<button class = 'button' ng-click = 'dosomething()'>左侧按钮</button>
+			</div>
+			<h1 class = 'title'>Title!</h1>
+			<div class = 'buttons'>
+				<button class = 'button'>右侧按钮</button>
+			</div>
+		</ion-header-bar>
+		<ion-content>
+			一些按钮
+		</ion-content>
+	</head>
+	<body>
+	</body>
+	<script src = "js/ionic.js"></script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<!--Text
+	基本概念:可以在表单的input 元素上使用v-model 指令来创建双向数据绑定
+		注意:根据input元素的类型自动选取正确的绑定模式
+	代码示例:-->
+	<script src="../vue.js"></script>
+	<body>
+		<div>
+			<span>Message is: {{msg}}</span>
+			<input type="text" v-model="msg" placeholder="edit me" />
+		</div>
+	<script>
+		var vm = new Vue({
+			el:'div',
+			data:{
+				msg:"Hello World"
+			}
+		})
+	</script>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	嵌套列
+	基本概念:为了使用内置的栅格系统将内容再次嵌套，
+		可以通过添加一个新的 .row 元素和一系列 .col-sm-<em> 元素到已经存在的 .col-sm- 元素内。
+			被嵌套的行（row）所包含的列（column）的个数不能超过12（其实，没有要求你必须占满12列）。
+	代码实现:
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-9">level1:.col-md-9</div>
+				<row>
+					<div class="col-xs-8 col-md-6">level2:.col-xs-8 .col-sm-6</div>
+					<div class="col-xs-4 col-sm-6">level2:.col-xs-4 .col-sm-6</div>
+				</row>
+			</div>
+		</div>
+	</body>
+</html>

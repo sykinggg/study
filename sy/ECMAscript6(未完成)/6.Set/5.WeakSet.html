@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	WeakSet
+	基本概念:WeakSet和Set一样都不存储重复的元素
+		WeakSet的成员只能是对象，而不能是其他类型的值
+	代码示例:
+	<script>
+		var ws = new WeakSet();
+		ws.add(1);// 无效
+	</script>
+	使用方法:WeakSet结构有以下三个方法
+		1.WeakSet.prototype.add(value)：向WeakSet实例添加一个新成员
+		2.WeakSet.prototype.delete(value)：清除WeakSet实例的指定成员
+		3.WeakSet.prototype.has(value)：返回一个布尔值，表示某个值是否在
+	代码示例:
+	<script>
+		var ws = new WeakSet();
+		var obj = {};
+		var foo = {};
+		ws.add(window);
+		ws.add(obj);
+		ws.has(window); // true
+		ws.has(foo);	// false
+		ws.delete(window);
+		ws.has(window);	// fasle
+	</script>
+	使用注意：WeakSet没有size属性，没有办法遍历它的成员
+	代码示例:
+	<script>
+		ws.size // undefined
+		ws.forEach // undefined
+		ws.forEach(function(item){document.write('weakSet.has' + item)})
+		// TypeError: undefined is not a function
+	</script>
+	<body>
+	</body>
+</html>

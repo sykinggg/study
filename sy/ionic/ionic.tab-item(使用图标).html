@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	.tab-item : 使用图标
+		选项卡的选项默认的只包含文字，使用图标会使其更加生动：比如 微博和微信：
+	注意：要在某个选项元素中插入图标，需要注意两点：
+		1.使用i标签在.tab-item中插入图标
+		2.在.tabs容器上使用.tabs-icon-{position}声明图标位置。
+		注意：有三种方式定义图标位置：
+			1..tabs-icon-top - 将图标置于文字之上
+			2..tabs-icon-left - 将图标置于文字左侧
+			3..tabs-icon-only - 只使用图标，不显示文字
+	示例： <img src="image/ionic.tab-item(使用图标).png" alt="" />
+	<body>
+		<div class = "bar bar-header bar-stable item-input-inset">
+			<label class = "item-input-wrapper">
+				<i class = "icon ion-ios-search placeholder-icon"></i>
+				<input type="search" placeholder = "大家在搜，七夕" />
+			</label>
+		</div>
+		<div class = "tabs tabs-stable tabs-icon-top">
+			<a class = "tab-item">
+				<i class = "icon ion-ios-home-outline"></i>首页
+			</a>
+			<a class = "tab-item">
+				<i class = "icon ion-ios-email-outline"></i>信息
+			</a>
+			<a class = "tab-item energized-bg light">
+				<i class = "icon ion-ios-plus-empty"></i>发微博
+			</a>
+			<a class = "tab-item">
+				<i class = "icon ion-ios-eye-outline"></i>发现
+			</a>
+			<a class = "tab-item">
+				<i class = "icon ion-ios-person-outline"></i>我
+			</a>
+		</div>
+	</body>
+</html>

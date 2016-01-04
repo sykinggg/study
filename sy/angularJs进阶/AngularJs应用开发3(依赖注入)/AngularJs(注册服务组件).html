@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	注册服务组件
+	基本概念：从injector的角度看，组件就是一个功能提供者，因此被称为供给者/Provider。
+	基本使用： 在AngularJS中，provider以JavaScript类（构造函数）的形式封装。
+	示例： <img src="../iamge/AngularJs(注册服务组件).png" alt="" />
+	注意：服务名称通常使用一个字符串标识，
+		   比如"$http"代表http调用服务、"$rootScope"代表根 作用域对象、"$compile"代表编译服务...
+	Provider类要求提供一个$get函数（类工厂），injector通过调用该函数， 就可以获得服务组件的实例。
+	注意：名称和类函数的组合信息，被称为配方。
+		  injector中维护一个集中的配方库， 用来按需创建不同的组件。
+		  其实就是一个Hash对象，key就是服务名称，value 就是类定义。
+	下面的示例中，我们定义了一个简单的服务类，这个服务类的实例就是一个字符串：“hello,world!”。
+	使用"ezHello"作为其服务名在注入器里注册，并通过注入器将这个实例显示出来。
+	<body>
+		<!--这里显示ezHello实例的内容-->
+		<div id="logger"></div>
+	</body>
+	<script>
+	//在ezstuff模块上登记一个服务ezHello
+		angular.module("ezstuff",[])
+		.provider("ezHello", function(){
+			//$get方法是一个类工厂，返回服务的实例
+			this.$get = function(){
+				return "hello,world";
+			};
+		});
+		angular.element(document).ready(function(){
+			angular.injector(["ng","ezstuff"]).invoke(function(ezHello){
+				//将ezHello实例对象转化成字符串显示出来
+				var e = document.querySelector("#logger");
+				angular.element(e).text(ezHello);
+			});
+		});
+	</script>
+</html>

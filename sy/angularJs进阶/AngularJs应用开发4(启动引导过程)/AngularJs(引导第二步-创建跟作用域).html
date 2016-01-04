@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	引导第2步：创建根作用域
+	AngularJs的基础思想：scope对象是AngularJS实现数据绑定的重要服务，
+				所以，在引导启动建立了注入器之后， AngularJS马上在应用的根节点上创建一个根作用域：$rootScope对象。
+	示例图： <img src="../image/AngularJs(引导第二步-创建根作用域).png" alt="" />
+	使用说明: 如果是自动引导启动，那么ng-app所在的DOM节点对应着根作用域。
+			   如果是手工引导启动， 那么在bootstrap方法中指定的第一个参数就对应着根作用域。
+	注意：无论哪一种情况，一旦$rootScope对象创建成功，
+			  AngularJS就将这个对象存储到根节点 的data中，我们可以使用如下的方法查看这个对象：
+	示例： angular.element(approot).data("$rootScope");
+	<body>
+		<p>一幅动画</p>
+		<ez-duang></ez-duang>
+	</body>
+	<script>
+	//模拟引导启动过程
+		angular.element(document).ready(function(){
+			//第一步：创建注入器并保存到根对象的data中
+			var injector = angular.injector(["ng", "ezstuff"]);
+			angular.element(document).data("$injector", injector);
+			//第二步：创建根作用域并保存到根对象data中
+			var rootScope = injector.get("$rootScope");
+			angular.element(docuemnt).data("$rootScope", rootScope);
+		});
+		angular.module("ezstuff", [])
+		.directive("ezDuang", function(){
+			return {
+				restrict : "E"
+				template : "<img src=''http://ww4.sinaimg.cn/bmiddle/757eb2ffjw1eptcr4qobjg209205dthh.gif>"
+			};
+		});
+	</script>
+</html>

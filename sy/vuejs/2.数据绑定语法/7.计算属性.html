@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	计算属性
+	基本概念:
+		模板是为了描述视图的结构。在模板中放入太多的逻辑会让模板过重且难以维护。
+		这就是为什么 Vue.js 将绑定表达式限制为一个表达式。
+		如果需要多于一个表达式的逻辑，应当使用计算属性。
+	代码示例:在 Vue.js 中，你可以通过 computed 选项定义计算属性：.
+	<div id="example">
+		a={{a}},b={{b}}
+	</div>
+	var vm = new Vue({
+		el:'#example',
+		data:{
+			a:1
+		},
+		computed:{
+			// 一个计算属性的 getter
+			b:function(){
+				// `this` 指向 vm 实例
+				return this.a+1
+			}
+		}
+	})
+	<body>
+	</body>
+</html>

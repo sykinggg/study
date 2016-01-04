@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	手动触发指定事件
+	基本概念:trigger() 方法触发被选元素的指定事件类型。
+	语法形式:$(selector).trigger(event,[param1,param2,....])
+	语法描述:其中event参数必需，是指定元素要触发的事件。
+			注意:可以使自定义事件（使用 bind() 函数来附加），或者任何标准事件。
+		   后面的参数可选，是指传递到事件处理程序的额外参数。额外的参数对自定义事件特别有用。
+	示例如下:
+	<script>
+		$(function(){
+			$("div").bind("append-content", function(){
+				$(this).append("**那是我逝去的青春**");
+			});
+			$("div").trigger("append-content");
+		})
+	</script>
+	<body>
+	<div>在夕阳下奔跑,</div>
+	<div>在夕阳下奔跑,</div>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	可见性过滤选择器
+	概念:可见性过滤选择器根据元素是否可见的特征获取元素
+	选择器			功能									返回值
+	:hidden 		获取所有不可见元素，或者type为hidden的元素	元素集合
+	:visible 		获取所有的可见元素						元素集合
+	注意:hidden选择器所选择的不仅包括样式为display：none所有元素，还包括属性type="hidden"和样式为visibility:hidden的所有元素
+	示例如下：
+	<script>
+		$(function(){//增加所有可见元素的类别
+			$("span:hidden").show();
+			$("div:visible").addClass("GetFocus");			
+		})
+		$(function(){//增加所有不可见元素类别
+			$("span:hidden").show().addClass("")
+		})
+	</script>
+	<body>
+	</body>
+</html>

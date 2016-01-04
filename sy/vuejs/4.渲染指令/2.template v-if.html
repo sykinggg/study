@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<!--template v-if
+	基本概念:因为 v-if 是一个指令，需要将它添加到一个元素上
+	使用注意:
+		此时我们可以把一个 <template> 元素当做包装元素，并在上面使用 v-if，最终的渲染结果不会包含它。
+	代码示例:-->
+	<!--<template v-if="ok">
+		<h1>Title</h1>
+		<p>paragraph</p>
+		<p>paragraph</p>
+	</template>-->
+	<!--注意:当ok为真值时，渲染为-->
+	<!--<h1>Title</h1>
+	<p>paragraph</p>
+	<p>paragraph</p>-->
+	<script src="../vue.js"></script>
+	<body>
+		<div id="example" v-if="ok">
+			<div v-if="ok">
+				<h1>Title</h1>
+				<p>Paragraph</p>
+				<p>Paragraph</p>
+			</div>	
+		</div>
+		<script>
+			var vm = new Vue({
+				el:'#example',
+				data:{
+					ok:true
+				}
+			})
+		</script>
+	</body>
+</html>

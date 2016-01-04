@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	切换事件
+	基本概念:在jQuery中提供了hover()和toggle()这两个方法用于事件的切换。
+	原理说明:所谓的切换事件，就是有两个以上的事件绑定于一个元素，在元素的行为动作间进行切换。
+	hover()方法：
+		说明:hover()方法的功能是当鼠标移到所选元素上时，
+			执行方法中的第一个函数，鼠标移出时，执行方法中的第二个函数，实现事件的切换效果。
+		语法形式:$(selector).hover(over, out);
+		语法说明:over参数为移到所选元素上触发的函数，out参数为移出元素时触发的函数。
+	toggle()方法：
+		说明:toggle()方法用于绑定两个或多个事件处理器函数，以响应被选元素的轮流的 click 事件。
+		语法形式:$(selector).toggle(fun1(),fun2(),funN(),...)
+		注意:toggle()方法在1.9.0之后的版本是不支持的。
+		语法形式:$(selector).toggle(speed,callback)
+		语法描述:speed参数可选，作用是规定hide/show效果的速度；
+			callback()参数可选，当toggle()方法完成是执行的函数。
+	千万注意:可用于切换被选元素的 hide() 与 show() 方法。
+		示例如下:
+		<script src="http://libs.baidu.com/jquery/1.8.2/jquery.js"></script>
+		<script>
+			$(function(){
+				$("div").hover(
+					function(){
+						$(this).append("***爆装备***");
+					},
+					function(){
+						$("div").remove();
+					}
+				)
+			})
+			$(function(){
+				$("#btn").toggle(
+					function(){
+						$("div").css("background-color","green");
+					},
+					function(){
+						$("div").css("background-color","red");
+					},
+					function(){
+						$("div").css("background-color","yellow");
+					}
+				)
+			})
+			$(function(){
+				$("#btn").click(function(){
+					$("div").toggle(1000);
+				});
+			})
+		</script>
+		
+		
+	<body>
+		 <div id="bindTest">打土豪</div>鼠标移上去看看
+	    <input type="button" id="btn" value="toggle()方法改变div背景色"/>
+	</body>
+</html>

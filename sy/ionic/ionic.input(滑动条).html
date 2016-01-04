@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	滑动条 : .range input[type="range"]
+		range是HTML5新引入的元素，常用来进行连续值的调节：
+		例如：<img src="image/ionic.input(滑动条).png" alt="" />
+	滑动条的可视部件包括三部分：左右图标和中间的滑动条。 图标是可选的，当不用图标时，滑动条将占据整个宽度。
+	在ionic中，使用如下HTML模板声明滑动条：
+	<any class = "range">
+		<any class = "icon {left-icon-name}"></any>
+		<input type="range" name = "{range-name}" />
+		<any class = "icon {right-icon-name}"></any>
+	</any>
+	注意：使用.range-{color}样式声明滑动条的配色方案，这主要影响滑轨的颜色。
+	<body>
+		<div class = "bar bar-haeder bar-stable">
+			<button class = "button button-clear button-positive icon ion-ios-arrow-left">设置</button>
+			<h1 class = "title">声音</h1>
+		</div>
+		<div class = "scroll-content has-header">
+			<div class = "list">
+				<div class = "item item-divider">铃音和提醒</div>
+				<div class = "item range range-positive">
+					<i class = "icon ion-ios-volume-low"></i>
+					<input type="range" name = "volume" value = 30 />
+					<i class = "icon ion-ios-volume-high"></i>
+				</div>
+				<div class = "item item-toggle">
+					用按钮调整
+					<label class = "toggle toggle-balanced">
+						<input type="checkbox" checked>
+						<div class = "track">
+							<div class = "handle"></div>
+						</div>
+					</label>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

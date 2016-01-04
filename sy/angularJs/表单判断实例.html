@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html ng-app='app'>
+	<head>
+		<meta charset = 'utf-8'>
+		<style>
+		/*AngularJS处理表单时，会根据表单当前的状态添加一些CSS类（例如当前是合法的、未发生变化的，等等） ，这些CSS类的命名和前面介绍的属性很相似。*/
+			.ng-pristine {}
+			.ng-dirty {}
+			.ng-valid {}
+			.ng-invalid {}
+		</style>
+	</head>
+	<body>
+		<form name="signup_form" novalidate ng-submit="signupForm()" ng-controller="signupController">
+			<fieldset>
+				<legend>Signup</legend>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>Your name</label>
+							<!-- 注意下方的input标签实例化出一个模型并与下面的input标签的模型相关联 -->
+							<!-- 相对于ng-bind仅传递正确的数据即数据检查的结果为true的结果 -->
+						<input type="text" placeholder="Name" name="name" ng-model="signup.name" ng-minlength="3" ng-maxlength="20" required />
+
+						<div class="error" ng-show="signup_form.name.$dirty && signup_form.name.$invalid && signup_form.submitted">
+
+							<small class="error" ng-show="signup_form.name.$error.required">
+							Your name is required.
+							</small>
+
+							<small class="error"
+							ng-show="signup_form.name.$error.minlength">
+							Your name is required to be at least 3 characters
+							</small>
+
+							<small class="error"
+							ng-show="signup_form.name.$error.maxlength">
+							Your name cannot be longer than 20 characters
+							</small>
+							
+						</div>
+					</div>
+				</div>
+				<button type="submit" >Submit</button>
+			</fieldset>
+		</form>
+		<input ng-class="{error: signup_form.name.$dirty && signup_form.name.$invalid}" type="text" placeholder="Name" name="name" ng-model="signup.name" 
+		ng-minlength="3" ng-maxlength="20" required ng-focus />
+		<div class="error" ng-show="signup_form.name.$dirty && signup_form.name.$invalid && !signup_form.name.$focused">
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('signupController', function($scope) {
+		$scope.submitted = false;
+		$scope.signupForm = function() {
+		if ($scope.signup_form.$valid) {
+		// 正常提交
+		} else {
+		$scope.signup_form.submitted = true;
+		}
+		}
+		});
+		app.directive('ngFocus', [function() {
+		var FOCUS_CLASS = "ng-focused";
+		return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function(scope, element, attrs, ctrl) {
+		ctrl.$focused = false;
+		element.bind('focus', function(evt) {
+		element.addClass(FOCUS_CLASS);
+		scope.$apply(function() {
+		ctrl.$focused = true;
+		});
+		}).bind('blur', function(evt) {
+		element.removeClass(FOCUS_CLASS);
+		scope.$apply(function() {
+		ctrl.$focused = false;
+		});
+		});
+		}
+		};
+		}]);
+	</script>
+</html>

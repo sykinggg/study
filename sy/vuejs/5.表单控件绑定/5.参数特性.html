@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<!--参数特性
+	基本概念:
+		1.lazy
+		在默认情况下，v-model 在input 事件中同步输入框值与数据，可以添加一个特性 lazy，从而改到在 change 事件中同步
+	代码示例:-->
+	<!--在 "change" 而不是 "input" 事件中更新-->
+	<!--<input v-model="msg" lazy />-->
+	<!--代码示例:当在文本框中输入完成以后，才更新内容：-->
+	<!--<span>Message is : {{msg}}</span>
+	<input type="text" v-model="msg" lazy />-->
+		<!--2.number
+		如果想自动将用户的输入保持为数字，可以添加一个特性 number：
+	代码示例:-->
+	<!--<input v-model="age" number />-->
+		<!--3.debounce
+		debounce 设置一个最小的延时，在每次敲击之后延时同步输入框的值与数据
+		注意:如果每次更新都要进行高耗操作（例如在输入提示中 Ajax 请求），它较为有用
+	代码示例:-->
+	<!--<input v-model="msg" debounce="500" />-->
+	<!--注意:debounce 参数不会延迟 input 事件：它延迟“写入”底层数据-->
+	<script src="../vue.js"></script>
+	<body>
+		<div>
+			<span>Message is :{{msg}}</span>
+			<input type="text" id="1" v-model="msg" lazy />
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el:'div',
+			data:{
+				
+			}
+		})
+	</script>
+</html>

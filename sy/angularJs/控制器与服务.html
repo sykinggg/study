@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html ng-app = 'module'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div ng-controller = 'myController'>
+			<input type="text" ng-init = "message = 'test'" ng-model = 'message'>
+			<button ng-click = 'callNotify(message)'>点击</button>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var module = angular.module('module', []);
+		// 自定义服务$window采用javascript对象
+		module.factory('notify', ['$window', function (win) {
+			var msgs = [];
+			return function (msg) {
+				// 每一次输入的内容都在大的数组后面追加
+				msgs.push(msg);
+				// 增加的次数鼠标点击的次数
+				if (msgs.length == 3) {
+					// 设置操作
+					win.alert(msgs.join('\n'));
+					msgs = [];
+				}
+			};
+		}]);
+
+		function myController(scope, notifyService) {
+			scope.callNotify = function(msg) {
+				notifyService(msg);
+			};
+		}
+		// 进行依赖注入
+		myController.$inject = ['$scope', 'notify'];
+	</script>
+</html>

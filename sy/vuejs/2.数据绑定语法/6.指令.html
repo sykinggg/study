@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	指令
+	基本概念:
+注意:Vue.js指令 (Directives) 是特殊的带有前缀 v- 的特性
+		指令的职责就是当其表达式的值改变时把某些特殊的行为应用到 DOM 上。
+	代码示例:
+		<p v-if="msg">Hello!</p>
+	代码描述:
+		这里 v-if 指令将根据表达式 msg 值的真假删除/插入 < p > 元素。
+	拓展:在Vue.js中为我们提供了一些指令：v-text，v-html，v-model，v-on，v-else等等
+	api地址:cn.vuejs.org/api/#指令
+	<script type="text/javascript">
+		var data={msg:0};
+		new Vue({
+			el:'#demo',
+			data:data
+		})
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+		<style>
+			.col{
+				border:1px solid red;
+			}
+		</style>
+	</head>
+	.col-{align} : 列纵向对齐
+		注意：如果一行中各元素的高度不一样，那么比较矮的那些元素将自动被拉伸以适应 整行的高度。
+			  有时你不想这样，希望那些元素保持自身的高度。ionic提供了一些预置的CSS类用来 指定这些元素纵向的对齐方式：
+			1.col-top - 让元素纵向顶对齐
+			2.col-center - 让元素居中对齐
+			3.col-bottom - 让元素向底对齐
+	本质：这是通过设置元素的CSS3样式align-self来实现的。
+	<body>
+		<div class = "bar bar-header">
+			<h1 class = "title">列纵向对齐</h1>
+		</div>
+		<div class = "scroll-content has-header">
+			<div class = "row">
+				<div class = "col">.col</div>
+				<div class = "col">.col</div>
+				<div class = "col">.col</div>
+				<div class = "col">1<br2<br>3<br>4</div>
+			</div>
+			<div class = "row">
+				<div class = "col col-top">.col</div>
+				<div class = "col col-center">.col</div>
+				<div class = "col col-bottom">.col</div>
+				<div class = "col">1<br>2<br>3<br>4</div>
+			</div>
+			<div class = "row row-top">
+				<div class = "col">.col</div>
+				<div class = "col">.col</div>
+				<div class = "col">.col</div>
+				<div class = "col">1<br>2<br>3<br>4</div>
+			</div>
+			<div class = "row row-center">
+				<div class = "col">.col</div>
+				<div class = "col">.col</div>
+				<div class = "col">.col</div>
+				<div class = "col">1<br>2<br>3<br>4</div>
+			</div>
+			<div class = "row row-buttom">
+				<div class = "col">.col</div>
+				<div class = "col">.col</div>
+				<div class = "col">.col</div>
+				<div class = "col">1<br>2<br>3<br>4</div>
+			</div>
+		</div>
+	</body>
+</html>

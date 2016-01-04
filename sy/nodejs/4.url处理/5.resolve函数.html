@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	resolve函数的基础用法
+	基本概念:resolve函数的参数是两个路径，第一个路径是开始的路径或者说当前路径，第二个则是想要去往的路径
+		注意:返回值是一个组装好的url
+	代码实现:
+	<script>
+		var url = require('url');
+		url.resolve('http://example.com/', '/one')		// 'http://example.com/one'
+		url.resolve('http://example.com/one', '/two')		// 'http://example.com/two'
+	</script>
+	<body>
+	</body>
+</html>

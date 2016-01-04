@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+		<title>angularJs的内置过滤器</title>
+	</head>
+	<body ng-controller = 'appctrls'>
+		<!-- number过滤器支持取小数点位数（四舍五入） -->
+		<p ng-bind = 'a | number:2'></p>
+		<p>{{a | number:2}}</p>
+		<!-- currency过滤器将数值格式转化为货币格式美元符号（似乎无参） -->
+		<p ng-bind = 'a | currency'></p>
+		<p>{{a | currency}}</p>
+		<!-- date过滤器将日期格式转化成需要的格式有n多参数 -->
+		<!-- 注意：动态时间更新可能不适用于所有的过滤器 -->
+		<!-- 不适用于date过滤器的longDate参数 -->
+		<p ng-bind = 'time'></p>
+		<p ng-bind = 'clock'></p>
+		<p ng-bind = "time | date:'medium'"></p>
+		<p ng-bind = "clock | date:'medium'"></p>
+		<p ng-bind = "time | date:'short'"></p>
+		<p ng-bind = "clock| date:'short'"></p>
+		<p ng-bind = "time | date:'fullDate'"></p>
+		<p ng-bind = "clock| date:'fullDate'"></p>
+		<p ng-bind = "time | date:'longDate'"></p>
+		<!-- <p ng-bind = "clock| data:'longDate'"></p> -->
+		<p ng-bind = "time | date:'mediumDate'"></p>
+		<p ng-bind = "clock| date:'mediumDate'"></p>
+		<p ng-bind = "time | date:'shortDate'"></p>
+		<p ng-bind = "clock| date:'shoetDate'"></p>
+		<p ng-bind = "time | date:'mediumTime'"></p>
+		<p ng-bind = "clock| date:'mediumTime'"></p>
+		<p ng-bind = "time | date:'shoetTime'"></p>
+		<p ng-bind = "clock| date:'shoetTime'"></p>	
+		<!-- date过滤器的具体时间格式化 -->
+		  年份格式化
+		四位年份：{{ today | date:'yyyy' }} <!-- 2013 -->
+		两位年份：{{ today | date:'yy' }} <!-- 13 -->
+		一位年份：{{ today | date:'y' }} <!-- 2013 -->
+  		月份格式化
+		英文月份：{{ today | date:'MMMM' }} <!-- August -->
+		英文月份简写：{{ today | date:'MMM' }} <!-- Aug -->
+		数字月份：{{ today |date:'MM' }} <!-- 08 -->
+		一年中的第几个月份：{{ today |date:'M' }} <!-- 8 -->
+  		日期格式化
+		数字日期：{{ today|date:'dd' }} <!-- 09 -->
+		一个月中的第几天：{{ today | date:'d' }} <!-- 9 -->
+		英文星期：{{ today | date:'EEEE' }} <!-- Thursday -->
+		英文星期简写：{{ today | date:'EEE' }} <!-- Thu -->
+  		小时格式化
+		24小时制数字小时：{{today|date:'HH'}} <!--00-->
+		一天中的第几个小时：{{today|date:'H'}} <!--0-->
+		12小时制数字小时：{{today|date:'hh'}} <!--12-->
+		上午或下午的第几个小时：{{today|date:'h'}} <!--12-->
+		  分钟格式化
+		数字分钟数：{{ today | date:'mm' }} <!-- 09 -->
+		一个小时中的第几分钟：{{ today | date:'m' }} <!-- 9 -->
+		  秒数格式化
+		数字秒数：{{ today | date:'ss' }} <!-- 02 -->
+		一分钟内的第几秒：{{ today | date:'s' }} <!-- 2 -->
+		毫秒数：{{ today | date:'.sss' }} <!-- .995 -->
+		  字符格式化
+		上下午标识：{{ today | date:'a' }} <!-- AM -->
+		四位时区标识：{{ today | date:'Z' }} <!--- 0700 -->
+		<!-- filter过滤器可以从给定的数组中选择一个子集，并将其生成一个新数组返回（过滤数组） -->
+		<!-- ng-repeat指令是迭代数组用于循环其中 XX in json数组名是将json数据的转化 -->
+		<!-- 注意ng-repeat指令是迭代数组无法直接套用过滤器经行筛选 -->
+		<ul ng-repeat = 'book in people'>
+			人名{{book.name | filter:'a'}},城市{{book.city}}
+		</ul>
+		<!-- 参数可以使字符串严格筛选对每个元素都执行这个函数，返回非假值的元素会出现在新的数组中并返回。 -->
+		{{['Ari','Lerner','Likes','To','Eat','Pizza'] | filter:'pr'}}
+		<!-- 对象数组要筛选先注意格式 -->
+		{{[{'name': 'Ari','City': 'San Francisco','favorite food': 'Pizza'},
+			{'name': 'bri','City': 'dan Francisco','favorite food': 'eizza'},
+			{'name': 'cri','City': 'can Francisco','favorite food': 'qizza'},
+			{'name': 'dri','City': 'xan Francisco','favorite food': 'rizza'}] | filter :{'name': 'Ari'}
+		}}
+		
+		<!-- 绑定的数据也是不可筛选的 -->
+		<p ng-bind = "peo | filter:'s'"></p>
+
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var apps = angular.module('app',[]);
+		apps.controller('appctrls',function ($scope,$timeout) {
+			$scope.a = 123.456;
+			$scope.time = new Date();
+			var update = function(){
+				$scope.clock = new Date();
+				$timeout(function(){
+					update();
+				},1000)
+			};
+			update();
+			$scope.people = [
+				{name:'a1',city:'a1'},
+				{name:'b2',city:'b2'},
+				{name:'c3',city:'c3'},
+				{name:'d4',city:'d4'}
+			]
+			$scope.peo = 'hello world';
+
+		});
+	</script>
+</html>

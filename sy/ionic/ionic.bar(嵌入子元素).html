@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>.bar嵌入子元素</title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	<!--.bar嵌入子元素-->
+	在ionic中，有三种.bar子元素的样式是预定义的：
+		标题文字 - 对包含标题文字的元素应用.title样式，通常使用h1元素：
+		<!--举个栗子:-->
+		<any class = "bar">
+			<any class = "title"></any>
+		</any>
+		按钮 - 对用作按钮的元素，应用.button样式，通常使用button 或a元素作为按钮。注意按钮将使用.bar的配色方案：
+		<!--举个栗子：-->
+		<any class = "bar">
+			<any class = "button"></any>
+		</any>
+		工具栏 - 工具栏包含一组按钮。对用作工具栏的元素，应用.button-bar样式，通常 使用div元素作为工具栏：
+		<!--举个栗子：-->
+		<any class = "bar">
+			<any class = "button-bar">...</any>
+		</any>
+	<body>
+		<div class = "bar bar-header bar-dark">
+			<h1 class = "title">Header</h1>
+			<button class = "button icon ion-plus"></button>
+		</div>
+		<!--样式：.bar-dark背景颜色设置深色-->
+		<div class = "bar bar-footer bar-dark">
+			<!--注意：样式.button-bar是指行按钮流式布局-->
+			<div class = "button-bar">
+				<a class = "button button-clear icon ion-ios-chatbubble-outline">Chat</a>
+				<a class = "button button-clear icon ion-ios-list-outline">Address</a>
+				<a class = "button button-clear icon ion-ios-eye-outline">Discovery</a>
+				<a class = "button button-clear icon ion-ios-person-outline">Profile</a>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	为过滤器增加参数
+	注意：过滤器的行为可以通过额外的参数来调整。
+	实现：
+		通过在过滤器类工厂返回的过滤器函数中传入额外的参数，就可以实现这个功能。
+	示例：
+	var filter = function(input, argument1, argument2){...}
+	使用：
+		在使用过滤器时，额外的参数通过前缀:
+	示例：
+	{{expression|filter:argumnet1:argument2}}
+	<body ng-app="ezstuff">
+		<div ng-init="text='just a demo'">
+			<p>{{text|ezUC:true}}</p>
+		</div>
+	</body>
+	<script>
+		var ezUCFilterFactory = function(){
+			return function(input, cap){
+				if(!cap) return input.toUpperCase();
+				var output = input.replace(/\b\w+\b/g, function(word) {
+					return word.substring(0,1).toUpperCase(  ) + word.substring(1);
+				});
+				return output;
+			}
+		};
+		angular.module("ezstuff", [])
+		.filter("ezUC", ezUCFilterFactory);
+	</script>
+</html>

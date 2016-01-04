@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	表单选择器
+	选择器			功能								返回值
+	:input 			获取所有input,textarea,select 		元素集合
+	:text 			获取表单中所有单行文本框				元素集合
+	:password 		获取表单中所有密码框					元素集合
+	:radio 			获取表单中所有单选按钮				元素集合
+	:checkbox 		获取表单中所有复选框					元素集合
+	:sumbit 		获取表单中所有提交按钮				元素集合
+	:image 			获取表单中所有图像域					元素集合
+	:reset 			获取表单中所有重置按钮				元素集合
+	:button 		获取表单中所有按钮					元素集合
+	:file 			获取表单中所有文件域					元素集合
+	示例如下:
+	<script>
+		$(function(){
+			$("#form1 div").html("表单共找出input类型元素");
+			$("#form1 :input").length();
+			$("#form1 div").addClass("div");
+		})
+		$(function(){
+			$("#form1 :text").show(3000);
+		})
+		$(function(){
+			$("#form :password").show(3000);
+		})
+		$(function(){
+			$("#form1 :radio").show(3000);
+			$("#form1 #Span1").show(3000);
+		})
+		$(function(){
+			$("#form1 :checkbox").show(3000);
+			$("#form1 #span2").show(3000);
+		})
+		$(function(){
+			$("#form1 :submit").show(3000);
+		})
+		$(function(){
+			$("#form1 :image").show(3000);
+		})
+		$(function(){
+			$("#form1 :reset").show(3000);
+		})
+		$(function(){
+			$("#form1 :button")
+		})
+	</script>
+	<body>
+	</body>
+</html>

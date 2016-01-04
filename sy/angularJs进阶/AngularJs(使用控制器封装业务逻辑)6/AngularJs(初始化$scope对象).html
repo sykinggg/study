@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="ezstuff">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	初始化$scope对象
+	通常做法：在应用启动时，需要初始化scope对象上的数据模型。
+	升级做法：使用控制器则是更为规范的做法。
+	利用控制器对业务模型进行初始化赋值：示例图：
+	<img src="../image/AngularJs(初始化$scope对象).png" alt="" />
+	注意：控制器仅仅负责在编译时在scope对象上建立视图对象vm，视图对象和模板的绑定则是由 scope负责管理的。
+	<body>
+		<div ng-controller="ezController">
+			<div>name: {{vm.sb.name}}</div>
+			<div>gender: {{vm.sb.gender}}</div>
+			<div>age : {{vm.sb.age}}</div>
+			<div>career : {{vm.sb.career}}</div>
+			<div><img src="{{vm.sb.photo}}" alt="" /></div>
+		</div>
+	</body>
+	<script>
+		var ezControllerClass = function($scope){
+			$scope.vm = {
+				sb: {
+					name : "Jason Stantham",
+					geader : "male",
+					age : 28,
+					career : "actor",
+					photo : "http://b.hiphotos.baidu.com/baike/w%3D268/sign=a03742145bee3d6d22c680cd7b176d41/359b033b5bb5c9eae4c45250d739b6003af3b34a.jpg"
+				}
+			};
+		};
+		angular.module("ezstuff", [])
+		.controller("ezController", ezControllerClass);
+	</script>
+</html>

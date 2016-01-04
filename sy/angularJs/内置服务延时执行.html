@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app = 'app'>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	内置服务的使用：在自定义服务之前注入所有的AngularJS内置服务。
+	
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+//		举个栗子：
+		var app = angular.module('app', []);
+//		在这个例子中 $timeout 服务会取消所有网络请求，并在输入字段的两次变化之间延时350 ms。
+//		换句话说，如果用户两次输入之间有350 ms的间隔，就推断用户已经完成了输入，然后开始向GitHub发送请求：
+		app.controller('appctrl', function($scope, $timeout, githubService){
+			var timeout;
+			$scope.$watch('username', function (newUserName) {
+				if (newUserName) {
+					// 如果在一个进度中超时(timeout)
+					if(timeout) $timeout.cancel(timeout);
+					timeout = $timeout(function () {
+						githubService.events(newUserName)
+							.success(function (data, status) {
+								$scope.events = data.data;
+							});
+					}, 350);
+				}
+			});
+		});
+		// 使用服务也是在控制器之间共享数据的典型方法。
+	</script>
+	<!-- 为了在控制器之间共享数据，需要在服务中添加一个用来储存用户名的方法。 -->
+	<!-- 注意：服务在应用的生命周期内是单例模式的，因此可以将用户名安全地储存在其中。 -->
+	<script>
+		// 举个栗子：
+		var app = angular.module('app', []);
+		app.factory('githubService', function ($http) {
+			var githubUrl = 'https://api.github.com',
+				githubsername;
+			var runUserRequest = function (path) {
+				// 从使用中jsonp的Github API的$http服务中返回promise
+				return $http({
+					method: 'jsonp',
+					URL: githubUrl + '/users/' + githubUsername + '/' + path + '?callback=JSON_CALLBACK'
+				});
+			};
+			// 返回带有两个方法的服务对象
+			// 事件
+			// 和setUsername
+			return{
+				events: function () {
+					return runUserRequest('events');
+				},
+				setUserName: function (username) {
+					githubsername = username;
+				}
+			};
+		})
+	</script>
+	<!-- 现在，服务中有一个 setUsername 方法，用来保存当前的GitHub用户名了。 -->
+	<!-- githubService 可以注入到应用的任何一个控制器中，并可以在控制器中调用 events() 方法，且无须担心当前作用域对象上的用户名是否是正确的。 -->
+	<script>
+		// 举个栗子：
+		var app = angular.module('app', []);
+		app.controller('appctrl', function ($scope, githubService) {
+			$scope.setUsername = githubService.setUsername;
+		});
+	</script>
+</html>

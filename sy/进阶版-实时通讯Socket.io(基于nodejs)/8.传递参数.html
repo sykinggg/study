@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	传递参数
+	场景设置:客户端发起连接请求时都需要传递参数，这些参数可能是身份验证、初始化设置
+	代码实现:
+	<script>
+		var socket = io.connect('/');
+	</script>
+	注意:无法把参数拼接到url上,以通过这样的方式来传递参数
+	<script>
+		var socket = io.connect('/', {_query:'sid=123456'});
+	</script>
+	在服务端可以这样获取到传递的参数:
+	<script>
+		io.use(function(){
+			var query = socket.request._query;
+			var sid = query.sid;
+		});
+	</script>
+	代码描述:客户端传递的参数已经被解析成了一个json对象，这个对象就是_query。
+	<body>
+	</body>
+</html>

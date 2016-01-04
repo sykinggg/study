@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<!--绘制时钟圆形外框
+	应用到的方法：beginPath(开始),设定lineWidth(线宽),strokeStyle(颜色)，最后的arc圆。
+	示例：
+	ctx.beginPath();
+	ctx.lineWidth = 14;
+	ctx.strokeStyle = '#000'
+	ctx.arc(0, 0, 142, 0, Math.PI*2, true);
+	ctx.stroke();
+	ctx.restore();-->
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<body>
+		<canvas id="canvas">您的浏览器不支持Canvas标签</canvas>
+	</body>
+	<script>
+		$(function(){
+			init();
+		})
+		function init(){
+			clock();
+			setInterval(clock, 1000);
+		}
+		function clock(){
+			var now = new Date();
+			
+			var ctx = document.getElementById('canvas').getContext('2d');
+			ctx.save();
+			ctx.clearRect(0, 0, 150, 150);// 清空给定矩形内的指定像素
+			ctx.translate(75, 75);// 重新设置画布的坐标源点
+			ctx.scale(0.4, 0.4); // 缩放当前绘图，更大或更小。
+			ctx.rotate(-Math.PT/2);// 弧度
+			ctx.strokeStyle = "black";// 要绘制的线条的颜色
+			ctx.fillStyle = "white";// 填充颜色
+			ctx.lineWidth = 8;// 线段的宽度  
+			ctx.lineCap = "round"; //圆形线头
+			
+			// 绘制时钟圆形外框
+			ctx.beginPath();
+			ctx.lineWidth = 14;
+			ctx.strokeStyle = '#325FA2';
+			ctx.arc(0, 0, 142, 0, Math.PI*2, true);
+			ctx.stroke();
+			
+			ctx.restore();
+		}
+	</script>
+</html>

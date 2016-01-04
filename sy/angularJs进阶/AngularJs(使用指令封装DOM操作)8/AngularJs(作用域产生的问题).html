@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	作用域问题
+	注意问题：指令没有自己的scope对象，换句话说，它使用所在DOM对象对应的scope对象。
+	问题产生：如果一个指令在同一个scope内出现多次，会怎样？
+	示例：
+	<div ng-controller="ezCtrl">
+		<ez-customer></ez-customer>
+		<ez-customer></ez-customer>
+	</div>
+	注意：由于两个ez-customer指令都处在ezCtrl开辟的作用域内，
+		所以两个指令绑定到了同样的 数据模型上，得到的是重复的结果。
+	可以使用：将每个ez-customer指令置于不同的作用域下，这意味着我们给每个ez-customer 一个不同的控制器：
+	示例：
+	<div ng-controller="ezctrl1">
+		<ez-customer></ez-customer>
+	</div>
+	<div ng-controller="ezctrl2">
+		<ez-customer></ez-customer>
+	</div>
+	<body ng-app="ezstuff">
+		<div ng-controller="ezCtrl">
+			<ez-customer></ez-customer>
+		</div>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.controller("ezCtrl", ["$scope", function($scope){
+			$scope.customer = {
+				name: "name",
+				address: "address"
+			};
+		}])
+		.directive("ezCustomer", function(){
+			return {
+				restrict: "E",
+				replace: true,
+				template: "<div> Name: {{customer.name}} Address: {{customer.address}}</div>"
+			};
+		});
+	</script>
+</html>

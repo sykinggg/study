@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	stdin的基本用法
+	基本描述:stdin是进程的输入流,我们可以通过注册事件的方式来获取输入的内容，
+	代码实现:
+	<script>
+		process.stdin.on('readable', function(){
+			var chunk = process.stdin.read();
+			if(chunk !== null) {
+				process.stdout.write('data:' + chunk);
+			}
+		})
+	</script>
+	<body>
+	</body>
+</html>

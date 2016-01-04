@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	字面修饰符
+	基本概念:当指令使用了字面修饰符literal，它的值将按普通字符串处理并传递给 update 方法
+		注意:update 方法将只调用一次，因为普通字符串不能响应数据变化
+	代码示例:
+	<div id="demo" v-demo.literal="foo bar baz"></div>
+	<script>
+		Vue.directive('demo',function(value){
+			document.write(value)// foo bar baz
+		})
+	</script>
+	<script src="../vue.js"></script>
+	<body>
+		<div id="demo" v-demo.literal="foo bar baz"></div>
+	</body>
+	<script>
+		Vue.directive('demo',function(value){
+			document.write(value);
+		})
+		var demo = new Vue({
+			el:'#demo',
+			data:{
+				msg:'Hello!'
+			}
+		})
+	</script>
+</html>

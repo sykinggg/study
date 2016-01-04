@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	在代码中使用过滤器
+	注意：过滤器也是一种服务，所以你可以将它注入你的代码中。
+	使用：过滤器在注入器中注册时，名称被加了一个后缀：Filter。
+		例如，number过滤器的服务名称是：numberFilter，而currency过滤器的服务名称是： currencyFilter。
+	通常使用：通常我们的代码被封装在三个地方：控制器、服务、指令。这些地方都支持服务的直接 注入，
+	示例：
+		angular.module("myModule", [])
+		.controller(function($scope, numberFilter){
+			//...
+		})
+	显时使用：使用注入器的invoke()方法：
+	示例：
+		angular.module(["ng"])
+		.inovke(function(numberFilter){
+			//...
+		})
+	重点：记住过滤器是一种服务，除了名字需要追加Filter后缀，和其他服务的调用方法没 什么区别。
+	<body ng-app="ezstuff">
+		<div ng-controller="ezCtrl">
+			Tital salary is {{total}}
+		</div>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.controller("ezCtrl", function($scope, numberFilter, currencyFilter){
+			$scope.total = currencyFilter(numberFilter(123,2))
+		})
+	</script>
+</html>

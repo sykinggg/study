@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	滑动效果
+	基本概念: 1. slideDown()向下滑动元素
+			2. slideUp()用于向上滑动元素
+			3. slideToggle()可以在 slideDown() 与 slideUp() 方法之间进行切换
+	语法使用: slideDown()语法:$(selector).slideDown(speed,callback);
+			slideUp()语法:$(selector).slideUp(speed,callback);
+			slideToggle()语法:$(selector).slideToggle(speed,callback);
+	语法描述:参数speed规定效果的时长，可以取值："slow"、"fast"或毫秒。callback参数是滑动完成后所执行的函数名称。
+	示例如下:
+	<script>
+		$(function(){
+			$("button").click(function(){
+				$("#div1").slideDown("slow");
+			});
+		})
+		$(function(){
+			$("button")click(function(){
+				$("#div2").slideUp("slow");
+			});
+		})
+		$(function(){
+			$("button")。click(function(){
+				$("#div3").slideToggel("slow");
+			});
+		})
+	</script>
+	<body>
+	</body>
+</html>

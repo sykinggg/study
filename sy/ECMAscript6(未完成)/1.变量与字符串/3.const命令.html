@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="http://google.github.io/traceur-compiler/bin/traceur.js" type="text/javascript"></script>
+	<script src="http://google.github.io/traceur-compiler/src/bootstrap.js" type="text/javascript"></script>
+	const命令
+	基本概念:
+		1.const 声明的是常量，一旦声明，值将是不可变的。
+	代码实现:
+	<script>
+		const PI = 3.1415;
+		console.log(PI);// 3.1415
+		PI = 3;
+		console.log(PI);// 3.1415
+		const PI = 3.1;
+		console.log(PI);// 3.1415
+	</script>
+	注意:console不出来但可以用:document.write显示出来!
+		2.const 也具有块级作用域
+	代码实现:
+	<script>
+		if(true){
+			const max = 5;
+		}
+		document.write(max);// ReferenceError 常量MAX在此处不可得 
+	</script>
+		3.const 不能变量提升（必须先声明后使用）
+	代码实现:
+	<script>
+		if(true){
+			document.write(MAX);// ReferenceError
+			const MAX = 5;
+		}
+	</script>
+		4.const 不可重复声明
+	代码实现:
+	<script>
+		var message = "Hello!";
+		let age = 25;
+		
+		// 以下两行都会报错
+		const message = "Goodbye!";
+		const age = 30;
+	</script>
+	<body>
+	</body>
+</html>

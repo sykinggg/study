@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	绘制小时刻度
+	绘制小时刻度,我们需要回顾下，之前学的知识 ：角度弧度制转换，如下：
+	知识点：弧度制单位：rad 角度制单位：度 → 180度 = PI弧度 → 1度 = PI弧度/180度 → 1弧度= 180度/PI弧度
+	关键:
+		1.弧度 = 角度*PI/180
+		2.角度 = 弧度*180/PI
+	示例:
+	ctx.save(); //记录旋转画布之前的状态
+	for (var i=0; i<12; i++){
+		ctx.beginPath();
+		var red = Math.PI/6;// Math.pi/6弧度大刻度，总分为12刻度，每个刻度为:2π/12 → π/6
+		ctx.rotate(red);// 旋转画布绘制刻度
+		ctx.moveTo(100, 0);
+		ctx.lineTo(120, 0);
+		ctx.stroke();
+	}
+	ctx.restore();
+	<body>
+		<canvas id="canvas">浏览器不支持canvas标签</canvas>
+	</body>
+	<script>
+		$(function(){
+	init();
+})
+
+function init(){
+  clock();
+  setInterval(clock,1000);
+}
+
+function clock(){
+  var now = new Date();
+
+  var ctx = document.getElementById('canvas').getContext('2d');
+  ctx.save();
+  ctx.clearRect(0,0,150,150); // 清空给定矩形内的指定像素
+  ctx.translate(75,75);  // 重新设置画布的坐标源点
+  ctx.scale(0.4,0.4);  // 缩放当前绘图，更大或更小。
+  ctx.rotate(-Math.PI/2); // 弧度
+  ctx.strokeStyle = "black"; // 要绘制的线条的颜色
+  ctx.fillStyle = "white"; // 填充颜色
+  ctx.lineWidth = 8; // 线段的宽度  
+  ctx.lineCap = "round"; //圆形线头
+
+  // 绘制小时刻度
+  ctx.save();
+  for (var i=0;i<12;i++){
+    ctx.beginPath();
+    ctx.rotate(Math.PI/6);
+    ctx.moveTo(100,0);
+    ctx.lineTo(120,0);
+    ctx.stroke();
+  }
+  ctx.restore();
+  
+  // 绘制时钟圆形外框
+  ctx.beginPath();
+  ctx.lineWidth = 14;
+  ctx.strokeStyle = '#325FA2';
+  ctx.arc(0,0,142,0,Math.PI*2,true);
+  ctx.stroke();
+
+  ctx.restore();
+}
+	</script>
+</html>

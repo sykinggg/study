@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	创建过滤器
+	注意：过滤器也是一种特殊的服务，与创建一个普通的服务相比较：
+		1.必须使用模块的filter()接口注册服务
+		2.必须提供对象工厂/factory方法
+		3.对象工程必须返回一个过滤器函数，其第一个参数为输入变量
+	示例：
+	//定义过滤器类工厂
+	var filterFactory = function(){
+		//定义过滤器函数
+		var filter = function(input, extra_args){
+			return output
+		}
+	};
+	//在模块上注册过滤器
+	angular.module("someModule", [])
+	.filter("filterName", filterFactory);
+	<body ng-app="ezstuff">
+		<div ng-init="text='just a demo!'">
+			<p>{{text|ezUC}}</p>
+		</div>
+	</body>
+	<script>
+		//过滤器对象工厂定义
+		var ezUCFilterFactory = function(){
+			//过滤器对象返回的是一个过滤函数
+			var filter = function(input){
+				return input.toUpperCase();
+			}
+			return filter;
+		};
+		angular.module("ezstuff", [])
+		//使用模块的filter()接口注册过滤器
+		.filter("ezUC", ezUCFilterFactory);
+	</script>
+</html>

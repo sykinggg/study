@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- ngModelController 中有几个属性可以用来检查甚至修改视图。 -->
+
+		<!-- 1.  $viewValue -->
+			<!-- $viewValue 属性保存着更新视图所需的实际字符串。 -->
+
+
+		<!-- 2.  $modelValue -->
+			<!-- $modelValue 由数据模型持有。 $modelValue 和 $viewValue 可能是不同的，取决于 $parser流水线是否对其进行了操作。			 -->
+
+
+		<!-- 3.  $parsers -->
+			     <!-- $parsers 的值是一个由函数组成的数组，其中的函数会以流水线的形式被逐一调用。ngModel 从DOM中读取的值会被传入 $parsers 中的函数，并依次被其中的解析器处理。 -->
+
+
+		<!-- 4.  $formatters -->
+				 <!-- $formatters 的值是一个由函数组成的数组，其中的函数会以流水线的形式在数据模型的值发生变化时被逐一调用。它和 $parser 流水线互不影响，用来对值进行格式化和转换，以便在绑定了这个值的控件中显示。 -->
+
+				
+
+		<!-- 5.  $viewChangeListeners -->
+				 <!-- $viewChangeListeners 的值是一个由函数组成的数组，其中的函数会以流水线的形式在视图中的值发生变化时被逐一调用。通过 $viewChangeListeners ，可以在无需使用 $watch 的情况下实现类似的行为。由于返回值会被忽略，因此这些函数不需要返回值。		 -->
+
+
+
+		<!-- 6.  $error -->
+				 <!-- $error 对象中保存着没有通过验证的验证器名称以及对应的错误信息。 -->
+
+	
+
+		<!-- 7.  $pristine -->
+				 <!-- $pristine 的值是布尔型的，可以告诉我们用户是否对控件进行了修改。 -->
+
+
+
+				 <!-- 注意：出于演示目的， 尽管我们在指令内置入了一个 $http 调用， 但是在产品中的指令内使用 $http 是不明智的。相反，将它置入到服务中会更好。 -->
+
+
+				<!-- 注意该代码是匹配输入的用户名是否存在 -->
+				 <input type="text" ng-model = 'singup.name' ng-minlength = '3' ng-maxlength = '20' ensure-unique = 'username' required >
+				 <!-- 在指令内置入了一个 $http 调用， 但是在产品中的指令内使用 $http 是不明智的。相反，将它置入到服务中会更好。 -->
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.directive('test',function ($http) {
+			return{
+				require: 'ngModel',
+				link: function(scope, ele, attrs, c){
+					scope.$watch(attrs.ngModel, function() {
+						$http({
+							method: 'POST',
+							url: '/api/check/' + attrs.ensureUnique,
+							data: {field: attrs.ensureUnique, valud:scope.ngMOdel
+							}.success(function(data, status, header, cfg){
+								c.$setValidity('unique', data.isUmique);
+							})
+						})
+					})
+				}
+			}
+		})
+
+	</script>
+</html>

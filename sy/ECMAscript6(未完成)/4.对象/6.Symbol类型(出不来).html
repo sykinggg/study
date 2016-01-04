@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	Symbol类型
+	基本概念:ES6引入了一种新的原始数据类型Symbol，表示独一无二的ID
+	代码示例:
+	<script type="text/traceur">
+		let s = Symbol();
+		typeof s// "symbol"
+		document.write(typeof s);
+		console.log(typeof s);
+	</script>
+	代码描述:typeof运算符的结果，表明变量s是Symbol数据类型，而不是字符串之类的其他类型
+	注意:Symbol函数前不能使用new命令，否则会报错。这是因为生成的Symbol是一个原始类型的值，不是对象
+		Symbol类型的值不能与其他类型的值进行运算，会报错
+	代码实现:
+	<script>
+		var sym = Symbol('My symbol');
+		"your symbol is " + sym
+		// TypeError: can't convert symbol to string
+		`your symbol is ${sym}`
+		// TypeError: can't convert symbol to string
+	</script>
+	注意:Symbol类型的值可以转为字符串
+	代码实现:
+	<script>
+		var sym = Symbol('My symbol');
+		 
+		String(sym) // 'Symbol(My symbol)'
+		sym.toString() // 'Symbol(My symbol)'
+	</script>
+	<body>
+	</body>
+</html>

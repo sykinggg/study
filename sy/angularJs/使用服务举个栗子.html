@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app = 'app'>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body ng-controller = 'myController'>
+		<label for="name">姓名：</label>
+		<input type="text" ng-model = 'name' />
+		<ul>
+			<li ng-repeat = 'event in events'>
+				{{ event.actor.login }} {{ event.repo.name }}
+			</li>
+		</ul>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('myController',function($scope, githubService){
+			// 注意username属性的变化
+			// 如果有变化就运行该函数
+			$scope.$watch('username', function(newUsername) {
+				// 从使用JSONP调用Github API的$http服务中返回promise
+				githubService.events(newUsername)
+					.success(function(data, status, headers) {
+						// success函数在数据中封装响应
+						// 因此我们需要调用data.data来获取原始数据
+						$scope.events = data.data;
+					})
+			})
+		})
+	</script>
+	由于$http返回的是promise对象，可以通过.success()方法像直接调用$http一样调用返回的对象。
+	注意：在实际项目中会这样一个功能封装进一个指令中，并在指令中设置$watch.
+</html>

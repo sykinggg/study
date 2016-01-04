@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	</head>
+	jQuery层次选择器
+	层次选择器通过DOM元素间的层次关系获取元素，
+	注意:其主要的层次关系包括后代、父子、相邻、兄弟关系，
+	选择器					功能								返回值
+	ancestor > descendant 	根据祖先元素匹配所有的后代元素			元素集合
+	parent > child 			根据父元素匹配所有的子元素 				元素集合
+	prev + next 			匹配所有紧接在prev元素后的相邻元素		元素集合
+	prev ~ siblings 		匹配prev元素之后的所有兄弟元素 			元素集合
+	注意:
+		1.ancestor descendant 与 parent > child 所选择的元素集合是不同的，前者的层次关系是祖先与后代，而后者是父子关系；
+		2.prev + next 可以使用 .next() 代替，而prev ~ siblings可以使用nextAll()代替。
+	示例如下：
+	1.描述
+		所有的元素标记初始全部显示，然后通过jQuery层次选择器隐藏相对应的页面标记。
+	2.代码实现
+	<script>
+		$(function(){
+			//匹配后代元素
+			$("div span").css("display","none");//隐藏div中所有的<span>标记
+			//匹配子元素
+			$("div>span").css("display","none");//隐藏div中子span标记
+			//匹配后面元素
+			$("#divMid+div").css("display","none");//隐藏id为divMid元素后的下一个div
+			$("#divMid").next().css("display","none");
+			//匹配所有后面元素
+			$("#divMid~div").css("display","none");//隐藏id为divMid元素后的所有div
+			$("#divMid").nextAll().css("display","none");
+			//匹配所有相邻元素
+			$("#divMid").siblings("div").css("display","none");//隐藏id为divMid元素的所有相邻div
+		})
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	界面布局和元素
+	注意：HTML页面由源图片、Crop操作按钮、裁剪矩形框以及图片容器（含4个角的调整小方块）组成，代码如下：
+	示例：
+	<div class="component">
+		<div class="overlay">
+			<div class="overlay-inner"></div>
+		</div>
+		<img src="" alt="" class="resize-image" />
+		<button class="btn-crop js-crop">Crop <img class="icon-crop" src="" alt="" /> </button>
+	</div>
+	<body>
+		img [class=resize-image] 元素为本服务器图片资源，是要进行调整和裁剪的图片。
+		button [class=btn-crop] 是SVG矢量图标按钮。
+		div [class=overlay] 元素是裁剪矩形框。
+	</body>
+	<script>
+		关键：此外图片容器使用JavaScript动态包装在 img[class=resize-image] 元素外部：
+		// 用容器包装图像，并添加调整大小手柄
+		$(image_target).wrap("<div class='resize-container'></div>")
+					.before("<span class='resize-handle resize-handle-nw'></span>")
+					.before("<span class='resize-handle resize-handle-ne'></span>")
+					.after("<span class='resize-handle resize-handle-se'></span>")
+					.after("<span class='resize-handle resize-handle-sw'></span>")
+	</script>
+</html>

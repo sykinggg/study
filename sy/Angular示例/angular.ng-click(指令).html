@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src = "angular.js"></script>
+	<!--通过ng-click定义一个AngularJS单击事件。-->
+	<body>
+		<!--取非前值常用于布尔值-->
+		<div ng-app = "" ng-init="click=false">
+			<button ng-click="click = !click">隐藏/显示</button>
+			<div ng-hide = "click">
+				请输入一个名字： <input type="text" ng-model = "name" />
+				<br />
+				Hello <span ng-bind = "name"></span>
+			</div>
+		</div>
+		<!--ng-hide="true"，设置HTML元素不可见-->
+		<!--ng-click指令将DOM元素的鼠标点击事件(即mousedown)绑定到一个方法上，当浏览器在该DOM元素上鼠标触发点击事件时，Angular就会调用相应的方法-->
+	</body>
+	
+</html>

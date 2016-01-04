@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	fill()填充数组
+	基本概念；fill()使用给定值，填充一个数组。
+	代码实现:
+	<script>
+		let arr = ['a', 'b', 'c'].fill(7);
+		document.write(arr); // [7, 7, 7]
+		let newArr = new Array(3).fill(7);
+		document.write(newArr); // [7, 7, 7]
+	</script>
+	代码描述:fill方法用于空数组的初始化非常方便。数组中已有的元素，会被全部抹去。
+	代码详解:fill()还可以接受第二个和第三个参数，用于指定填充的起始位置和结束位置。
+	代码实现:
+	<script>
+		let Array = ['a', 'b', 'c'].fill(7, 1, 2)
+		document.write(newArr); // ['a', 7, 'c']
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src = "http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+		<style>
+			div#clock{
+				padding: 10px;
+				width:400px;
+				background:#000;
+				color:#0f0;
+			}
+		</style>
+	</head>
+	用jQuery实现一个小时钟
+	我们试着用jQuery实现一个简单的时钟页面，实现思路很简单：
+		.引入jquery库
+	jquery库将创建一个全局对象：$。开发者需要的API都挂接在这个对象上。
+	它其实是一个类工厂，负责将指定的DOM对象转化为jquery对象。
+		.在DOM文档就绪后，启动一个定时器
+	使用$(document).ready()可以监听DOM文档就绪事件，通常简写成$(...)。
+		.在定时器里更新div#clock的文本
+	"div#clock"是一个选择符，使用这个选择符，jquery库可以找到那个 特定的DOM对象，并将其转化为jQuery对象。
+	jquery封装后的DOM对象有一堆的方法供你调用，我们使用text()方法更新其文本。
+	
+	<body>
+		<div id = "clock"></div>
+	</body>
+	<script>
+	//监听DOM事件就绪
+		$(function(){
+		//启动定时器
+			setInterval(function(){
+			//取当前事件对象
+				var d = new Date();
+				//使用text()方法更新DOM对象的内容
+				$("#clock").text(d.toString());
+			},1000)
+		})
+	</script>
+</html>

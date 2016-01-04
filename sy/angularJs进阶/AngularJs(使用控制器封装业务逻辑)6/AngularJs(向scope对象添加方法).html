@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="ezstuff">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	向cope对象添加方法
+	按实际情况来说：业务模型是动态的，在数据之外，我们需要给业务模型添加动作。
+	注意：在之前建立的业务模型上，我们增加一个随机挑选的方法：shuffle，
+			这个方法负责 从一个小型的名人库中随机的选择一个名人来更新模型的sb属性：
+	流程实例图： <img src="../image/AngularJs(向scope对象添加方法).png" alt="" />
+	由图可得：通过在button上使用ng-click指令，我们将模型的shuffle方法绑定到了鼠标点击 事件上。
+			试着用鼠标点击【shuffle】按钮，我们的模型将从库里随机的选出一个 名人，显示在视图里。
+	<body>
+		<div ng-controller="ezControllerClass">
+			<button ng-click="vm.shuffle()">shuffle</button>
+			<div>name: {{vm.sb.name}}</div>
+			<div>gender: {{vm.sb.gender}}</div>
+			<div>age: {{vm.sb.age}}</div>
+			<div>carrer: {{vm.sb.career}}</div>
+			<div><img src="{{vm.sb.photo}}" alt="" /></div>
+		</div>
+	</body>
+	<script>
+		ezControllerClass = function($scope){
+			//view model
+			$scope.vm = {
+				sb : {
+					name : "Jason Stantham",
+					gender : "male",
+					age : 48,
+					career : "actor",
+					photo : "http://b.hiphotos.baidu.com/baike/w%3D268/sign=a03742145bee3d6d22c680cd7b176d41/359b033b5bb5c9eae4c45250d739b6003af3b34a.jpg"
+				},
+				shuffle : function(){
+						var repo = [{
+							name: "Jason",
+							gender: "male",
+							age: 28,
+							career: "actor",
+							photo : "http://b.hiphotos.baidu.com/baike/w%3D268/sign=a03742145bee3d6d22c680cd7b176d41/359b033b5bb5c9eae4c45250d739b6003af3b34a.jpg"
+						},{
+							name: "asd",
+							gender: "male",
+							age: 30,
+							career: "actress",
+							photo: "http://h.hiphotos.baidu.com/baike/w%3D268/sign=ce8cdcb43bdbb6fd255be2203125aba6/b219ebc4b74543a91d7092831c178a82b9011411.jpg"
+						},{
+							name: "qwe",
+							gender: "zxc",
+							age: 36,
+							career: "actor",
+							photo: "http://f.hiphotos.baidu.com/baike/w%3D268/sign=e97412d2359b033b2c88fbdc2dcf3620/4a36acaf2edda3cc4187b7f600e93901203f9280.jpg"
+						},{
+							name: "sdf",
+							gender: "ert",
+							age: 23,
+							career: "actor",
+							photo: "http://e.hiphotos.baidu.com/baike/w%3D268/sign=856e3aab34d3d539c13d08c50286e927/8c1001e93901213ff48a548956e736d12f2e952d.jpg"
+						}];
+						var idx = Math.floor(Math.random()*repo.length);
+						$scope.vm.sb = repo[idx];
+				}
+			};
+		};
+		angular.module("ezstuff", [])
+		.controller("ezController", ezControllerClass);
+	</script>
+</html>

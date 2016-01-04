@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			ul.nceditor{
+				list-style: none;
+				padding: 10px;
+				margin: 0px;
+				width: 300px;
+				border: 1px solid #787878;
+				line-height: 30px;
+			}
+		</style>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	如何修改数据
+	思想：一旦在指令的实现代码中可以访问数据模型，那么使用声明式模板实现数据 修改也非常简单了。
+	我们定义一个新的指令：ez-namecard-editor，意图让其展开成这样：
+	<ul>
+		<li>name: <input type="text" /></li>
+		<li>gender: <input type="text" /></li>
+		<li>age: <input type="text" /></li>
+	</ul>
+	使用措施：在ez-namecard-editor的指令实现中，为了用input中的值自动更新 sb变量中的值，
+	我们需要在给input对象挂接上监听函数（示例中使用keyup事件）， 在监听函数中实现对sb变量的修改。
+	最终的效果是，用户在界面上进行的操作，自动地同步到了我们的数据。这时，我们称， 已经建立了从界面到数据的单向绑定。
+	<body ng-app="ezstuff" ng-init="sb = {name: 'somebody', gender : 'male', age: 28}">
+		<!--下面两个指令绑定到变量sb上-->
+		<ez-namecard-editor data = "sb"></ez-namecard-editor>
+		<div ez-logger data = "sb"></div>
+	</body>
+	<script>
+		angular.module("ezstuff",[])
+		.directive("ezNamecardEditor", function(){
+			return {
+				restrict: "E",
+				template: "<ul class='nceditor'></ul>",
+				replace: true,
+				link: function(scope,element,attrs) {
+					//获得变量名称
+					var model = attrs.data;
+					//展开HTML模板，使用field属性标记对应字段
+					element.append("<li>name: <input type='text' field='name'></li>")
+						.append("<li>gender: <input type='text' field='gender'></li>")
+						.append("<li>age: <input type='text' field='age'></li>")
+					//监听DOM事件， 变化时修改变量值
+					element.find("input").on("keyup", function(ev){
+						var field = ev.target.getAttribute("field");
+						scope[model][field] = ev.target.value;
+						//将对scope的修改进行传播
+						scope.$apply("");
+					});
+				}
+			};
+		})
+		.directive("ezLogger", function(){
+			return {
+				restrict: "A",
+				link: function(scope,element,attrs) {
+					var model = attrs.data;
+					scope.$watch(model, function(nv){
+						var cnt =JSON.stringify(nv,null,"  ");
+						element.html("<pre>" + cnt + "</pre>");
+					}, true);
+				}
+			};
+		});
+	</script>
+</html>

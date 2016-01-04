@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	控制器的作用
+	重点：在AngularJS中，实现数据绑定的核心是scope对象。
+	基本概念：没有控制器/controller，我们没有地方定义业务模型。
+	例如：我们可以使用ng-init指令在scope对象上定义数据，
+	<div ng-init="sb={name:'somebodt',gender:'male',age:28}"></div>
+	注意：ng-init的值是一个AngularJS表达式，没有办法定义方法。
+	控制器的有点：控制器让我们有机会在scope上定义我们的业务逻辑，具体说，可以使用控制器：
+				1.对scope对象进行初始化
+				2.向scope对象添加方法
+	<body>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	重写示例：模板、指令和视图
+	重点：AngularJS最显著的特点是用静态的HTML文档，就可以生成具有动态行为的页面。
+	描述：HTML文件看起来像普通的HTML，只是其中多了一些特别的标记 （比如：ng-app,ez-clock等等）。
+		   在Angular中，这个HTML文件被称为模板。
+	详细描述：ng-app这样的标记我们称之为指令。
+			  模板通过指令指示AngularJS进行必要的操作。
+	比如：ng-app指令用来通知AngularJS自动引导应用；ez-clock 指令用来通知AngularJS生成指定的时钟组件。
+		示例： <img src="../image/angularJs(结构框架).png" alt="" />
+		说明：当AngularJS启动应用时，它会通过一个编译器解析处理这个模板文件，生成的结果就是： 视图：
+			   模板（包含指令的HTML文件）和指令实现 （JavaScript文件），AngularJS将这两部分拼装起来，生成了最终的视图。
+			   
+			   <!--内置的ng-app指令通知编译器启动AngularJs框架-->
+	<body ng-app="ezstuff">
+		<!--自定义的ez-clock指令通知编译器生成时钟widget-->
+		<ez-clock></ez-clock>
+	</body>
+	<script>
+	//创建模块ezstuff
+		angular.module("ezstuff",[])
+		//在模块上注册指令ezClock的类工厂声明时使用驼峰命名法使用时全部小写并将大写去替换成-来连接
+		.directive("ezClock", function(){
+			return{
+				restrict : 'E',
+				replace : true,
+				template : "<div class='clock'></div>",
+				link : function(scope,element,attrs){
+					setInterval(function(){
+						//实例化时间对象
+						var d = new Date();
+						//element对应应用指令的DOM对象的jqLite封装
+						element.text(d.toString());
+					},1000);
+				}
+			}
+		})
+	</script>
+</html>

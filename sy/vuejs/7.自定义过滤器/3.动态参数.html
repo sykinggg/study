@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<script src="../vue.js"></script>
+	<body>
+		<div id="example">
+			<input type="text" v-model="userInput" value="2" />
+			<span>{{msg|concat userInput}}</span>
+		</div>
+	</body>
+	<script>
+		//在这里面写Vue.js代码
+		Vue.filter('concat', function(value,input){
+			// 这里 `input` === `this.userInput`
+			return value + input
+		})
+		var vm = new Vue({
+			el:'#example',
+			data:{
+				msg:'2.0'
+			}
+		})
+	</script>
+</html>

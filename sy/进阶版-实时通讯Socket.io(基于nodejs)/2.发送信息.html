@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	发送信息
+	基本概念:send函数只是emit的封装，实际上还是使用了emit
+	代码实现:send函数是如何实现的
+	<script>
+		function send(){
+			var args = toArray(arguments);
+			args.unshift('message');
+			this.emit.apply(this, args);
+			return this;
+		}
+	</script>
+	代码描述:在send函数中，获取到原来的参数，并在原来的基础上插入了一个参数message，然后调用了emit函数。通过send函数的.
+	代码实现:
+		我们也学会了emit函数的用法，它有连个参数，第一个参数是事件名称，在接收端注册该事件就可以接收到发送过去的信息，事件名称可以自由定义。
+										第二个参数才是发送的数据。
+	<script>
+		//app.js
+		io.on('connection', function(socket){
+			socket.emit('message', '连接成功!');
+			socket.on('message', function(data){
+			});
+		});
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div ng-controller = 'someController'>
+			<!-- 仅输出someController控制器其中的someBareValue对象 -->
+			<p ng-bind = 'someBareValue'></p>
+			<!-- 控制当前someController控制器作用域内的someBareValue对象数据 -->
+			<button ng-click = 'someAction()'>点击</button>
+			<!-- childController控制器嵌套在someController控制器内 -->
+			<div ng-controller = 'childController'>
+				<!-- 根据原型继承绑定父childController控制器作用域内的someBareValue对象数据并进行更改 -->
+				<p ng-bind = 'someBareValue'></p>
+				<!-- 修改父级对象中的 someBareValue 会同时修改子对象中的值，但反之则不行 -->
+				<button ng-click = 'someBction()'> 点击</button>
+			</div>
+		</div>
+		<div ng-controller = 'childController'>
+			<p ng-bind = 'someBareValue'></p>
+			<button ng-click = 'someBction()'> 点击</button>
+		</div>
+	</body>
+	<script src = '../angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('someController',function ($scope) {
+			$scope.someBareValue = 'hello world';
+			$scope.someAction = function(){
+				$scope.someBareValue = 'hello Aeveryone';
+			};
+		});
+		// 果然是作用域的原型继承
+		app.controller('childController',function($scope){
+			$scope.someBction = function(){
+				$scope.someBareValue = 'hello Beveryone';
+			}
+		});
+	</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 作用域的分隔应用于不同的控制器之间但注意原型继承 -->
+		 <!-- $scope 对象的职责是承载DOM中指令所共享的操作和模型。 -->
+		 <!-- 操作指的是 $scope 上的标准JavaScript方法。 -->
+		 <!-- 模型指的是 $scope 上保存的包含瞬时状态数据的JavaScript对象。持久化状态的数据应该保存到服务中，服务的作用是处理模型的持久化。 -->
+		 <!-- 出于技术和架构方面的原因，绝对不要直接将控制器中的 $scope 赋值为值类型对象（字符串、布尔值或数字） 。DOM中应该始终通过点操作符 . 来访问数据。遵守这个规则将使你远离不可预期的麻烦。 -->
+		 <!-- 控制器应该尽可能简单。虽然可以用控制器来组织所有功能，但是将业务逻辑移到服务和指令中是非常好的主意。 -->
+		<p>access:{{rootProperty}}</p>
+		<div ng-controller = 'ParentController'>
+			<p>
+				access:{{rootProperty}},and{{parentProperty}}
+			</p>
+			<div ng-controller = 'ChildController'>
+				<p>
+					access:{{rootProperty}}and{{parentProperty}}and{{childProperty}}
+				</p>
+				<p>{{fullSentenceFromChild}}</p>
+			</div>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.run(function ($rootScope) {
+			$rootScope.rootProperty = 'root scope';
+		})
+		app.controller('ParentController',function($scope){
+			$scope.parentProperty = 'parent scope'
+		})
+		app.controller('ChildController',function($scope){
+			$scope.childProperty = 'child scope';
+			$scope.fullSentenceFromChild = 'Same $scope: We can access:' + $scope.rootProperty + 'and' + $scope.parentProperty + 'and' + $scope.childProperty 
+		})
+	</script>
+</html>

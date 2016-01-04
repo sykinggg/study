@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	transclude:包含其他元素
+	注意：有些指令需要能够包含其他未知的元素。
+		比如我们定义一个指令ez-dialog，用来 封装对话框的样式和行为，它应当允许在使用期（也就是在界面模板文件里）才指 定其内容：
+	示例：
+	<ez-dialog>
+		<p>对话框的内容在我们开发ez-dialog指令的时候是无法预计的。这部分内容需要被转移到展开的DOM树中适当的位置。</p>
+	</ez-dialog>
+	注意：transclude属性可以告诉编译器，利用所在DOM元素的内容，替换template中包含 ng-transclude指令的元素的内容：
+	示例图：<img src="../image/AngularJs(transclude-包含其他元素).png" alt="" />
+	从上图中可以看到，使用transclude有两个要点：
+		1.需要首先声明transclude属性值为true，这将告诉编译器，
+			使用我们这个指令的 DOM元素，其内容需要被复制并插入到编译后的DOM树的某个点。
+		2.需要在template属性值中使用ng-transclude指明插入点。
+	<body ng-app="ezstuff">
+		<div ng-controller="ezCtrl">
+			<ez-dialog>
+				<p>Check out the contents, {{name}}!</p>
+				<p><button>Ok,I will</button></p>
+			</ez-dialog>
+		</div>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.controller("ezCtrl", ["$scope", function($scope){
+			$scope.name = "Mr. Whoami";
+		}])
+		.directive("ezDialog", function() {
+			return {
+				restrict: "E",
+				replace: true,
+				transclude: true,
+				template: "<div class='ez-dialog'><div class='header'>alert</div><div class='content' ng-transclude></div></div>"
+			};
+		});
+	</script>
+</html>

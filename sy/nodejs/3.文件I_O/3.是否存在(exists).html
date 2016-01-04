@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	exists函数的基本用法
+	代码实现:
+	例:fs.exists(文件,回调函数(exists));
+	<script>
+		var fs = require("fs");
+		fs.exists('/ect/passwd', function(exists){
+			console.log(exists ? "存在":"不存在");
+		})
+	</script>
+	代码描述:exists的回调函数只有一个参数，类型为布尔型，通过它来表示文件是否存在。
+	<body>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div ng-controller = 'someController'>
+			<p ng-bind = 'someModel.someValue'></p>
+			<button ng-click = 'someAction()'>点击</button>
+			<div ng-controller = 'childController'>
+				<p ng-bind = 'someNodel.someValue'></p>
+				<button ng-click = 'someBction()'>点击</button>
+			</div>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('someController',function ($scope) {
+			$scope.someModel = {
+				someValue : 'hello world'
+			}
+			$scope.someAction = function(){
+				$scope.someModel.someValue = 'hello my history'
+			}
+		})
+		app.controller('childController',function ($scope) {
+			$scope.someBction = function(){
+				$scope.someModel.someValue = 'hello my future'
+			}
+		})
+	</script>
+</html>

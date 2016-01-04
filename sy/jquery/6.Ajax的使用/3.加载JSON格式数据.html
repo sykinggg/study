@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	加载JSON格式数据
+	基本概念:jQuery的AJAX中使用getJSON()方法异步加载JSON格式数据。
+		获取服务器中的数组，并对获取的数据进行解析，显示在页面中。
+	语法使用:$.getJSON(url,[data],[callback])
+	语法描述: url参数为请求加载json格式文件的服务器地址
+			可选项data参数为请求时发送的数据
+			callback参数为数据请求成功后执行的函数
+	示例如下:
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script>
+		$(function(){
+			$("#btn").click(function(){
+				$.getJSON("/example/data/getJSON.json",function(data){
+					var src = "";
+					$.each(data,function(InfoIndex,info){
+						src += "姓名:" + info["name"] + "\n";
+						src += "格言:" + info["desc"] + "";
+					})
+					$("#div1").html(src);
+				})
+			})
+		})
+	</script>
+	<body>
+		<input type="button" id="btn" value="获取信息" />
+	    <div id="div1"></div>
+	</body>
+</html>

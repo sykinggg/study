@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	服务监听
+	1.引用socket.io模块。
+	代码实现:
+	<script>
+		var io = require('scoket.io');
+	</script>
+	2.然后调用listen函数，传入监听的端口号，开始服务监听。
+	代码实现:练习环境中启用了80端口用于测试
+	<script>
+		var io = require('scoket.io')(80);
+	</script>
+	<body>
+	</body>
+</html>

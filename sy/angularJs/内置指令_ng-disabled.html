@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 实例化模型进行数据绑定ng-model与ng-disabled并在模型中进行简单判断!some（参数：true，false） -->
+		<input type="text" ng-model = 'some' placeholder = '请输入内容'>
+		<button ng-model = 'button' ng-disabled = false>点击</button>
+		<textarea cols="30" rows="10" ng-disabled = 'isDisabled'>helloworld</textarea>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+	// 拓展是文本禁用一秒
+		var app = angular.module('app',[]);
+		app.run(function ($rootScope,$timeout) {
+			$rootScope.isDisabled = true;
+			$timeout(function(){
+				$rootScope.isDisabled = false;
+			},1000);
+		});
+	</script>
+</html>

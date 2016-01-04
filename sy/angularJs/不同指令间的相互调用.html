@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html ng-app = 'myapp'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<p ng-bind = 'a2'></p>
+		<p ng-bind = 'a3'></p>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('module', []);
+		app.directive('a1', function () {
+			return {
+				controller: function ($scope) {
+					this.asd = 'hello World';
+					this.asdd = 'hello HTML'
+				}
+			}
+		})
+		app.directive('a2', function () {
+			return {
+				require:'?^a1',
+				link: function (scope, element, attrs, common) {
+					scope.methodl = common.asd;
+				},
+			}
+		});
+		app.directive('a3', function () {
+			return {
+				require:'?^a1',
+				link: function (scope, element, attrs, common) {
+					scope.methodl = common.asdd;
+				}
+			}
+		})
+	</script>
+</html>

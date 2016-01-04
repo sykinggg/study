@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	在.bar元素中嵌入input元素，需要注意两点：
+		1.在条块元素上应用.item-input-inset样式
+		2.将input包裹在应用.item-input-wrapper样式的元素内
+		
+	<body class = "stable-bg">
+		<!--样式.item-input-inset设置input标签在容器自动填满-->
+		<div class = "bar bar-header bar-energized item-input-inset">
+			<!--样式.icon-right说明是在容器内容右边-->
+			<!--样式.ion-android-arrow-dropdown是下拉列表的icon-->
+			<a class = "button button-clear icon-right ion-android-arrow-dropdown">北京</a>
+			<!--样式.item-input-wrapper说明在父容器中自动补全并带有圆角以及内容居中-->
+			<label class = "item-input-wrapper">
+				<input type="text" placeholder="输入商户名"/>
+			</label>
+		</div>
+		完美的仅一种输入框宽度自适应且是三级结构
+		<div class = "bar bar-footer bar-dark item-input-inset">
+			<div class = "item-input-wrapper">
+				<input type="text" placeholder="基友" />
+			</div>
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div ng-include = '/leach_uppercase.html' ng-controller = 'appctrl' ng-init = "name = 'world'">
+		</div>
+	</body>
+	<!-- 跨域资源共享（Cross-Origin Resource Sharing，CORS）和同源规则（Same Origin Policy）来确保模板可以在任何浏览器中正常加载。 -->
+	<!-- 在同一个元素上添加 onload 属性可以在模板加载完成后执行一个表达式。 -->
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.hello = 'hello world'
+		})
+	</script>
+</html>
+<!-- 其实并看不懂 -->

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	回调函数
+	基本概念:由于node是一个异步事件驱动的平台，所以在代码中我们经常需要使用回调函数。
+	代码实现:
+	<script>
+		setTimeout(function(){
+			console.log("callback is called");
+		},2000)
+	</script>
+	代码描述:我们传给setTimeout函数传入了一个匿名函数和一个调用时间2000(毫秒)，
+		运行程序后等待2秒，可以看到输出了"callback is called"。
+	<body>
+	</body>
+</html>

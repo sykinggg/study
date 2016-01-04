@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	引导之前：库阶段
+	概念：AngularJs也有一个启动引导的概念。
+	逻辑整理：首先：当你在HTML文件中引入angular.min.js时，
+				AngularJS只是建立了一个全局的 angular对象，这个对象有一些方法可供开发者调用，但应用的框架还没有建立。
+			 注意：在这个阶段，AngularJS还只是一个库，和jQuery类似，
+			 	你可以使用angular.element() 操作DOM，也可以使用angular.injector()创建注入器... 
+			 特别注意： 但是，你定义的指令，你 创建的控制器，你封装的服务，你开发的模板...
+			 	所有这些组件，还静静地躺在那里， 没有被整合在一起。
+			注意：只有通过启动引导，AngularJS框架才开始将那些组件拼接在一起，应用才真正 开始运转。
+	<body ng-app = "ezstuff">
+		<p>一幅动画</p>
+		<ez-duang></ez-duang>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.directive("ezDuang", function(){
+			return {
+				restrict: "E",
+				template: "<img src='http://ww4.sinaimg.cn/bmiddle/757eb2ffjw1eptcr4qobjg209205dthh.gif'>"
+			};
+		});
+	</script>
+</html>

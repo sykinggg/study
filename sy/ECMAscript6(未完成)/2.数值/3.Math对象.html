@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../traceur.js"></script>
+	<script src="../bootstrap.js"></script>
+	Math对象
+	基本概念:Math对象新增的方法，都是静态方法，只能在Math对象上调用。
+		1.Math.trunc()：去除一个数的小数部分，返回整数部分。
+	代码实现:
+	<script>
+		var a = Math.trunc(4.1);
+		var b = Math.trunc(-4.1);
+		document.write(a, b);
+		console.log(a, b);
+	</script>
+	注意:对于空值和无法截取整数的值， 返回的是NaN.
+		2.Math.sign()：判断一个数到底是正数、负数、还是零。
+	详细描述:返回五种值：参数为正数，返回+1；参数为负数，返回-1；
+			参数为0，返回0；参数为-0，返回-0;
+			其他值，返回NaN。
+	代码实现:
+	<script>
+		Math.sign(-5); // -1
+		Math.sign(5); // +1
+		Math.sign(0); // +0
+		Math.sign(-0); // -0
+		Math.sign('hubwiz'); // NaN
+	</script>
+		3.Math.cbrt：计算一个数的立方根。
+	代码实现:
+	<script>
+		Math.cbrt(-1); // -1
+		Math.cbrt(0); // 0
+		Math.cbrt(2);  // 1.2599210498948732
+	</script>
+		4.Math.fround：返回一个数的单精度浮点数形式。
+	代码实现:
+	<script>
+		Math.fround(0);
+		Math.fround(1.337);
+		Math.found(NaN);
+	</script>
+		5.Math.hypot：返回所有参数的平方和的平方根。
+	代码实现:
+	<script>
+		Math.hypot(3, 4);	// 5
+		Math.hypot(3, 4, 5);	// 7.0710678118654755
+		Math.hypot();	// 0
+		Math.hypot(NaN);	// NaN
+		Math.hypot(3, 4, 'foo');	// NaN
+		Math.hypot(3, 4, '5');	// 7.0710678118654755
+		Math.hypot(-3);		// 3
+	</script>
+	<body>
+	</body>
+</html>

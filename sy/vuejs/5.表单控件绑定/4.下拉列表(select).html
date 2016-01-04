@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<!--select
+	基本概念:
+	单选代码示例:-->
+	<!--<select v-model="selected">
+		<option selected>A</option>
+		<option>B</option>
+		<option>C</option>
+	</select>
+	<span>Selected:{{selected}}</span>-->
+	<!--多选代码示例:-->
+	<!--<select v-model="selected" multiple>
+		<option selected>A</option>
+		<option>B</option>
+		<option>C</option>
+	</select>
+	<br />
+	<span>Selected: {{selected|json}}</span>-->
+	<!--动态选项,用v-for渲染,代码示例:-->
+	<!--<select v-model="selected">
+		<option v-for="option in options" v-bind:value="option.value">
+			{{option.text}}
+		</option>
+	</select>
+	<span>Selected: {{selected}}</span>-->
+	<!--js代码示例:-->
+//	<script>
+//		new Vue({
+//			el:'div',
+//			data:{
+//				selected:'A',
+//				options:{
+//					[text:'One',Value:'a'],
+//					[text:'Two',value:'b'],
+//					[text:'Three',value:'c']
+//				}
+//			}
+//		})
+//	</script>
+	<!--注意:对象的格式应为 {text:'', value:''}。这允许你把展示的文字和其背后对应的值区分开来
+		也可以用v-bind来绑定数据，如我们要绑定一个数值型的数据
+	代码示例:-->
+	<!--<select v-model="selected">-->
+		<!--对象字面量-->
+		<!--<option v-bind:value="{number:123}">123</option>
+	</select>-->
+	<script src="../vue.js"></script>
+	<body>
+		<div>
+			<select v-model="selected">
+				<option v-for="option in options" v-bind:value="option.value">
+					{{option.text}}
+				</option>
+			</select>
+			<span>Selected: {{selected}}</span>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el:'div',
+			data:{
+				selected:'a',
+				options:[
+					{text:'One',value:'A'},
+					{text:'Two',value:'B'},
+					{text:'Three',value:'C'}
+				]
+			}
+		})
+	</script>
+</html>

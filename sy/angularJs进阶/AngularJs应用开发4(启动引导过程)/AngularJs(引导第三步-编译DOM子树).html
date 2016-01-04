@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	引导第3步：编译DOM子树
+	注意：引导过程的最后一步，是以ng-app所在DOM节点为根节点，对这棵DOM子树进行编译。
+	示例图：<img src="../image/AngularJs(引导第三步-编译DOM子树).png" alt="" />
+	使用描述：编译过程通常借助于指令(操作DOM)
+			1.对DOM对象进行变换。
+			2.在DOM对象上挂接事件监听。
+			3.在DOM对象对应的scope对象上挂接数据监听。
+	<body>
+		<p>一幅动画</p>
+		<ez-duang></ez-duang>
+	</body>
+	<script>
+	//模拟引导启动过程
+		angular.element(document).ready(function(){
+			//第一步：创建注入器并保存到根对象的data中
+			var injector = angular.injector(["ng", "ezstuff"]);
+			angular.element(document).data("$injector", injector);
+			//第二步：创建根作用域并保存到根对象data中
+			var rootScope = injector.get("$rootScope")
+			angular.element(document).data("$rootScope", rootScope);
+			//第三步：编译DOM树
+			var compile = injector.get("$compile")
+			compile(document)(rootScope);
+		});
+		angular.module("ezstuff", [])
+		.directive("ezDuang", function(){
+			return {
+				restrict : "E",
+				template : "<img src='http://ww4.sinaimg.cn/bmiddle/757eb2ffjw1eptcr4qobjg209205dthh.gif'>"
+			};
+		});
+	</script>
+</html>

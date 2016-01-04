@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	元素指令
+	基本概念:这与Angular 的 E 类指令的概念非常相似可以像下面这样注册一个自定义的元素指令
+	代码示例:
+	Vue.elementDirective('my-directive',{
+		<!--API同普通指令-->、
+		bind：function(){
+			<!--操作 this.el...-->
+		}
+	})
+	页面应用为:
+	<my-directive></my-directive>
+	<script src="../vue.js"></script>
+	<body>
+		<div id="demo">
+			<my-directive></my-directive>
+		</div>
+	</body>
+	<script>
+		Vue.elementDirective('my-directive',{
+			//API同普通指令
+			bind:function(){
+				document.write("my-directive");
+			}
+		})
+		var demo = new Vue({
+			el:'#demo',
+			data:{
+				msg:'hello!'
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	移除事件
+	概念:unbind() 方法移除被选元素的事件处理程序。
+	描述:该方法能够移除所有的或被选的事件处理程序，或者当事件发生时终止指定函数的运行。
+	语法形式:$(selector)unbind(event,function);
+	语法描述:该方法能够移除所有的或被选的事件处理程序，或者当事件发生时终止指定函数的运行。
+	示例如下:
+	<script>
+		$(function(){
+			$("div").click(function(){
+				$(this).slideToggle();//给div注册隐藏事件
+			});
+			$("#btn").click(function(){
+				$("div").unbind();//把div的事件移除
+			});
+		})
+	</script>
+	注意意外收获padding自动加小的弹性效果
+	<body>
+	</body>
+</html>

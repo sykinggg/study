@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script src = 'js/angular.js'></script>
+	服务
+	出于内存占用和性能的考虑，控制器只会在需要时被实例化，并且不再需要就会被销毁。
+	这意味着每次切换路由或重新加载视图时，当前的控制器会被AngularJS清除掉。
+	服务提供了一种能在应用的整个生命周期内保持数据的方法，它能够在控制器之间进行通信，并且能保证数据的一致性。
+	服务是一个单例对象，在每个应用中只会被实例化一次（被 $injector 实例化） ，并且是延迟加载的（需要时才会被创建） 。
+	服务提供了把与特定功能相关联的方法集中在一起的接口。
+	<!--以AngularJS的 $http 服务为例，它提供了对浏览器的 XMLHttpRequest 对象的底层访问功能，我们可以通过 $http 的API同 XMLHttpRequest 进行交互，
+	而不需要因为调用这些底层代码而污染应用。-->
+	<script type="text/javascript">
+//		举个栗子：
+		var app = angular.module('app',[]);
+		app.factory('UserSerivice', function($http){
+			var current_user;
+			return {
+				getCurrentUser:function(){
+					return{
+						getCurrentUser:function() {
+							return current_user;
+						},
+						setCurrentUser:function(user){
+							current_user = user;
+						}
+					}
+				}
+			}
+		})
+	</script>
+	注册一个服务
+	用$injector来注册和创建服务
+	
+	举个栗子：
+	<script>
+		var app = angular.module('app',[]);
+		app.factory('githubService', function(){
+			var serviceInstance = {};
+			// 第一个服务
+			return serviceInstance;
+//			用 githubService 作为名字注册成为这个AngularJS应用的一个服务
+		})
+	</script>
+	服务的工厂函数用来生成一个单例的对象或函数，这个对象或函数就是服务，它会存在于应用的整个生命周期内。
+	当我们的AngularJS应用加载服务时，这个函数会被执行并返回一个单例的服务对象。
+	
+	同创建控制器的方法一样，服务的工厂函数既可以是一个函数也可以是一个数组：
+	<script>
+		用方括号声明一个工厂
+		var app = angular.module('app', []);
+		app.factory('githubService', [function($http) {}]);
+	</script>
+	<script>
+		 githubService 需要访问 $http 服务， 所以我们将 $http 服务当作AngularJS应用的一个依赖，并将它注入到工厂函数中。
+		 var app = angular.module('app', []);
+		 app.factory('githubService', function($http) {
+		 	现在的服务serviceInstance现在可以在函数定义中访问$http服务就是在服务的域中加入另一服务
+		 	var serviceInstance = {};
+		 	return serviceInstance;
+		 });
+	</script>
+	无论何处需要访问GitHub API都不需要通过 $http 来进行了， 可以通过 githubService来代替，并让它处理所有复杂的业务逻辑和远程服务。
+	
+	<script>
+		通过将方法设置为服务对象的一个属性来将其暴露给外部。
+		var app = angular.module('app', []);
+		app.factory('githubService', function($http) {
+			var githubUrl = 'https://api.github.com';
+			
+			var runUserRequest = function(username, path){
+				从使用json调用Github API的$http服务中返回promise
+				return $http({
+					method:'JSON',
+					url:githubUrl + '/users/' + username + '/' + path + '?callback=JSON_CALLBACK'
+				});
+			};
+			返回一个events函数的服务对象
+			return{
+				events:function(username) {
+					return runUserRequest(username, 'events');
+				}
+			};
+		});
+	</script>
+</html>

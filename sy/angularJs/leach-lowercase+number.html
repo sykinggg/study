@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html ng-app>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- lowercase 过滤器将字符串转为小写。 -->
+		<p>{{ "San Francisco is very cloudy" | lowercase }}</p>
+				<!-- number 过滤器将数字格式化成文本。 它的第二个参数是可选的， 用来控制小数点后截取的位数。
+		如果传入了一个非数字字符，会返会空字符串。 -->
+		<p>{{123.123456789 | number:3}}</p>
+	</body>
+	<script src = 'angular.js'></script>
+</html>

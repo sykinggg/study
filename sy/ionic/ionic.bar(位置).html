@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/ionic.css"/>
+	</head>
+	样式.bar下属的样式：
+			.bar-header-置顶
+			.bar-subheader-header之下置顶
+			.bar-footer-置顶
+			.bar-subfooter-footer之上置顶
+	<body class = "stable-bg">
+		.bar类是后面的基础
+		.bar-header是代表当前.bar容器的位置(注意:因为.bar容器是固定的因此如果有两个.bar-footer容器就会产生覆盖，覆盖顺序同执行顺序一样)
+		<div class = "bar bar-header bar-positive">
+			.title:自动居中并绝对块级元素并在它之后的同级元素不显示
+			<h1 class = "title">腾讯新闻</h1>
+			最右侧的链接基类：.button 
+			.button-clear:代表去除按钮的背景颜色与边框
+			<a class = "button button-balanced  icon icon-ios-gear">asdasdasd</a>
+		</div>
+			.bar-subheader:代表副标题
+		<div class = "bar bar-subheader bar-stable">
+			.button-bar行按钮流式布局就是内有几个按钮就自动平分
+			 <div class = "button-bar">
+			 	<a class = "button button-balanced">要闻</a>
+			 	<a class = "button button-clear">财经</a>
+			 	<a class = "button button-clear">娱乐</a>
+			 	<a class = "button button-clear">体育</a>
+			 	<a class = "button button-clear">科技</a>
+			 	<a class = "button button-clear">asdasd</a>
+			 	<h1 class = "title">asdasdasd</h1>
+			 </div>
+		</div>
+		<div class = "bar bar-footer bar-dark">
+			<div class = "button-bar">
+				样式.icon代指icon基础样式 后面扩展的是分类的icon
+				<a class = "button button-clear icon icon-document-text">新闻</a>
+				<a class="button button-clear icon ion-images">图片</a>
+			<a class="button button-clear icon ion-chatbox-working">话题</a>
+			<a class="button button-clear icon ion-radio-waves">热点</a>
+			</div>
+		</div>
+	</body>
+</html>

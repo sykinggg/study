@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	对象字面量
+	基本概念:如果指令需要多个值，可以传入一个 JavaScript 对象字面量
+	注意:指令可以使用任意合法的 JavaScript 表达式
+	代码示例:
+	<div v-demo="{color:'white',text:'hello!'}"></div>
+	<script src="../vue.js"></script>
+	<body>
+	<div id="demo" v-demo="{color:'white',text:'hello!'}"></div>
+	</body>
+	<script>
+		Vue.directive('demo', function(value){
+			document.write(value.color+""+value.text);
+		})
+		var demo = new Vue({
+			el:"#demo",
+			data:{
+				msg:'Hello!'
+			}
+		})
+	</script>
+</html>

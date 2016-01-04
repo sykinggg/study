@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	execFile函数的简单用法
+	基本概念:execFile函数与exec函数类似，但execFile函数更显得精简，因为它可以直接执行所指定的文件
+	代码实现:
+	<script>
+		var child_process = require("child_process");
+		child_process.execFile( file, function(err, stdout, stderr) {
+			console.log(stdout);
+		});
+	</script>
+	注意:execFile与spawn的参数相似，也需要分别指定执行的命令和参数，但可以接受一个回调函数，与exec的回调函数相同。
+	<body>
+	</body>
+</html>

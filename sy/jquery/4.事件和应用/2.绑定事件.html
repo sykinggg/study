@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	绑定事件
+	概念:在jQuery中可以使用bind()方法进行事件的绑定。
+	注意:bind()功能是给每个选择元素的事件绑定处理函数。
+	语法:$(selector).bind(event,[data] function)
+	详细说明:参数event为事件名称，多个事件名称用空格隔开，function为事件执行的函数。
+	示例如下:
+	<script>给id为btnClick的按钮绑定点击事件，使其点击之后变为不可用状态。
+		$(function(){
+			$("#btnClick").bind("click", function(){
+				$(this).attr("disabled", "true")
+			})
+		})
+	</script>
+	<body>
+	</body>
+</html>

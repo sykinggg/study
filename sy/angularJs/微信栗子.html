@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<head>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div class="infoPics">
+           <div class="picImg" ng-repeat="picture in info.infoContent.pitctures">
+                <img ng-src="{{picture.imgPath}}" ng-click="previewPics(picture.imgPath)">
+           </div>
+     </div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app', []);
+
+		var pictures = [];
+		angular.forEach('pitctures',function(k,i){
+		         pictures[i] = k.imgPath;
+		 });
+			previewPics = function(currentUrl){
+		        if (typeof window.WeixinJSBridge != 'undefined') {
+		            //微信图片集查看
+		            WeixinJSBridge.invoke('imagePreview', {
+		                'current':currentUrl, //当前地址
+		                'urls':pictures //组
+		            });
+		        } else {
+		            alert( "请在微信中查看", null, function () {});
+		        }
+		    }
+	</script>
+</head>

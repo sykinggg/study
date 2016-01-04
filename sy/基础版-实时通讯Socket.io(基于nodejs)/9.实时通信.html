@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	实时通讯
+	基本原理:
+		1.当我们成功建立连接后，我们可以通过socket对象的send函数来互相发送消息，示例-客户端向服务端发送消息(index.html)：
+	代码实现:
+	<script>
+		var socket = io.connect('/');
+		socket.on('connect', function(){
+			//客户端连接成功后发送消息'hello world!'
+			socket.send('hello world!');
+		});
+		socket.on('message', function(data){
+			alert(data);
+		});
+	</script>
+		2.我们向服务端发送消息hello world!，还为socket注册了message事件，它是send函数对应的接收消息的事件，
+			当服务端向客户端send消息时，我们就可以在message事件中接收到发送过来的消息。
+		注意:服务端向客户端发送消息也可以通过send的方式
+	<script>
+		var io = require('io');
+		io.on('connect', function(socket){
+			socket.send('nodejs');
+			socket.on('message', function(data){
+				//收到信息
+				console.log(data);
+			});
+		});
+	</script>
+	注意:与客户端相同，服务端也需要为socket注册message事件来接收客户端发送过来的消息。
+	<body>
+	</body>
+</html>

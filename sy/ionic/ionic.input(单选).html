@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	单选按钮 : .item-radio input[type="radio"]
+		单选按钮用来从一组选择中作出仅仅一个选择：
+		例如  <img src="image/ionic.input(单选按钮).png" alt="" />
+	正如上图所见，单选按钮的可视部件包括两部分：
+		选中图标（.radio-icon） 和描述内容（.item-content），你可以在.item-content随便添加 内容。
+	例如：单选按钮基于HTML的radio input元素实现。使用如下的HTML模板 声明单选按钮：
+	<any class = "item-radio">
+		<input type="radio" name = "{group-name}" />
+		<any class = "item-content">...</any>
+		<any class = "radio-icon ion--checkmark"></any>
+	</any>
+	单选按钮通常不单独使用，将他们放入一个列表中：
+	<any class = "list">
+		<any class = "item item-radio">...</any>
+		<any class = "item item-radio">...</any>
+		...
+	</any>
+	注意：group-name决定了单选按钮的分组，所以对于互斥的选择项，必须 将它们的group-name设置为相同的名称。
+	<body>
+		<div class = "bar bar-header bar-assertive">
+			<a class = "button icon ion-ios-undo"></a>
+			<h1 class = "title">确认订单</h1>
+		</div>
+		<div class = "scroll-content has-header padding">
+			<div class = "list">
+				<div class = "item item-divider"> <b>请选择支付方式</b> </div>
+				<label class = "item item-radio">
+					<input type="radio" name = "group" />
+					<div class = "item-content">支付宝客户端</div>
+					<i class = "radio-icon ion-checkmark assertive"></i>
+				</label>
+				<label class = "item item-radio">
+					<input type="radio" name = "group" />
+					<div class = "item-content">支付宝网页支付</div>
+					<i class = "radio-icon ion-checkmark assertive"></i>
+				</label>
+				<label class = "item item-radio">
+					<input type="radio" name = "group" checked />
+					<div class = "item-content">一键支付(无需支付宝账号)</div>
+					<i class = "radio-icon ion-checkmark assertive"></i>
+				</label>
+			</div>
+			<button class = "button button-block button-assertive">立即购买</button>
+		</div>
+	</body>
+</html>

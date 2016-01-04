@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	change()改变事件
+	基本概念:当元素的值发生改变时，会发生 change 事件。
+	关键注意:该事件仅适用于文本域（text field），以及 textarea 和 select 元素。
+		   change() 函数触发 change 事件，或规定当发生 change 事件时运行的函数。
+	语法形式:$(selector)change(function)
+	语法描述:参数function是当change事件发生时运行的函数
+	示例如下:
+	<script>
+		$(function(){
+			$(".find").change(function(){
+				$(this).css("background-color","#FFFFCC");
+			})
+		})
+	</script>
+	<body>
+	</body>
+</html>

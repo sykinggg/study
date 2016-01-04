@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<!-- ng-submit 用来将表达式同 onsubmit 事件进行绑定。这个指令同时会阻止默认行为（发送请求并重新加载页面） ，除非表单不含有 action 属性。 -->
+	<!-- 示例代码完全看不明白 -->
+	<body ng-controller = 'appctrl'>
+		<form ng-submit = 'submit()'>
+			Enter text and hit enter:
+			<input type="text" ng-model = 'person.name' name = 'person.name'>
+			<input type="text" name = 'person.name' value = 'Submit'>
+			<code>people = {{people}}</code>
+			<ul ng-repeat = '(index,object) in people'>
+				<li>{{object.name}}</li>
+			</ul>
+		</form>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.person = {
+				name:null,
+			}
+			$scope.people = [];
+			$scope.submit = function(){
+				if($scope.person.name){
+					$scope.person.push({name:$scope.person.name});
+					$scope.person.name = '';
+				}
+			}
+		});
+	</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	Math 对数方法
+	基本概念:
+		1.Math.expm1(x)：返回ex - 1。
+	代码实现:
+	<script>
+		Math.expml(-1);	 // -0.6321205588285577
+		Math.expml(0);	 // 0
+		Math.expml(1);	 // 1.718281828459045
+	</script>
+		2.Math.log1p(x)：返回1 + x的自然对数。如果x小于-1，返回NaN。
+	代码实现:
+	<script>
+		Math.log1p(1);	 // 0.6931471805599453
+		Math.log1p(0);	 // 0
+		Math.log1p(-1);	 // -Infinity
+		Math.log1p(-2);	 // NaN
+	</script>
+		3.Math.log10(x)：返回以10为底的x的对数。如果x小于0，则返回NaN。
+	代码实现:
+	<script>
+		Math.log10(2);	 // 0.3010299956639812
+		Math.log10(1);	 // 0
+		Math.log10(0);	 // -Infinity
+		Math.log10(-2);	 // NaN
+		Math.log10(100000);	 // 5
+	</script>
+		4.Math.log2(x)：返回以2为底的x的对数。如果x小于0，则返回NaN。
+	代码实现:
+	<script>
+		Math.log2(3);	 // 1.584962500721156
+		Math.log2(2);	 // 1
+		Math.log2(1);	 // 0
+		Math.log2(0);	 // -Infinity
+		Math.log2(-2);	 // NaN
+			Math.log2(1024); 	// 10
+	</script>
+	三角函数方法:
+		1.Math.sinh(x) 返回x的双曲正弦（hyperbolic sine）
+		2.Math.cosh(x) 返回x的双曲余弦（hyperbolic cosine）
+		3.Math.tanh(x) 返回x的双曲正切（hyperbolic tangent）
+		4.Math.asinh(x) 返回x的反双曲正弦（inverse hyperbolic sine）
+		5.Math.acosh(x) 返回x的反双曲余弦（inverse hyperbolic cosine）
+		6.Math.atanh(x) 返回x的反双曲正切（inverse hyperbolic tangent）
+	<body>
+	</body>
+</html>

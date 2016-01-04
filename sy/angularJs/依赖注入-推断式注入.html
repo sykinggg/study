@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>依赖注入——推断式注入</title>
+	</head>
+	<body>
+		<!--如果没有明确的声明，AngularJS会假定参数名称就是依赖的名称。-->
+		<!--因此，它会在内部调用函数对象的 toString() 方法，分析并提取出函数参数列表，然后通过 $injector 将这些参数注入进对象实例。-->
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+//		注入的过程如下:
+		injector.invoke(function($http, greeter){});
+//		请注意，这个过程只适用于未经过压缩和混淆的代码，因为AngularJS需要原始未经压缩的参数列表来进行解析。
+
+
+//		请一定注意： JavaScript的压缩器通常会将参数名改写成简单的字符，以减小源文件体积（同时也会删除空格、空行和注释等） 。如果我们不明确地描述依赖关系，AngularJS将无法根据参数名称推断出实际的依赖关系，也就无法进行依赖注入。
+	</script>
+</html>

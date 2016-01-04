@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	广播消息
+	基本概念:socket.io提供两种服务端广播方式。
+	代码实现:
+		1.第一种广播方式可以称之为'全局广播'，顾名思义，全局广播就是所有连接到服务器的客户端都会受到广播的信息：
+	<script>
+		socket.broadcast.emit('DATA', data);
+	</script>
+		2.有的广播信息只发送给一部分客户端，比如某个房间里面的用户
+	<script>
+		socket.broadcast.to('chat').emit('DATA', data);
+	</script>
+	注意:当使用to()的方式广播信息时，只有该命名空间下的客户端才会收到广播信息.
+	<body>
+	</body>
+</html>

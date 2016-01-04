@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	创建服务组件
+	示例流程：需要定义一个具有$get方法的构造函数， 然后使用模块的provider方法进行登记：
+	示例代码：
+	// 定义构造函数
+	var myServiceProvider = function(){
+		this.$get = function(){
+			return ...
+		};
+	};
+	//在模块中登记
+	angular.module("myModule", [])
+	.provider("myService", myServiceProvider);
+	<body>
+		<button onclick="doCalc();">3+4=?</button>
+		<div id="result"></div>
+	</body>
+	<script>
+		function doCalc(){
+			var injector = angular.injector(["ezstuff"]),
+				mycalculator = injector.get("ezCalculator"),
+				ret = mycalculator.add(3,4);
+			document.querySelector("#result").textContent = ret;
+		}
+		angular.module("ezstuff", [])
+		.provider("ezCalculator", function(){
+			this.$get = function(){
+				return {
+					add : function(a,b){return a+b;},
+					subtract : function(a,b){return a-b;},
+					multiply : function(a,b){return a*b;},
+					divide : function(a,b){return a/b;}
+				}
+			};
+		})
+	</script>
+</html>

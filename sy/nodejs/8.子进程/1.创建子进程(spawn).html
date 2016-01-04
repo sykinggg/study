@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	spawn函数的简单用法
+	基本概念:spawn函数用给定的命令发布一个子进程，只能运行指定的程序，参数需要在列表中给出。
+	运行结果:
+	<script>
+		var child_process = require("child_process");
+		var child = child_process.spawn( command );
+		child.stdout.on('data', function(data) {
+			console.log(data);
+		});
+	</script>
+	<body>
+	</body>
+</html>

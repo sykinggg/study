@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src='../vue.js'></script>
+	<!--插值
+	基本概念:
+		数据绑定最基础的形式是文本插值，使用 {{}} 语法（双大括号）：
+	代码示例:
+	<span>Message:{{msg}}</span>
+	代码描述:
+		{{ msg }} 标签会被相应数据对象的 msg 属性的值替换。每当这个属性变化时它也会更新。
+注意:也可以只处理单次插值，今后的数据变化就不会再引起插值更新了：
+	代码示例:
+		<span>This will never change:{{*msg}}</span>-->
+	<body>
+	<div id='demo'>
+		<span>This will never change: {{ msg }}</span><br>
+		<span>This will never change: {{* msg }}</span>
+	</div>
+	</body>
+	<script>
+		var data = {msg:'Hello World!'};
+		new Vue({
+			el:'#demo',
+			data:data
+		})
+		data.msg="Hello Vue.js!";
+	</script>
+	运行结果:
+		This will never change: Hello Vue.js!
+		This will never change: Hello World!
+</html>

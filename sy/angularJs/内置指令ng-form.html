@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 内部所有的子表单都合法时，外部的表单才会合法。这对于用 ng-repeat 动态创建表单是非常有用的。 -->
+		<!-- angularjs自动设置css类
+		表单合法时设置 ng-valid 
+		表单不合法时设置 ng-invlid 
+  	表单未进行修改时设置 ng-pristion 
+  	表单进行过修改时设置 ng-dirty  -->
+		<!-- ng-submit ：在表单元素上使用。 -->
+		<!-- ng-click ：在第一个按钮或 submit 类型（ input[type=submit] ）的输入字段上使用。 -->
+		<form name="signup_form" ng-controller="FormController" ng-submit="submitForm()" novalidate>
+			<div ng-repeat="field in fields" ng-form="signup_form_input">
+				<input type="text" name="dynamic_input" ng-required="field.isRequired" ng-model="field.name" placeholder="{{field.placeholder}}" />
+				<div ng-show="signup_form_input.dynamic_input.$dirty && signup_form_input.dynamic_input.$invalid">
+					<span class="error" ng-show="signup_form_input.dynamic_input.$error.required">
+					The field is required.
+					</span>
+				</div>
+			</div>
+			<button type="submit"
+			ng-disabled="signup_form.$invalid">
+			Submit All
+			</button>
+		</form>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		angular.module('app',[])
+		.controller('FormController',function($scope) {
+		$scope.fields = [
+		{placeholder: 'Username', isRequired: true},
+		{placeholder: 'Password', isRequired: true},
+		{placeholder: 'Email (optional)', isRequired: false}
+		];
+		$scope.submitForm = function() {
+		alert("it works!");
+		};
+		});
+	</script>
+</html>

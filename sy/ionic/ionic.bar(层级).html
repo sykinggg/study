@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ionic布局</title>
+		<link rel="stylesheet" href="css/ionic.css" />
+		<style>
+			.ez-bar {
+				top:70%;
+				margin-top: -22px;
+			}
+		</style>
+	</head>
+	<body>
+		标题区总是位于屏幕顶部，页脚区总是位于屏幕底部，而内容区占据剩余的空间。 ionic使用以下CSS类声明区域性质:
+			.bar.bar-header - 声明元素为标题区
+			.bar.bar-footer - 声明元素为页脚区
+			.content - 声明元素为内容区
+		样式.bar将元素声明为屏幕上绝对定位的块状区域,具有固定的高度(44px);
+		<!--举个栗子：-->
+		<div class = "bar bar-header bar-positive">
+			<!--注意如果有多个同类标签则会覆盖！(内容覆盖)-->
+			<h1 class = "title">.bar .bar-header</h1>
+			<h2 class = "title">.bar .bar-headerss</h2>
+			<h1 class = "title">.bar .bar-header</h1>
+			<h1 class = "title">.bar .bar-header</h1>
+		</div>
+		<!--居中注意居中样式-->
+		<div class = "bar ez-bar bar-calm">
+			<h1 class = "title">.bar .ea-bar</h1>
+		</div>
+		<div class = "bar bar-footer bar-royal">
+			<h1 class = "title">.bar .bar-footer</h1>
+		</div>
+		一旦元素应用了.bar样式，就可以继续选用两类预定义样式来进一步 声明元素及其内容的外观：
+			1.同级样式：同级样式与.bar在同一元素上，声明元素位置配色等。
+			2.下级元素：下级元素只能应用在.bar的子元素上，声明子元素的大小等资源。
+			如图：ionic.bar.png
+		<img src="image/ionic.bar.png"/>
+	</body>
+</html>

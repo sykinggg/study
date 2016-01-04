@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	format函数的基础用法
+	基本概念:format函数的作用与parse相反，它的参数是一个JSON对象，返回一个组装好的url地址
+	代码实现:
+	<script>
+		var url = require('url');
+		url.format({
+			protocol: 'http',
+			hostname: 'www.baidu.com',
+			port: '80',
+			pathname: '/news',
+			query: {page:1}
+		});
+	</script>
+	运行结果:
+	http://www.baidu.com/news?page=1
+	<body>
+	</body>
+</html>

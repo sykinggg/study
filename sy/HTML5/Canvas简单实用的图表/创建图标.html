@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	创建图表
+	关键原理:在创建Chart对象之后，就可以继续创建chart.js中存在的图表。
+	注意:下面是一个极坐标图的例子：
+	new Chart(ctx).Line(data, options);
+	描述:图表的插件是通过调用与图表名称相同的方法来实现。
+	使用详解:
+		首先:在方法中的data参数是图表的类型，options是图表的参数。
+		其次:Chart.js会将全局默认参数和指定的默认参数相合并，然后将传入的options作为第二个参数使用。
+	额外扩展:如果你希望图表是响应式的，可以参考下面的设置：
+		chart.defaults.global.responsive = true;
+	<body>
+	</body>
+</html>

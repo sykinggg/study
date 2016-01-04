@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	子元素过滤选择器
+	如果实现单个表格的显示，用基本过滤选择器:eq(index)就能实现；
+	选择器							功能								返回值
+	:nth-child(eq|even|odd|index)	获取每个元素下的特定元素，索引号从1开始	元素集合
+	:first-child 					获取每个父元素下的第一个子元素			元素集合
+	:last-child 					获取每个父元素下的最后一个子元素			元素集合
+	:only-child 					获取每个父元素下的仅有一个子元素			元素集合
+	示例如下：
+	<script>
+		$(function(){//增加每个父元素下的第2个子元素类别 1
+			$("li:nth-child(2)").addClass("GetFocus");
+		})
+		$(function(){//增加每个父元素下的第1个子元素类别  2
+			$("li:first-child").addClass("GetFocus");
+		})
+		$(function(){//增加每个父元素下的最后一个子元素类别  3
+			$("li:last-child").addClass("GetFocus");
+		})
+		$(function(){//增加每个父元素下只有一个子元素类别  4
+			$("li:only-child").addClass("GetFocus");
+		})
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	维护链接性
+	本质:jQuery 的一个优势是允许您使用任何类型的选择器。
+	详细描述:但是，必须记住，您的插件可以处理几种不同的元素类型。
+		使用 this 关键字允许您的插件应用于相关函数，通过循环实现每个元素的访问，而不考虑元素类型。
+		如果在 each 循环前使用 return 关键字，就可以使用您的插件维护链接性。
+	代码示例:
+	<script>
+		(function($){
+			$.fn.accordion = function(){
+				return this.each(function(){
+					//维护连接性
+				});
+			};
+		})(jQuery);
+	</script>
+	<body>
+	</body>
+</html>

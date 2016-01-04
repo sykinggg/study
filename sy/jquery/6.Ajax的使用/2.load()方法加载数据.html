@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	load()方法加载数据
+	基本概念:load()方法是简单但强大的AJAX方法。它从服务器加载数据，并把返回的数据放入被选元素中。
+	语法使用:$(selector).load(URL,data,callback);
+	语法描述: URL参数规定加载的路径，为必需参数。
+			参数data是和请求一起发送的查询字符串键/值对集合。
+			callback参数是load()方法完成后执行的函数。
+	示例如下:
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script>
+		$(function(){
+			$("#btn1").click(function(){
+				$("#test").load("/example/data/load.html");
+			})
+		})
+	</script>
+	<body>
+		<h3 id="test">请点击下面的按钮，通过 jQuery AJAX 改变这段文本。</h3>
+    	<button id="btn1" type="button">获得外部的内容</button>
+	</body>
+</html>

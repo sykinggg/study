@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="http://google.github.io/traceur-compiler/bin/traceur.js" type="text/javascript"></script>
+	<script src="http://google.github.io/traceur-compiler/src/bootstrap.js" type="text/javascript"></script>
+	默认参数
+	版本改变:现在可以在定义函数的时候指定参数的默认值了，而不用像以前那样通过逻辑或操作符来达到目的了。
+	代码示例:
+	注意:ecmascript6 要在script标签上的type属性上声明
+	<script type="text/traceur">
+		function sayHello(name) {
+			 //传统的指定默认参数的方式
+			var name = name || 'hubwiz';
+			document.write('Hello' + name);
+		}
+		//运用ES6的默认参数
+		function sayHello2(name = 'hubwiz') {
+			document.write('Hello ${name}');
+		}
+	</script>
+	<body>
+		<button onclick="sayHello('suiyi')">点击1</button>
+		<button onclick="sayHello2('suiyi')">点击2</button>
+	</body>
+</html>

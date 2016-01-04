@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	在视图模板中使用过滤器
+	注意：过滤器也是一种服务，负责对输入的内容进行处理转换，以便更好地向用户显示。
+	使用：过滤器可以在模板中的{{}}标记中使用：
+	示例：{{expression|filter:arg1:arg2}}
+		1.预置的过滤器
+		说明：AngularJS的ng模块实现了一些预置的过滤器，如：currency、number等等，可以直接 使用。
+		示例：例如下面的示例将对数字12使用currency过滤器，结果将是"$12.00"：
+			{{12|currency}}
+		2.带参数的过滤器
+		示例：过滤器也可以有参数，例如下面的示例将数字格式化为"1,234.00":
+			{{1234|number:2}}
+		3.过滤器流水线
+		示例：过滤器可以应用于另一个过滤器的输出，就像流水线，语法如下：
+			{{expression|filter1|filter2|...}}
+	<body ng-app="ezstuff">
+		<div ng-controller="ezCtrl">
+			Total salay is {{total|number:2|currency}}
+		</div>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.controller("ezCtrl", function($scope){
+			$scope.total = 123;
+		});
+	</script>
+</html>

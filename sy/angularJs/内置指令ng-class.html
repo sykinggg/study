@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+		<style>
+			.red {
+				background-color: red;
+				}
+		</style>
+	</head>
+	<body ng-controller = 'appctrl'>
+		<!-- ng-if指令可进行简单比较得到的布尔值就是传的参数 -->
+		<!-- ng-class指令可进行简单比较得到的布尔值就是传的参数为true则有该属性为false则无该属性 -->
+		<div ng-class = '{red: X > 5}' ng-if= 'X > 5'>
+			You won!
+		</div>
+		<button ng-click = "X = greenNumber()" ng-init = "X = 0">点击</button>
+	 	<p ng-bind = 'X'></p>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.greenNumber = function(){
+				return Math.floor((Math.random()*10)+1);
+			};
+		});
+	</script>
+</html>

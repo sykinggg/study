@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html ng-app>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div ng-controller = 'clock'>
+			<p ng-bind = 'time'></p>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		function clock ($scope, $timeout) {
+			var update = function(){
+				$scope.time = new Date();
+				$timeout(function(){
+					update();
+				},1000);
+			};
+			update();
+		};
+	</script>
+</html>
+<!-- 在该函数中：clock是控制器；
+			time是Data时间对象的实例化而$timeout是方法同setInterval和settimeout差不多;
+			update()是更新时间的方法。 -->
+
+
+<!-- <!doctype html>
+<html ng-app>
+<head>
+<script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="MyController">
+<h1>Hello {{ clock }}!</h1>
+</div>
+<script type="text/javascript">
+function MyController($scope, $timeout) {
+var updateClock = function() {
+$scope.clock = new Date();
+$timeout(function() {
+updateClock();
+}, 1000);
+};
+updateClock();
+};
+</script>
+</body>
+</html -->

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	关键原理：Chart.js是一款简单实用的基于HTML5 canvas的js图表插件。
+	原因：该js图表插件利用canvas的特性，动态生成线性图的图表。引入Chart.js
+	<body>
+		<div class="htmleaf-container">
+			<div class="htmleaf-content">
+				<div style="width:50%;margin:0 auto;">
+				<div>
+					<canvas id="canvas" height="480" width="600"></canvas>
+				</div>
+			</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/Chart.js"></script>
+	<script>
+		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};  // 创建随机数
+		var lineChartData = {
+				labels : ["January","February","March","April","May","June","July"],  // 横坐标的数据
+				datasets : [
+					{
+						label: "My First dataset",
+						fillColor : "rgba(220,220,220,0.2)", // 填充颜色
+						strokeColor : "rgba(220,220,220,1)", // 线条颜色
+						pointColor : "rgba(220,220,220,1)", // 点颜色
+						pointStrokeColor : "#fff", // 点线条颜色
+						pointHighlightFill : "#fff", // 点高光填充
+						pointHighlightStroke : "rgba(220,220,220,1)", // 点线条高光颜色
+						data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]  // 纵坐标的随机数
+					},
+					{
+						label: "My Second dataset",
+						fillColor : "rgba(151,187,205,0.2)",
+						strokeColor : "rgba(151,187,205,1)",
+						pointColor : "rgba(151,187,205,1)",
+						pointStrokeColor : "#fff",
+						pointHighlightFill : "#fff",
+						pointHighlightStroke : "rgba(151,187,205,1)",
+						data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+					}
+				]
+	
+		}
+	
+		window.onload = function(){
+			var ctx = document.getElementById("canvas").getContext("2d");  // 获取上下文对象
+			window.myLine = new Chart(ctx).Line(lineChartData, { // 创建chart对象，赋值
+				responsive: true
+			});
+		}
+	</script>
+</html>

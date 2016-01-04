@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../traceur.js"></script>
+	<script src="../bootstrap.js"></script>
+	比较两个值是否严格相等
+	基本概念:Object.is()用来比较两个值是否严格相等
+		差别:一是+0不等于-0
+			二是NaN等于自身
+	代码实现:
+	<script>
+		+0 === -0 // true
+		NaN === NaN //false
+		
+		object.is(+0, -0) // false
+		object.is(-0, +0) // true
+	</script>
+	<body>
+	</body>
+</html>

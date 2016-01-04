@@ -1,0 +1,46 @@
+	<script src = 'angular.js'></script>
+	<script>
+		// angular.module('myApp',[])
+		// .directive('link', function() {
+		// return {
+			
+		// restrict: 'EA',
+		// 是否开启跨域传参
+		// transclude: true,
+		// controller:function($scope, $element, $transclude, $log) {
+		// $transclude(function(clone) {
+		// 	var a = angular.element('<a>');
+		// 	a.attr('href', clone.text());
+		// 	a.text(clone.text());
+		// 	$log.info("Created new a tag in link directive");
+		// 	$element.append(a);
+		// 	});
+		// 	}
+		// 	};
+		// });
+		    angular.module('myApp', [])
+		            .directive('link', function () {
+		                return {
+		                	// 设置指令引入方式
+		                    restrict: 'EA',
+		                    // 是否开启跨域传参即设置嵌入
+		                    transclude: true,
+		                    // 在内部设置控制器用于设置dom改变可以与父域进行数据绑定
+		                    controller: function ($scope, $element, $transclude, $log) {
+		                        $transclude(function (clone) {
+		                        	// $当前容器对象，angular对象的element方法对应的元素
+		                            var a = angular.element('<a>');
+		                            // 给该元素添加属性并克隆容器内部内容为其地址其中text方法是按dom加载的顺序取出所有标签内容（组成新内容）并赋值。
+		                            a.attr('href', clone.text());
+		                            // 写入到该元素中
+		                            a.text(clone.text());
+		                            // 信息日志
+		                            $log.info("Created new atag in link directive");
+		                            // 在当前容器对象后添加元素（但容器包括容器内全部隐藏）
+		                            $element.append(a);
+		                        });
+		                    }
+		                }
+		            });
+	</script>
+</html>

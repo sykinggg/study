@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<!--多余的列（column）将另起一行排列
+	基本概念:如果在一个 .row 内包含的列（column）大于12个，包含多余列（column）的元素将作为一个整体单元被另起一行排列。-->
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-9">.col-xs-9</div>
+				<div class="col-xs-4">.col-xs-4<br>Since 9 + 4 = 13 > 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
+				<div class="col-xs-6">.col-xs-6<br>Subsequent columns continue along the new line.</div>
+			</div>
+		</div>
+	</body>
+</html>

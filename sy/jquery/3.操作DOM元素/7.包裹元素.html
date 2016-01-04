@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	包裹元素
+	注意:使用wrap()和wrapInner()方法包裹元素和内容，但前者用于包裹元素本身，后者则用于包裹元素中的内容。
+	使用说明:参数selector为被包裹的元素，wrapper参数为包裹元素的格式。
+	wrap()语法形式：$(selector).wrap(wrapper)
+	wrapInner()语法形式：$(selector).wrapInner(wrapper)
+	示例如下:
+	<script>
+		$(function(){
+			$("p").wrap("");//所有段落标记字体加粗
+			$("span").wrapInner("");//所有段落中的span标记斜体
+		})
+	</script>
+	<body>
+	</body>
+</html>

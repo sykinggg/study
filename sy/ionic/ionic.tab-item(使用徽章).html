@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	.tab-item : 使用徽章
+	微信（wechat）的选项卡中第三项包含了一个红色的信息元素，被称为徽章：
+	示例： <img src="image/ionic.tab-item(使用徽章).png" alt="" />
+	注意：要在.tab-item内包含徽章，需要注意两点：
+			1.使用.badge样式插入徽章样式
+			2.在.tab-item同级声明.has-header样式
+	<any class = "tabs">
+		<any class = "tab-item has-header">
+			<any class = "badge">...</any>
+		</any>
+		...
+	</any>
+	<body class = "stable-bg">
+		<div class = "bar bar-header bar-dark">
+			<h1 class = "title">微信</h1>
+			<a class = "button button-clear icon ion-ios-plus-empty"></a>
+		</div>
+		<div class = "tabs tabs-dark tabs-icon-top">
+			<a class = "tab-item active">
+				<i class = "icon ion-ios-chatbubble-outline"></i>微信
+			</a>
+			<a class = "tab-item">
+				<i class = "icon ion-ios-paper-outline"></i>通信录
+			</a>
+			<a class = "tab-item has-badge">
+				<i class = "icon ion-ios-eye-outline"></i>发现
+				<i class = "badge"></i>
+			</a>
+			<a class = "tab-item">
+				<i class = "icon ion-ios-person-outline"></i>我
+			</a>
+		</div>
+	</body>
+</html>

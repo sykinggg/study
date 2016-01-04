@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	实现图像大小调整
+	特别注意原理：
+		首先:图像大小调整通过先在Canvas上绘制一个对应大小的图像，
+		其次:接着通过Canvas的toDataURL方法转化为base64编码的字符串形式的图片数据。
+		最后:把该data:URL通过设置为img的src属性，到目标图像元素上。
+	示例：
+	<script>
+		resizeImage = function(width, height) {
+			resize_canvas.width = width;
+			resize_canvas.height = height;
+			resize_canvas.getContent('2d').drawImage(orig_src, 0, 0, width, height);
+			$(".resize-image").attr("src", resize_canvas.toDataURL("image/png"));
+		}
+	</script>
+	<body>
+	</body>
+</html>

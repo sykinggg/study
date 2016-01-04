@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	exec函数的简单用法
+	基本概念:接受一个回调函数作为参数，回调函数有三个参数，分别是err, stdout , stderr
+	代码实现:
+	<script>
+		var child_process = require("child_process");
+		child_process.exec( command , function(err, stdout, stderr) {
+			console.log( stdout );
+		});
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	value方法
+	服务的扩展：需要在不同的组件之间共享一个变量，可以将这种情况视为一种服务：
+	注意：provider返回的总是变量的值。
+	示例：value方法提供了对这种情况的简化封装：
+	实例：
+	angular.module("myModule",[])
+	.value("myValueService","123456789");
+	特别注意：AngularJS会将value方法封装为provider，上面的示例 等同于：
+	angular.module("myModule",[])
+	.provider("myService", function(){
+		.provider("myService", function(){
+			this.$get = function(){
+				return "123456789";
+			};
+		});
+	});
+	<body>
+		<button onclick="showUserName()">show user name</button>
+		<div id="result"></div>
+	</body>
+	<script>
+		var showUserName = function(){
+			var injector = angular.injector(["ezstuff"]),
+				username = injector.get("ezUserName");
+			document.querySelector("#result").textContent = username;
+		}
+		angular.module("ezstuff",[])
+		.value("ezUserName","whoami");
+	</script>
+</html>

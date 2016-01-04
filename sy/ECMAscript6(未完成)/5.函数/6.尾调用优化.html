@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	尾调用优化
+	基本概念:指某个函数的最后一步是调用另一个函数
+	代码示例:
+	<script>
+		function f(x){
+			return g(x);
+		}
+	</script>
+	代码描述:函数f的最后一步是调用函数g，这就叫尾调用
+		注意:以下三种情况，都不属于尾调用
+	代码示例:
+	<script>
+		//情况一
+		function f(x) {
+			let y = g(x);
+			return y;
+		}
+		//情况二
+		function f(x) {
+			return g(x) + 1;
+		}
+		//情况三
+		function f(x) {
+			g(x);
+		}
+	</script>
+	代码描述:情况一、二是调用函数g之后，有其他操作，情况三等同于下面的代码
+	代码示例:
+	<script>
+		function f(x) {
+			g(x);
+			return undefined;
+		}
+	</script>
+	详细描述:尾调用由于是函数的最后一步操作，所以不需要保留外层函数的调用记录，
+		因为调用位置、内部变量等信息都不会再用到了，只要直接用内层函数的调用记录，取代外层函数的调用记录就可以了
+	代码示例:
+	<script>
+		function f() {
+			let m = 1;
+			let n = 2;
+			return g(m + n);
+		}
+		f();
+		//等同于
+		function f() {
+			return g(3);
+		}
+		f();
+		//等同于
+		g(3);
+	</script>
+	代码描述:如果函数g不是尾调用，函数f就需要保存内部变量m和n的值、g的调用位置等信息
+		但由于调用g之后，函数f就结束了，所以执行到最后一步，完全可以删除 f(x) 的调用帧，只保留 g(3) 的调用帧。
+	原理描述:尾调用优化,即只保留内层函数的调用帧，这样可以节省内存
+	<body>
+	</body>
+</html>

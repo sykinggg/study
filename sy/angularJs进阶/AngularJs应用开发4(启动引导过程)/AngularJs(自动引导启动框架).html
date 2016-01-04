@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	自动引导启动框架
+	注意：如果HTML模板中有某个标签有ng-app属性，
+			那么当DOM树建立成功后， AngularJS就会自动进入引导过程，启动整个框架：
+	示例图： <img src="../image/AngularJs(自动引导启动框架).png" alt="" />
+	<body ng-app="ezstuff">
+		<p>一幅图片</p>
+		<ez-duang></ez-duang>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.directive("ezDuang", function(){
+			return {
+				restrict: "E",
+				template: "<img src='http://ww4.sinaimg.cn/bmiddle/757eb2ffjw1eptcr4qobjg209205dthh.gif'>"
+			};
+		});
+	</script>
+</html>

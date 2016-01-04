@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'> 
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 就是化名相当于ng-repeat中数据转化后的化名设置 -->
+		<div ng-controller = 'MainController as main'>
+			<input type="text" ng-model = 'main.name'>
+			<p ng-bind = 'main.name'></p>
+			<p>{{main.name}}</p>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('MainController',function () {
+			this.name = 'Air';
+		});
+	</script>
+</html>

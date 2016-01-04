@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	col-{width-percent} : 指定列宽
+		当然，我们也可以显式地指定某些列的宽度。ionic提供了一些预置的CSS类， 供我们快速指定列宽：
+			1.col-10 - 占据容器10%宽度
+			2.col-20 - 占据容器20%宽度
+			3.col-25 - 占据容器25%宽度
+			4.col-33 - 占据容器33%宽度
+			5.col-50 - 占据容器50%宽度
+			6.col-67 - 占据容器67%宽度
+			7.col-75 - 占据容器75%宽度
+			8.col-80 - 占据容器80%宽度
+			9.col-90 - 占据容器90%宽度
+	注意：自定义比例
+		.col-78{
+			-webkit-box-flex: 0;
+			-webkit-flex: 0 0 78%;
+			-moz-box-flex: 0;
+			-moz-flex: 0 0 78%;
+			-ms-flex: 0 0 78%;
+			flex: 0 0 78%;
+		}
+	注意：这个比例值对应的就是元素的flex-basis样式。
+	<body>
+		<div class = "bar bar-header">
+			<h1 class = "title">指定列宽</h1>
+		</div>
+		<div class = "scroll-content has-header">
+			<div class = "row">
+				<div class = "col col-50">.col.col-50</div>
+				<div class = "col">.col</div>
+				<div class = "col">.col</div>
+			</div>
+			<div class = "row">
+				<div class = "col col-75">.col.col-75</div>
+				<div class = "col">.col</div>
+			</div>
+			<div class = "row">
+				<div class = "col">.col</div>
+				<div class = "col col-75">.col.col-75</div>
+			</div>
+			<div class = "row">
+				<div class = "col">.col</div>
+				<div class = "col col-75">.col.col-75</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	注册事件
+	重点:如何为服务端注册一些常用的事件
+	代码实现:
+	<script>
+		var io = require('scoket.io')(80);
+		io.on('connection', function(scoket) {
+			//连接成功。。。
+			scoket.on('disconnect', function() {
+				//用户已经离开。。。
+			});
+		});
+	</script>
+	代码描述:
+		1.connection事件在客户端成功连接到服务端时触发，有了这个事件，我们可以随时掌握用户连接到服务端的信息。
+		2.当客户端成功建立连接时，在connection事件的回调函数中，我们还是可以为socket注册一些常用的事件
+			如：disconnect事件，它在客户端连接断开是触发，这时候我就知道用户已经离开了。
+	<body>
+	</body>
+</html>

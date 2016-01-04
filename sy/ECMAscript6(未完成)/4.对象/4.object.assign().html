@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../traceur.js"></script>
+	<script src="../bootstrap.js"></script>
+	<!--源对象的所有可枚举属性，复制到目标对象
+	基本概念:Object.assign方法用来将源对象（source）的所有可枚举属性，复制到目标对象（target）
+	基本用法:它至少需要两个对象作为参数，第一个参数是目标对象，后面的参数都是源对象
+		注意:只要有一个参数不是对象，就会抛出TypeError错误
+	代码实现:
+	<script>
+		var target = {a:1};
+		var source1 = {b:2};
+		var source2 = {c:3};
+		Object.assign(target, source1, source2);
+		document.write(JSON.stringify(target));
+		console.log(JSON.stringify(target));
+	</script>
+	运行结果:
+		document:{"a":1,"b":2,"c":3}
+		console: {"a":1,"b":2,"c":3}
+	注意:如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+	代码实现:-->
+	<script>
+		var target = {a:1, b:1};
+		var source1 = {b:2, c:2};
+		var source2 = {c:3};
+		Object.assign(target, source1, source2);
+		document.write(JSON.stringify(target));
+		console.log(JSON.stringify(target));
+	</script>
+	运行结果:
+		document:{"a":1,"b":2,"c":3}
+		console :{"a":1,"b":2,"c":3}
+	<body>
+	</body>
+</html>

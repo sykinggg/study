@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	表单对象属性过滤选择器
+	概念:表单对象属性过滤选择器通过表单中的某对象属性特征获取该类元素，如enabled、disabled、checked、selected属性。
+	选择器			功能							返回值
+	:enable 		获取表单中所有属性为可用的元素		元素集合
+	:disable 		获取表单中所有属性为不可用的元素 		元素集合
+	:checked 		获取表单中所有被选中的元素			元素集合
+	:selected 		获取表单中素有被选中option的元素	元素集合
+	示例如下：
+	<script>
+		$(function(){//增加表单中所有属性为可用的元素类别
+			$("#divA").show(3000);
+			$("#form1 input.enabled").addClass("GetFocus");
+		})
+		$(function(){//增加表单中所有属性为不可用的元素类别  2
+			$("#divA").show(3000);
+			$("#form1 input:disabled").addClass("GetFocus");
+		})
+		$(function(){//增加表单中所有被选中的元素类别  3
+			$("#divB").show(3000);
+			$("#form1 input:disabled").addClass("GetFocus");
+		})
+		$(function(){//显示表单中所有option的元素内容  4
+			$("#divC").show(3000);
+			$("#span2").html("选中项是:" + $("select option:selected").text());
+		})
+	</script>
+	<body>
+	<form id="form1" style="width:244px">
+	    <div id="divA">
+	        <input type="text" class="clsIpt" value="可用文本框">
+	        <input type="text" class="clsIpt" value="不可用文本框" disabled="disabled">
+	    </div>
+	    <div id="divB">
+	        <input type="checkbox" checked="checked" value="1">选中
+	        <input type="checkbox" value="0">未选中
+	    </div>
+	    <div id="divC">
+	        <select multiple="multiple">
+	            <option value="0">Option 0</option>
+	            <option value="1" selected="selected">Option 1</option>
+	            <option value="2">Option 2</option>
+	            <option value="3" selected="selected">Option 3</option>
+	        </select>
+	        <span id="Span2"></span>
+	    </div>
+	</form>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+		<style>
+			.namecard{
+				border : 1px solid #000;
+				border-radius : 10px;
+				padding : 10px;
+				width : 300px;
+				background : #f0f0f0;
+			}
+		</style>
+	</head>
+	在声明式模板中显示数据
+		因为不能像jQuery一样将DOM操作混在模板里，声明式模板很快让我们变得束手束脚。
+		假设我们有某人的基本信息，保存在一个json对象里：
+		var sb = {
+			name : 'somebody',
+			gender : 'male',
+			age : 28
+		};
+		我们定义一个指令ez-namecard，希望它经过编译后会展开成这样：
+		<!--<div>
+			<div>name : somebody</div>
+			<div>gender : male</div>
+			<div>age : 28</div>
+		</div>-->
+	<body ng-app="ezstuff">
+		<ez-namecard></ez-namecard>
+	</body>
+	<script>
+		//sb变量建立在window对象上
+		var sb = {
+			name : "somebody",
+			gender : "male",
+			age : 28
+		};
+		angular.module("ezstuff",[])
+		.directive("ezNamecard", function(){
+			return {
+				restrict : "E",
+				template :"<div class='namecard'>",
+				replace : true,
+				link : function(scope,element,attrs){
+					element.append("<div>name : 'somebody'</div>")
+						   .append("<div>gender : male</div>")
+						   .append("<div>age : 28</div>")
+				}
+			};
+		});
+	</script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<!-- 运行上面的代码会抛出一个错误，指出我们有一个非法属性。可以用 ng-attr-cx 来解决这个问题。注意， cx 位于这个名称的尾部。在这个属性中，通过用 {{ }} 来写表达式，达到前面提到的目的。 -->
+	<body ng-controller = 'appctrl'>
+		<div ng-bind = 'cx'></div>
+		<svg>
+			<!-- <circle cx = '{{cx}}'></circle> -->
+			<circle ng-attr-cx = '{{cx}}'></circle>
+		</svg>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.cx = 'hello world'
+		});
+	</script>
+</html>

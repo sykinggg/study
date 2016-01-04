@@ -1,0 +1,1371 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		
+
+	</body>
+	<script src = 'angular.js'></script>
+	<!-- 使用$http -->
+		<!-- 使用内置的 $http 服务直接同外部进行通信。 $http 服务只是简单的封装了浏览器原生的 XMLHttpRequest 对象。 -->
+		<!-- $http 服务是只能接受一个参数的函数，这个参数是一个对象，包含了用来生成HTTP请求的配置内容。
+		这个函数返回一个promise对象，具有 success 和 error 两个方法。 -->
+
+	<!-- 举个栗子： -->
+	<script>
+		$http({
+			method: 'GET',
+			url: '/api/users.json'
+		}).success(function (data, status, headers, config) {
+			// 当相应准备就绪时的调用
+		}).error(function (data, status, headers, config) {
+			// 当响应以错误状态返回时调用
+		})
+	</script>
+	请注意，看上去我们向 $http 中传入了一个回调函数供响应返回时调用，但事实并非如此。这个方法实际上返回了一个 promise 对象。
+	重点运用技术：在创建服务时会频繁使用链式调用技术，因此服务可以返回一个promise对象，而不需要回调函数。
+	<!-- 举个栗子： -->
+	<script>
+		var promise = $http({
+			method: 'GET',
+			url: '/api/users.json'
+		});
+	</script>
+
+	注意：由于 $http 方法返回一个promise对象，我们可以在响应返回时用 then 方法来处理回调。
+			<!-- 如果使用 then 方法，会得到一个特殊的参数，它代表了相应对象的成功或失败信息，还可以接受两个可选的函数作为参数。或者可以使用 success 和 error 回调代替。 -->
+
+	<!-- 举个栗子： -->
+	<script>
+		promise.then(function (resp) {
+			// resp是一个响应对象
+		}, function (resp) {
+			// 带有错误信息的resp
+		});
+		// 或者使用success和error方法
+		promise.success(function (data, status, headers, config) {
+			// 处理成功的响应
+		})
+		// 错误处理
+		promise.success(function (data, status, headers, config) {
+			// 处理非成功的响应	
+		})
+	</script>
+
+	<!-- 注意：如果响应状态码在200和299之间，会认为响应是成功的， success 回调会被调用，否则 error回调会被调用。 -->
+	<!-- 注意，如果响应结果是重定向， XMLHttpRequest 会跟进这个重定向， error 回调并不会被调用。 -->
+
+	可以调用HttpPromise对象上的then(), success()和error()方法。
+		then()方法与其他两种方法的区别是：他会接受完整的响应对象。
+		ssuccess()和error()则会对象因对象进行析构！
+	注意：调用 http 方法后， 在下一个 $digest 循环运行之前它并不会被真正执行。
+		  如果要在AngularJS的 $digest 循环以外执行 $http 函数，需要将其封装在一个 $apply 代码快中。
+	<!-- 举个栗子： -->
+	<script>
+		$scope.$apply(function () {
+			$http({
+				method:'GET',
+				url:'/api/users.json'
+			})
+		})
+	</script>
+
+
+	$http 服务提供了一些顺手的快捷方法供我们使用，这些方法简化了复杂设置，
+	只需要提供URL和HTTP方法（或者POST或PUT请求中包含的数据）即可。
+		
+
+		get()方法：是发送GET请求的快捷方式。
+		get()方法可以接受两个参数。
+
+		url(字符串)一个绝对或相对路径的url，代表请求的目的地址。
+		config(可选，对象)
+
+		get()方法返回HttpPromise对象。
+
+		<!-- 举个栗子： -->
+		<script>
+			$http.get('/api/users.json')
+		</script>
+
+
+		delete()方法：用来发送DELETE请求的快捷方式。
+		delete()方法可以接受两个参数。
+
+		url(字符串)一个绝对或相对路径的url，代表请求的目的地址。
+		config(可选，对象)
+		
+		delete()方法返回HttpPromise对象
+
+
+
+		head()用来发送HEAD请求的快捷方式
+		head()方法可以接受两个参数
+
+		url(字符串)一个绝对或相对路径的url，代表请求的目的地址。
+		config(可选，对象)
+
+		head() 方法返回 HttpPromise 对象。
+
+
+		jsonp()用来发送JSONP请求的快捷方式。
+		jsonp() 函数可以接受两个参数。
+
+		url(字符串)一个绝对或相对路径的URL，代表请求的目的地。为了发送JSONP请求，其中必须包含JSON_CALLBACK 字样。
+		config （可选，对象）
+
+		jsonp() 方法返回 HttpPromise 对象。
+
+		<!-- 举个栗子： -->
+		<script>
+			$http.jsonp('/api/users.json?callback = JSON_CALLBACK')
+		</script>
+
+
+		post()用来发送POST请求的快捷方式。
+		post() 函数可以接受三个参数。
+
+		url （字符串）一个绝对或相对路径的URL，代表请求的目的地。
+		data （对象或字符串）这个对象包含请求的数据。
+		config （可选，对象）这是一个可选的设置对象。
+
+		post() 方法返回 HttpPromise 对象。
+		
+
+
+		put()用来发送PUT请求的快捷方式。
+		put() 函数可以接受三个参数。
+
+		url （字符串）一个绝对或相对路径的URL，代表请求的目的地。
+		data （对象或字符串）这个对象包含请求的数据。
+		config （可选，对象）
+
+		put() 方法返回 HttpPromise 对象。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- 设置对象 -->
+		将 $http 当作函数来调用时，需要传入一个设置对象，用来说明如何构造XHR对象。
+
+		<!-- 举个栗子： -->
+		<script>
+			// 将 $http 当作函数来调用时，需要传入一个设置对象，用来说明如何构造XHR对象。
+			$http({
+				method:'GET',
+				url: '/api/users.json',
+				params: {
+					'username' : 'auser'
+				}
+			});
+		</script>
+
+		注意：设置对象可以包含以下键
+
+
+
+		method(字符串)
+
+		这个键是发送请求的HTTP方法。
+			它的值是下列各项：'GET', 'DELETE', 'HEAD', 'JSONP', 'POST', 'GET'
+
+
+
+		url(字符串)绝对或相对的URL，是请求的目标。
+
+
+
+		params(字符串或对象)
+
+			这个键的值是一个字符串 map 或对象，会被转换成查询字符串追加在URL后面。
+			如果值不是字符串，会被JSON序列化。
+		<!-- 举个栗子： -->
+		<script>
+			// 参数会转化为?name = ari的形式
+			$http({
+				params: {'name': 'ari'}
+			})
+		</script>
+
+
+		data(字符串或对象)
+
+			这个对象中包含了将会被当作消息体发送给服务器的数据。通常在发送POST请求时使用。
+			从AngularJS 1.3开始，它还可以在POST请求里发送二进制数据。
+			要发送一个 blob 对象，你可以简单地通过使用 data 参数来传递它。	
+		<!-- 举个栗子： -->
+		<script>
+			var blod = new Bold(['hello world'], {type: 'text/plain'});
+			$http({
+				method: 'POST',
+				url: '/',
+				data: bold
+			});
+		</script>
+
+
+
+		header(对象)
+			一个列表，每一个元素都是一个函数，它会返回代表随请求发送的HTTP头。
+			如果函数的返回值是 null ，对应的头不会被发送。
+
+
+		xsrfHeaderName(字符串)
+			保存XSFR令牌的HTTP头的名称。
+
+
+		xsrfcookieName(字符串)
+			保存XSFR令牌的cookie的名称。
+
+
+		transformRequest(函数或函数数组)
+			这是一个函数或函数数组，用来对HTTP请求的请求体和头信息进行转换，并返回转换后的版本。
+			通常用于在请求发送给服务器之前对其进行序列化。
+		<!-- 举个栗子： -->
+		<script>
+			function (data, g=headers) {
+				// body...
+			}
+		</script>
+
+
+		transformResponse(函数或函数数组)
+			这是一个函数或函数数组，用来对HTTP响应的响应体和头信息进行转换，并返回转换后的版本。
+			通常用来进行反序列化。
+		<!-- 举个栗子： -->
+		<script>
+			function (data, headers) {
+				// body...
+			}
+		</script>
+
+
+
+		cache(布尔型或缓存对象)
+			如果 cache 属性被设置为 true ， 那么AngularJS会用默认的 $http 缓存来对GET请求进行缓存。
+			如果 cache 属性被设置为一个 $cacheFactory 对象的实例，那么这个对象会被用来对GET请求进行缓存。
+
+
+
+		timeout(数值型或promise对象)
+			如果 timeout 被设置为一个数值，那么请求将会在推迟 timeout 指定的毫秒数后再发送。
+			如果被设置为一个promise对象，那么当该promise对象被resolve时请求会被中止。
+
+
+
+		withCredentials （布尔型）
+			如果该属性被设置为 true ，那么XHR请求对象中会设置 withCredentials 标记。
+			<!-- 注意：默认情况下，CORS请求不会发送cookie，而 withCredentials 标记会在请求中加入Access-Control-Allow-Credentials头，这样请求就会将目标域的cookie包含在请求中。 -->
+
+
+
+
+		responseType(字符串)
+			responseType 选项会在请求中设置 XMLHttpRequestResponseType 属性。
+			我们可以使用以下HTTP请求类型其中之一：
+				""(字符串，默认);
+				"arraybuffer"(ArrayBuffer);
+				"blob"(blob对象);
+				"document"(HTTP文档);
+				"json"(从JSON对象解析而来的JSON字符串);
+				"text"(字符串);
+				"moz-blob"(Firefox的接受进度事件);
+				"moz-chuned-text"(文本流);
+				"moz-chuned-arraybuffer"(ArrayBuffer流)。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- 响应对象 -->
+		AngularJS传递给 then() 方法的响应对象包含四个属性。
+
+			data （字符串或对象）这个数据代表转换过后的响应体（如果定义了转换的话） 。
+
+			status （数值型）响应的HTTP状态码。
+
+			headers （函数）这个函数是头信息的getter函数，可以接受一个参数，用来获取对应名字的值。
+		<!-- 举个栗子： -->
+		<script>
+			$http({
+				method: 'GET',
+				url: '/api/users.json'
+			}).then (resp) {
+				// 读取X-Auth-ID
+				resp.headers('X-Auth-ID');
+			};
+		</script>
+
+			config （对象）这个对象是用来生成原始请求的完整设置对象。
+
+			statusText （字符串）这个字符串是响应的HTTP状态文本。
+
+
+
+
+
+		<!-- 缓存HTTP请求 -->
+
+			默认情况下， $http 服务不会对请求进行本地缓存。
+
+			在发送单独的请求时，我们可以通过向$http 请求传入一个布尔值或者一个缓存实例来启用缓存。
+
+			<!-- 举个栗子： -->
+			<script>
+				$http.get('/api/users.json',{cache:true})
+					.success(function(){});
+					.error(function(){});
+			</script>
+
+			第一次发送请求时， $http 服务会向/api/users.json发送一个GET请求。
+
+			第二次发送同一个GET请求时， $http 服务会从缓存中取回请求的结果，而不会真的发送一个HTTP GET请求。
+
+			由于设置了启用缓存，AngularJS默认会使用 $cacheFactory ,这个服务是AngularJS在启动时自动创建的。
+
+
+
+		<!-- 如果想要对AngularJS使用的缓存进行更多的自定义控制，可以向请求传入一个自定义的缓存实例代替 true 。 -->
+
+		使用LRU（Least Recenlty Used，最近最少使用）缓存
+
+		<!-- 举个栗子： -->
+		<script>
+			var module = $cacheFactory('module',{
+				capacity : 20
+			});
+			// $http请求
+			$http.get('/api/users.json', {cache:module})
+				.success(function(data){})
+				.error(function(data){})
+		</script>
+
+		注意： 最新的20个请求会被缓存。 第21个请求会导致LRU从缓存中将时间比较老的请求移除掉。
+			   每次发送请求时都传入一个自定义缓存是很麻烦的事情（即使是在服务中） 
+			   可以通过应用的 .config() 函数给所有 $http 请求设置一个默认的缓存：
+		<script>
+			angular.module('module',[])
+				.config(function($HttpProvider, $cacheFactory) {
+					$HttpProvider.default.cache = $cacheFactory('module', {
+						capacity:20
+					});
+				});
+		</script>
+
+		注意：所有的请求都会使用我们自定义的LRU缓存了。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- 拦截器 -->
+			任何时候如果我们想要为请求添加全局功能，例如身份验证、错误处理等，在请求发送给服务器之前或者从服务器返回时对其进行拦截，是比较好的实现手段。
+			实际上是 $http 服务的基础中间件，用来向应用的业务流程中注入新的逻辑。
+
+			拦截器的核心是服务工厂，通过向 $httpProvider.interceptors 数组中添加服务工厂，在 $httpProvider 中进行注册。
+
+		一共有四种拦截器，两种成功拦截器，两种失败拦截器。
+
+
+			request：AngularJS通过 $http 设置对象来对请求拦截器进行调用。
+			 		 它可以对设置对象进行修改，或者创建一个新的设置对象，它需要返回一个更新过的设置对象，或者一个可以返回新的设置对象的promise。
+
+
+			response：AngularJS通过 $http 设置对象来对响应拦截器进行调用。
+					  它可以对响应进行修改，或者创建一个新的响应，它需要返回一个更新过的响应，或者一个可以返回新响应的promise。
+
+
+			requestError：AngularJS会在上一个请求拦截器抛出错误，或者promise被reject时调用此拦截器。
+
+
+			responseError：AngularJS会在上一个响应拦截器抛出错误，或者promise被reject时调用此拦截器。
+
+			<!-- 举个栗子： -->
+			<script>
+				// 调用模块的 .factory() 方法来创建拦截器，可以在服务中添加一种或多种拦截器：
+				angular.module('module',[])
+					.factory('myInterceptor', function ($q) {
+						var interceptors = {
+							'request' : function(config) {
+								// 请求成功
+								return config;// 或者$q.when(config);
+							},
+							'response': function(response) {
+								// 响应成功
+								return response;// 或者$q.when(config);
+							},
+							'requestError': function(rejection) {
+								// 请求发生错误，如果能从错误中恢复，可以返回一个新的请求或promise
+								return response;// 或新的promise
+								// 或者，可以通过返回一个rejection来阻止下一步
+								// return $q.reject(rejection);
+							}
+						};
+						return interceptor;
+					})
+					需要使用$httpProvider在.config()函数中注册拦截器：
+				angular.module('module',[])
+					.config(function($httpProvider) {
+						$httpProvider.interceptors.push('myInterceptor');
+					})
+			</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- 设置$httpProvider -->
+			注意：默认的请求头保存在 $httpProvider.defaults.headers.common 对象中。
+			<script>
+				默认头部如：Accept:
+				application/json, text/plain, */*
+			</script>
+			 
+
+			<!-- 举个栗子： -->
+			<script>
+			// 通过.config()函数可以对这些头部进行修改或扩充。
+				angular.module('module', [])
+					.config(function ($httpProvider) {
+						$httpProvider.defaults.headers
+							.common['X-Requested-By'] = 'MyAngularApp';
+					});
+			</script>
+			
+			<script>
+				// 也可以在运行时通过 $http 对象的 defaults 属性对这些默认值进行修改。
+				$http.defaults
+					.common['X-Auth'] = 'RandomString';
+			</script>
+			注意：这个功能可以通过使用请求转换器实现， 对于单个请求， 也可以通过设置 $http请求的 headers 选项实现。
+
+			也可以只对POST和PUT类型的请求进行设置。
+			<script>
+				POST请求的默认头部如下
+				Content-Type:application/json
+			</script>
+
+			可以在.config()函数中对POST请求头部经行修改或扩充
+			<script>
+				angular.module('module', [])
+					.config(function ($httpProvider) {
+						$httpProvider.defaults.headers
+							.post['X-Posted-By'] = 'MyAngularApp'
+					})
+			</script>
+
+			也可以对所有的PUT请求做同样的设置。
+			PUT请求的默认头如下所示：
+			<script>
+				Content-Type: application/json
+			</script>
+
+			可以再.config()函数中对PUT请求的头进行修改和扩充
+			<script>
+				angular.module('module',[])
+					.config(function($httpProvider){
+						$httpProvider.defaults.headers
+							.put['X-Posted-By'] = 'MyAngularApp';
+					});
+			</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- 使用$resource -->
+			AngularJS还提供另外一个非常有用的可选服务 $resource 供我们使用。 
+
+			这个服务可以创建一个资源对象，我们可以用它非常方便地同支持RESTful的服务端数据源进行交互，当同支持RESTful的数据模型一起工作时，它就派上用场了。
+
+			<!-- 注意：REST是Representational State Transfer（表征状态转移）的缩写，是服务器用来智能化地提供数据服务的一种方式。  -->
+
+			同后端服务器进行真正有意义的交互，前提是服务器支持RESTful的数据模型。
+
+			$resource 服务可以将 $http 请求转换成 save 和 update 等简单形式。 
+			需要引用在angular.js之后并在声明模型中依赖注入就可以使用$resource
+
+
+
+
+
+
+			<!-- 应用$resource -->
+			$resource服务本身是一个创建资源对象的工厂。
+			其返回的$resource对象中包含了同后端服务器进行交互的高层API。
+			<script>
+				var user = $resource('/api/users/:userId.json',{
+					{
+						// body...
+					}userId:'@id'
+				});
+			</script>
+
+			$resource返回包含的方法可以同后端服务进行简洁的交互。
+			注意：默认情况下，这个对象包含了五个常用的方法，可以同资源集合进行交互，或者创建资源对象的实例。
+				  它会生成两个基于HTTP GET类型的方法，以及三个非GET类型的方法。
+
+
+			<!-- 基于HTTP GET方法 -->
+			两个HTTP GET类型的方法可以接受下面三个参数。
+
+			params(对象)随请求一起发送的参数。
+				它们可以是URL中的具名参数，也可以是查询参数。
+
+			successFn(函数) 当HTTP响应成功时的回调函数。
+
+			errorFn(函数) 当HTTP响应非成功时的回调函数。
+
+			get(params, successFn, errorFn)
+			get方法向指定URL发送一个GET请求，并期望一个JSON类型的响应。
+				注意：像上面那样不定义具体的参数，get()请求通常被用来获取单个资源。
+
+			<!-- 举个栗子： -->
+			<script>
+				// 发起一个请求
+				// GET /api/users
+				User.get(function (resp) {
+					// 处理响应成功
+				}, function (err) {
+					// 处理失败
+				});
+			</script>
+
+				如果参数中传入了具名参数（我们例子中的参数是 id ） ，那么 get() 方法会向包含 id 的URL发送请求：
+			<script>
+				// 发起一个请求
+				// GET /api/users/123
+				User.get({
+					id:'123'
+				}, function (resp) {
+					// 处理响应成功
+				}, function (err) {
+					// 处理失败
+				})
+			</script>
+
+			query(params, successFn, errorFn)
+			query向指定URL发送一个GET请求，并期望返回一个JSON格式的资源对象集合。
+
+			<!-- 举个栗子： -->
+			<script>
+				// 发送一个请求
+				// GET /api/users
+				User.query(function (users) {
+					// 读取集合中第一个用户
+					var user = users[0];
+				});
+			</script>
+
+
+			基于非HTTP GET类型的方法
+			三个基于非HTTP GET类型的方法可以接受下面四个参数。
+
+			params(对象)
+				随请求一起发送的参数。可以是URL中的具名参数，也可以是查询参数。
+
+			postData(对象)
+				这个对象是随请求发送的数据体。
+
+			successFn(函数)
+				当HTTP响应成功时的回调函数。
+
+			errorFn(函数)
+				当HTTP响应非成功时的回调函数。
+
+
+			save(params, postData, successFn, errorFn)
+				save方法向指定URL发送一个POST请求，并用数据体来生成请求体。
+				save() 方法用来在服务器上生成一个新的资源。
+			<!-- 举个栗子： -->
+			<script>
+				// 发起一个请求
+				// POSt /api/users
+				// with the body {name : 'Ari'}
+				User.save({},{
+					name: 'Ari'
+				}, function (response) {
+					// 处理响应成功
+				}, function (response) {
+					// 处理响应非成功
+				})
+			</script>
+
+			delete(params, payload, successFn, errorFn)
+				delete方法会向指定URL发送一个DELETE请求，并用数据体来生成请求体。
+				<!-- 举个栗子： -->
+				<script>
+					// 用来在服务器上删除一个实例：
+					// 发送一个请求
+					// DELETE /api/users
+					User.delete({},{
+						id:'123'
+					},function (response) {
+						// 处理成功的删除响应
+					},function (response) {
+						// 处理非成功的删除响应
+					});
+				</script>
+
+			remove(params, payload, successFn, errorFn)
+				remove 方法和 delete() 方法的作用是完全相同的，它存在的意义是因为 delete 是JavaScript的保留字，在IE浏览器中会导致额外的问题。
+				<!-- 举个栗子： -->
+				<script>
+					// 发起一个请求
+					// DELETE /api/users
+					User.remove({},{
+						id:'123'
+					}, function (response) {
+						// 处理成功的删除响应
+					}, function (response) {
+						// 处理非成功的删除响应
+					})
+				</script>
+
+
+
+
+
+				<!-- $resource实例 -->
+				上述方法返回数据时，响应会被一个原型类所包装，并在实例上添加一些有用的方法。
+				实例对象上会被添加下面三个实例方法：
+				 $save()
+				 $remove()
+				 $delete()
+				注意：除非在一个单独的资源上而不是一个集合上被调用， 否则这三个方法与资源上对应的方法是一样的。
+				<!-- 举个栗子： -->
+				<script>
+					// 这三个方法可以在资源实例上被调用。
+					// 使用实例方法$save()
+					User.get({id:'123'},function (user) {
+						user.name = 'Ari';
+						user.$save();//Save the user
+					});
+					User.save({id:'123'}, {name:'Ari'})
+				</script>
+
+
+
+
+
+				<!-- $resource 实例是异步的 -->
+				这三个方法在调用时 $resource 对象会立即返回一个空的数据引用。
+				由于所有方法都是异步执行的，所以这个数据是一个空的引用，并不是真实的数据。
+
+				因此，虽然获取实例的调用看起来是同步的，但实际上不是。
+				事实上，它只是数据的引用，当数据从服务器返回后AngularJS会自动将数据填充进去。
+				<!-- 举个栗子： -->
+				<script>
+					// $scope.user将为空
+					$scope.user = user.get({id:'123'});
+				</script>
+
+				这些方法也提供了回调函数，在数据返回时按预期的方式调用：
+				<!-- 举个栗子： -->
+				<script>
+					User.get({id: '123'}, function (user) {
+						$scope.user  = user;
+					})
+				</script>
+
+
+
+
+
+				<!-- 附加属性 -->
+				$resource 集合和实例有两个特殊的属性用来同底层的数据定义进行交互。
+
+				$promise （promise）
+					$promise 属性是为 $resource 生成的原始promise对象。	
+					这个属性是特别用来同 $routeProvider.when() 在resolve时进行连接的。
+				如果请求成功了，资源实例或集合对象会随promise的resolve一起返回。
+				如果请求失败了，promise被resolve时会返回HTTP响应对象，其中没有 resource 属性。
+
+				$resolved （布尔型）
+					$resolved 属性在服务器首次响应时会被设置为 true （无论请求是否成功） 。
+
+
+
+
+
+				<!-- 自定义 $resource 方法 -->
+				为了在 $resource 对象中创建自定义方法，需要向包含修改过的 $http 设置对象的资源类传入第三个参数，它被当作自定义方法。
+				<!-- 举个栗子： -->
+				<script>
+					var User = $resource('/api/users/userId.json',{
+						userId:'@id'
+						sendEmail: {
+							method: 'POST'
+						},
+						allInboxes: {
+							method: 'JSONP',
+							isArray: true
+						}
+					});
+				</script>
+				<!-- 借助这个 User 资源，资源集合（ User 资源对象）中的个体实例现在可以使用 sendEmail() 和update() 方法了（也就是 user.$sendEmail() 和 user.$update() ） 。 -->
+
+
+
+
+
+				<!-- $resource 设置对象 -->
+				$resource 设置对象和 $http 设置对象十分相似，仅有少量的不同。
+				对象的值，是资源对象中某个方法的名字。
+
+
+				method(字符串)
+					method 指的是我们想要用来发送HTTP请求的方法。 
+					它必须是以下值之一： ‘GET’、 ‘DELETE’、‘JSONP’、‘POST’、‘PUT’。
+
+
+				url （字符串）
+				 	一个URL，用来覆盖为该方法的具体路由设置的URL。
+
+
+				params(字符串或对象)
+					这个键中包含了此动作可选的预绑定参数。
+					注意：如果任何一个值都是函数，那么每当我们需要读取一个请求的参数时，它就会被执行一次。
+
+
+				isArray （布尔型）
+				 	如果 isArray 被设置为 true ，那么这个动作返回的对象会以数组的形式返回。
+
+
+				transformRequest （函数或函数数组）
+					这个函数或函数数组用来对HTTP请求的请求体和头信息进行转换，并返回转换后的版本。
+					通常用来进行序列化。
+					<!-- 举个栗子： -->
+					<script>
+						var User = $resource('/api/users/:id',{
+							id:'@'
+						},{
+							sendEmail: {
+								method: 'PUT',
+								transformRequest: function (data, headerFn) {
+									// 返回修改后的请求数据
+									return JSON.stringify(data);
+								}
+							}
+						})
+					</script>
+
+
+				transformResponse （函数或函数数组）
+					这个函数或函数数组用来对HTTP响应体和头信息进行转换，并返回转换后的版本。通常用来进行反序列化。
+					<!-- 举个栗子： -->
+					<script>
+						var User = $resource('/api/users/:id',{
+							id:'@'
+						}, {
+							sendEmail: {
+								method:'PUT',
+								transformResponse: function (data, headerFn) {
+									// 返回修改后的响应数据
+									return JSON.parse(data);
+								}
+							}
+						});
+					</script>
+
+
+				cache （布尔型或缓存对象）
+					如果 cache 属性被设置为 true ，那么AngularJS会用默认的 $http 缓存对GET请求进行缓存。
+					如果 cache 属性被设置为 $cacheFactory 对象的一个实例，那么这个对象会用来对GET请求进行缓存。
+
+				注意：如果 cache 属性被设置为 false ，那么 $resource 服务所发送的请求不会被缓存。
+				
+
+				timeout(数值型或promise对象)
+					如果 timeout 被设置为一个数值，那么请求将会在推迟 timeout 指定的毫秒数后再发送。
+					如果被设置为一个promise对象，那么当该promise对象被resolve时，请求会被中止。
+
+
+				withCredentials （布尔型）
+					如果该属性被设置为 true ，那么XHR请求对象中会设置 withCredentials 标记。
+					<!-- 默认情况下，CORS请求不会发送cookie，而 withCredentials 标记会在请求中加入 Access-Control-Allow-Credentials 头，这样请求就会携带目标域的cookie。 -->
+
+
+				responseType （字符串）
+					responseType 选项会在请求中设置 XMLHttpRequestResponseType 属性。
+					我们可以使用以下HTTP请求类型之一：
+						" " （字符串，默认） ；
+						"arraybuffer" （ ArrayBuffer ） ；
+						"blob" （blob对象） ；
+						"document" （HTTP文档） ；
+						"json" （从JSON对象解析而来的JSON字符串） ；
+						"text" （字符串） ；
+						"moz-blob" （Firefox的接收进度事件） ；
+						"moz-chunked-text" （文本流） ；
+						"moz-chunked-arraybuffer" （ ArrayBuffer 流） 。
+
+
+				interceptor （对象）
+					拦截器属性有两个可选的方法： response 或 responseError 。
+					这些拦截器像普通的 $http 拦截器一样，由 $http 请求对象调用。
+
+
+
+
+
+
+
+				<!-- $resource 服务 -->
+				我们可以将 $resource 服务当作自定义服务的基础。
+				<!-- 最后，我们强烈建议在自定义的服务对象内部使用 $resource 。这不仅可以将加载远程服务抽象成一个独立的AngularJS服务，同时将其从控制器中解耦，保证控制器的代码清洁。 -->
+
+				要创建一个封装 $resource 的服务，需要将 $resource 的服务注入到我们用来封装的服务对象中，并像平时一样调用其中的方法。
+				<!-- 举个栗子： -->
+				<script>
+					angular.module('module', ['ngResource'])
+						.factory('UserService', [
+							'$resource', function ($resource) {
+								return $resource('/api/users/:id',{
+									id:'@'
+								}, {
+									updata: {
+										method: 'PUT'
+									}
+								});
+							}]);
+				</script>
+
+
+
+
+				<!-- $resource API -->
+				通过 $resource() 方法来使用 $resource 服务。
+
+				url （字符串）
+					我们在这里传入一个包含所有参数的，用来定位资源的参数化URL字符串模板（参数以 : 符号为前缀） 。
+				<!-- 举个栗子： -->
+				<script>
+				// 如果 : 之前的参数是空的（上面例子中的 :id ） ，那么URL中的这部分会被压缩成一个 . 符号。
+					$resource('/api/users/:id.:format', {
+						format: 'json',
+						id: '123'
+					});
+				</script>
+
+				注意：如果我们使用的服务器要求在URL中输入端口号， 例如 http://localhost:3000 ，我们必须对URL进行转义。
+				这种情况下URL规则看起来是这样的：$resource('http://localhost\\:3000/api/users/:id.json') 。
+
+
+				paramDefaults （可选，对象）
+				第二个参数中包含了发送请求时URL中参数的默认值。
+					对象中的键会与参数名进行匹配。
+						如果我们传入了一个没有在URL中设置过的参数，那它会以普通的查询字符串的形式被发送。
+				<!-- 例如，如果URL字符串具有 /api/users/:id 这样的签名，并且我们将默认值设置为 {id:'123', name: 'Ari' } ，那么URL最终会被转换成 /api/users/123?name=Ari 。 -->
+
+				这里可以像上面一样硬编码一个默认值来传入一个静态值， 也可以设置它从一个数据对象中读取动态值。
+				如果要设置动态值，需要在值之前加上 @ 字符作为前缀。
+
+
+
+				 actions （可选，对象）
+				 动作对象是具有自定义动作，并且可以对默认的资源动作进行扩展的hash对象。
+				 在这个对象中，对象的键就是自定义动作的名字，而 $http 设置对象的值会对URL中相应的参数进行替换。
+				 <!-- 举个栗子： -->
+				 <script>
+				 	// 例如，我们可以用如下形式在资源上定义一个新的 update 动作：
+				 	$resource('/api/users/:id.:format', {
+				 		format: 'json',
+				 		id: '123'
+				 	}, {
+				 		update: {
+				 			method: 'PUT'
+				 		}
+				 	});
+				 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+				<!-- 使用 Restangular -->
+				<!-- Restangular是一个专门用来从外部读取数据的AngularJS服务。 -->
+
+				promise
+					Restangular支持promise模式的异步调用，可以像使用原始的 $http 方法一样对响应进行链式操作。
+
+				promise展开
+					也可以像使用 $resource 服务一样使用Restangular， 通过很简单的方式同时操作promise和对象。
+
+				全HTTP方法支持
+					Restangular支持所有的HTTP方法。
+
+				忘记URL
+					$resource 要求明确的指定想要拉取数据的URL，Restangular并不需要事先知道URL或提前指定它们（除基础URL外） 。
+
+				资源嵌套
+					Restangular可以直接处理嵌套的资源，无需创建新的Restangular实例。
+
+				一个实例
+					同 $resource 不同，使用过程中仅需要创建一个Restangular资源对象的实例。	
+				使用该插件需要在页脚引用并在模型中依赖注入
+
+
+				<!-- Restangular 对象简介 -->
+				通过Restangular有两种方式创建拉取数据的对象。可以为拉取数据的对象设置基础路由：
+				<!-- 举个栗子： -->
+				<script>
+					var user = Restangular.all('user')
+				</script>
+				这样设置Restangular服务会让所有的HTTP请求将/users路径作为根路径来拉取数据。
+				<!-- 举个栗子： -->
+				<script>
+					var alluser = user.getList();//GET /users
+				</script>
+				也可以通过单个对象来发送嵌套的请求，可以用唯一的ID来代替路由发送请求：
+				<!-- 举个栗子： -->
+				<script>
+					var oneUser = Restangular.one('users', 'abc123');
+				</script>
+				上面代码的效果是调用 oneUser 上的 get() 时向 /users/abc123 发送请求。
+				<!-- 再举个例子： -->
+				<script>
+					oneUser.get().then(function (user) {
+						// GET /users/abc123/inboxes
+						user.getList('inboxes');
+					});
+				</script>
+				Restangular非常聪明，知道如何根据在Restangular源对象上调用的方法来构造URL。
+				但设置拉取数据的URL是很方便的，特别是当后端不支持纯粹的RESTful API时。
+
+				<!-- 再举个栗子： -->
+				<script>
+				// 通过向 allUrl 方法传入一个独立的参数来指定请求的URL：
+					// 搜索的所有URL都将使用
+					// http://google.com/`asthebaseUrl
+					var searches = Restangular.allUrl('one', 'http://google.com/');
+					// 将发送一个请求到GET http://google.com/
+					searches.getList();
+				</script>
+
+				<!-- 再举个栗子： -->
+				<script>
+				另外也可以通过 oneURL 方法针对特定的请求，设置基础URL而不是操作整个请求：
+
+					var singleSearch = Restangular.oneUrl('betaSearch', 'http://beta.google.com/1');
+
+					// 触发一个请求到GET http://google.com/1
+					singleSearch.get();
+				</script>
+
+
+
+
+
+
+				<!-- 使用 Restangular -->
+					假设我们创建了一个Restangular对象代表公共讨论列表：
+					<!-- 举个栗子： -->
+						<script>
+							var messages = Restangular.all('messages');
+						</script>
+					通过这个对象，可以使用 getList() 来获取所有信息。
+						 getList() 方法返回了一个集合，其中包含了可以用来操作特定集合的方法。
+					<!-- 再举个栗子： -->
+						<script>
+							// 所有消息都是一个将被解决成所有消息列表的承诺
+							var allMessages = messages.getList();
+						</script>
+					同样可以使用Restangular对象来创建信息。使用 post() 方法来创建 message 对象。
+						post 方法可以接受一个必要参数，参数类型是对象，并向指定的URL发送一个POST请求。
+					我们也可以向请求中添加查询参数和头。
+					<!-- 再举个栗子 -->
+					<script>
+						// POST到/messages
+						var newmessage = {
+							body: 'Hello world'
+						},
+						messages.post(newMessage);
+						// 或者在一个元素上调用这个函数
+						// 以创建嵌套的资源
+						var message = Restangular.one('messages', 'abc123'); message.post('replies', newMessage);
+					</script>
+				<!-- 注意：由于Restangular返回promise对象，我们可以调用promise对象上的方法，因此我们可以在promise对象完成时运行函数。 -->
+
+				Restangular返回的是增强过的promise对象，因此除了可以调用 then 方法， 还可以调用一些特殊的方法，比如 $object 。
+				注意：$object 会立即返回一个空数组（或对象） ，在服务器返回信息后，数组会被用新的数据填充。
+				<!-- 举个栗子： -->
+				<script>
+					// 这对更新一个集合后，在作用域中立即重新拉取集合的场景很有用：
+					// 然后在promise中调用
+					message.post(newMessage).then(function (newMsg) {
+						// 首先将消息设置成空数组
+						// 然后一旦getList是完整的就填充它
+						$scope.message = message.getList().$object;
+					}, function (errorRenson) {
+						// 出现了一个错误
+					});
+				</script>
+				我们也可以从集合中移除一个对象。使用 remove() 方法可以发送一个DELETE HTTP请求给后端。
+				通过调用集合中一个对象（或元素）的 remove() 方法来发送删除请求。
+				<!-- 再举个栗子： -->
+				<script>
+					var message = messages.get(123);
+					message.remove(); // 发送DELETE HTTP请求
+				</script>
+				更新和储存对象是常见的操作。
+					通常情况下，这种操作由HTTP PUT方法完成。
+						Restangular通过 put() 方法来支持这个功能。
+				注意：要更新一个对象， 首先要查询这个对象， 然后在实例中设置新的属性值， 再调用对象的 put()方法将更新保存到后端。
+
+
+				嵌套资源是指包含在其他组件内部的组件。
+				<!-- 举个栗子： -->
+				<script>
+				// 事实上，我们可以从集合中查询出特定的嵌套资源实例。
+					var author = Restangular.one('authors', 'abc123');
+					// 构建一个GET到/authors/abc123/book的请求
+					var book = author.getList('books');
+				</script>
+
+				Restangular中另外一个酷炫的功能是不仅可以在 one 和 all 方法创造的对象上调用 post 、 put 、getList 等方法，也可以在服务器返回的对象上调用。
+				<!-- 举个栗子： -->
+				<script>
+					// 例如，我们可以在代码中首先拉取一个作者并进行展示，然后获取他的书籍列表：
+					Restangular.one('author', 'abc123').then(function (author) {
+						$scope.author = author;
+					});
+					// 构建一个GET到/authors/abc123/authors的请求
+					// 使用$scope.author，它是从服务器返回的真实对象
+					$scope.author.getList('book');
+				</script>
+
+
+
+
+				<!-- Restangular的HTTP方法 -->
+				Restangular支持所有的HTTP方法。
+					支持：GET、PUT、POST、DELETE、HEAD、TRACE、OPTIONS和PATCH。
+						author.get();
+						author.getList('book');
+						author.put();
+						author.post();
+						author.remove();
+						author.head();
+						author.reace();
+						author.options();
+						author.patch();
+				如果后端服务器映射资源的方式和我们预期的不符，Restangular也支持自定义HTTP方法。
+					<!-- 举个栗子： -->
+				<script>
+					// 映射一个GET到/users/abc123/biograyphy的请求
+					author.costomGET("biograyphy")
+					// 或者带有一个新bio对象的POST
+					// as {body: 'Ari’s bio'}
+					// 中间的两位字段是参数字段或任意定义头部
+					author.customPOST({body: 'Aris Bio' }),
+						"biograyphy", // 路由
+						{},			  // 自定义参数
+						{});		  // 自定义头部
+				</script>
+
+
+
+
+
+				<!-- 自定义查询参数和头 -->
+				每一个HTTP方法都可以自定义查询参数和头。
+					<!-- 为了添加自定义查询参数， 需要添加一个JavaScript对象， 将其作为第二个参数添加到我们的方法调用中，还可以再添加一个JavaScript对象作为第三个参数。 -->
+				最重要的是，在资源上调用这些方法会将这两个参数作为可选参数。
+				<!-- 举个栗子： -->
+				<script>
+					// 使用了自定义查询参数，一个 post 方法看起来像这样：
+					var queryParamObj = { role: 'admin' },
+						headerObj = { 'X-user': 'admin' };
+					message.getList('accounts', queryParamObj, headerObj);
+				</script>
+
+				<!-- 将 RestangularProvider 注入到 config() 函数中，或者将 Restangular 注入到一个 run() 函数中，用这些方式对Restangular进行设置，无论在哪里使用Restangular都可以利用这些设置。 -->
+
+				<!-- 注意：一个决定在何处设置Restangular实例的好方法：如果设置Restangular时需要用到其他服务，那么就在 run() 方法中设置，否则就在 config() 中进行设置。 -->
+
+
+
+				设置  baseUrl
+				通过setBaseUrl()方法给所有后端API请求设置baseUrl。
+				<!-- 举个栗子： -->
+				<script>
+					// 例如，如果 API 的地址是/api/vi 而不是服务器的根路径，可以进行如下设置：
+					angular.module('module', ['restangular'])
+						.config(function (RestangularProvider) {
+							RestangularProvider.setBaseUrl('/api/v1');
+						});
+				</script>
+
+				添加元素转换
+					restangular加载了资源之后，可以添加资源转化器。
+					使用elementTransformers可以在Restangular对象被加载后为其添加自定义方法。
+					<!-- 注意：这个方法会在资源被加载后当作回调函数调用，在AngularJS对象中使用这些资源前可以对资源对象进行更新或修改。 -->
+					<!-- 举个栗子： -->
+					<script>
+						angular.module('module',['restangular'])
+							.config(function (RestangularProvider) {
+								// 3个参数：
+								RestangularProvider.addElementTransformer('authors', false, function (element) {
+									element.fetchedAt = new Date();
+									return element;
+								});
+							});
+					</script>
+					<!-- 注意：对于扩展数据模型或集合有跨界方法可以使用。 -->
+					<!-- 再举个栗子： -->
+					<script>
+						angular.module('module', [])
+							.config(function (RestangularProvider) {
+								RestangularProvider.extendModel.extendModel('authors', function (element) {
+									element.getFullName = function () {
+										return element.name + '   ' + element.lastName;
+									};
+									return element;
+								});
+							});
+					</script>
+
+				<!-- 设置 responseInterceptors -->
+				Restangular可以设置响应拦截器。 responseInterceptors 在需要对服务器返回的响应进行转换时非常有用。
+					<!-- 如果服务器返回的数据将我们需要的数据藏在了嵌套资源中，可以用responseInterceptors 把这些数据挖出来。 -->
+
+				注意：getList方法始终返回数组很重要,并用responseInterceptors解析出来。
+					responseInterceptors在每个响应重服务返回时被调用。
+						data:从服务器取回的数据。
+						operation:使用HTTP方法。
+						what:所请求的数据模型。
+						url:请求的相对URL。
+						response:完整的服务器响应，包括响应头。
+						deferred:请求的promise对象。
+					<!-- 举个栗子： -->
+					<script>
+						// 例如，下面的设置会使 getList() 返回一个带有元信息的数组，在这种情况下，数组中的元素就是同路由具有相同名称的属性的值。
+
+						// 例如，向 /customers 发送GET请求会返回一个像{customers: []} 这样的数组。
+						angular.module('module', [])
+							.config(function(RestangularProvider) {
+								RestangularProvider.setResponseInterceptor(function(data, operation, what) {
+									if(operation == 'getList') {
+										var list = data[what];
+										list.metadata = data.metadata;
+										return list;
+									}
+									return data;
+								});
+							});
+					</script>
+				使用 requestInterceptors
+					Restangular同样还支持另外一种对应的操作：我们可以在将数据实际发送给服务器之前对其进行操作。
+					如果要在将对象发送给服务器之前对其进行操作，那么 requestInterceptors 非常有用。
+					<!-- 注意：例如，我们可以直接用 _id 字段同MongoDB进行通信，所以在使用PUT操作将其发送回服务器之前需要把这个字段移除。 -->
+				重点注意：我们可以同时使用 requestInterceptors 和 responseInterceptors 来实现全页面范围内的加载提示。
+							在每个请求之前开始加载提示，在收到请求后停止加载提示。
+
+				<!-- 使用 setRequestInterceptor() 来设置 requestInterceptor 。 -->
+					这个方法可以接受下面四个参数。
+					element:发送给服务器的资源。
+					operation：所使用的HTTP方法；
+					what：所请求的数据模型；
+					url ：所请求的相对URL。
+					<!-- 举个栗子： -->
+					<script>
+						var module = angular.module('module', []);
+						module.config(function(RestangularProvider) {
+							RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
+								if(operation === 'put') {
+									elem._id = undefined;
+									return elem;
+								}
+								return elem;
+							});
+						});
+					</script>
+
+
+
+			<!-- 前端自定义数据映射 -->
+			<!-- Restangular支持自定义字段。 -->
+			<!-- 例如，同MongoDB数据库进行通信，在这种场景中 id 字段不会映射到真的 id 上，在MongoDB中 id 字段实际上会映射到 _id.$oid 上。 -->
+			<!-- 举个栗子： -->
+			<script>
+				var module = angular.module('module', []);
+				module.config(function (RestangularProvider) {
+					RestangularProvider.setRestangularFields({
+						id: '_id.$oid'
+					});
+				});
+			</script>
+
+
+			<!-- 通过 errorInterceptors 来捕获错误 -->
+			<!-- 通过设置错误拦截器可以捕获Restangular内的错误。 -->
+				<!-- 通过 errorInterceptor 可以将错误信息在应用中进行传递。 -->
+			<!-- 如果 errorInterceptor 返回 false ， promise链就会被中断， 并且我们的应用永远都不需要处理错误。 -->
+			<!-- 例如， 此时是处理验证失败的好时机。 任何请求如果返回了401， 可以通过 errorInterceptor将其捕获并将用户重定向到登录页面。 -->
+			<!-- 举个栗子： -->
+			<script>
+				var module = angular.module('module', ['restangular']);
+				module.config(function (RestangularProvider) {
+					RestangularProvider.setErrorInterceptor(function (resp) {
+						displayError();
+						return false;// 停止promise链
+					});
+				});
+			</script>
+
+
+
+			<!-- 孤立资源设置 -->
+			<!-- 如果我们想加载一个没有嵌套在其他资源中的资源，可以使用 setParentless 设置告诉Restangular不要构造嵌套结构的URL。 -->
+			<!-- 举个栗子： -->
+			<script>
+				var module = angular.module('module', ['restangular']);
+				module.config(function (RestangularProvider) {
+					RestangularProvider.setParentless(['cars']);
+				});
+			</script>
+				<!-- setParentless() 设置函数可以接受两种不同类型的参数： -->
+					布尔型:如果参数值为 true ，所有的资源都会被当作孤立资源处理，没有任何URL会进行嵌套。
+					数组：只有定义在这个数组中的资源会当作孤立资源处理，数组的元素是字符串，字符串的值是资源的标识。
+
+
+
+
+			<!-- 使用超媒体 -->
+			<!-- 在实践中，只通过一个切入点（主URL）来同后端服务器进行通信是非常好的做法，其他数据模型通过链接来指向相关联的资源。 -->
+
+			<!-- Restangular通过 selfLink 、 oneUrl 和 allUrl 来支持这个有用的做法。 -->
+
+			<!-- 首先要设置 selfLink 字段。 -->
+				<!-- 同设置ID非常类似， selfLink 将路径设置为数据模型的一个属性， 而数据模型通过链接同对应的资源相关联。  -->
+				<!-- 这样我们可以知道应该将 PUT 或 GET 请求发送到哪个URL。 -->
+				<!-- 举个栗子： -->
+				<script>
+					var module = angular.module('module', []);
+					module.config(function (RestangularProvider) {
+						RestangularProvider.setRestangularFields({
+							selfLink: 'link.href'
+						});
+					});
+				</script>
+				<!-- 设置好后，就可以开始使用这个非常有用的功能了。 -->
+
+				<!-- 首先读取所有作者的列表，这也是应用的主路由。 -->
+					<script>
+						$scope.author = Restangular.all('authors').getList().$object;
+					</script>
+					<!-- 基于前面的设置，每一个作者都对应一个指向自己的链接，同样还有一个指向该作者对应的书籍的URL。 -->
+					<!-- 可以这样使用： -->
+					<script>
+						var firstAuthor = authors[0];
+						firstAuthor.name = "john";
+
+						// PUT到/authors/1988-author-1
+						// url在firstAuthor.link.href中
+						firstAuthor.put();
+
+						// GET到/book/for-author/1988-author-1
+						var books = Restangular.allUrl('book', firstAuthor.book.href).getList().$object;
+					</script>
+
+				<!-- 最后，强烈建议将Restangular封装在一个自定义服务对象内。 -->
+					<!-- 在每个自定义服务中都可以对Restangular进行独立的设置。 -->
+					<!-- 通过使用服务可以将同服务器通信的逻辑与AngularJS对象解耦，并让服务直接处理通信的业务。 -->
+						<!-- 通过将 Restangular 服务注入到工厂函数中，就可以方便地对 Restangular 进行封装。 -->
+						<!-- 在工厂函数内部，使用 withConfig() 函数来创建自定义设置。 -->
+						<!-- 举个栗子： -->
+						<script>
+							var module = angular.module('module', ['restangular']);
+							module.factory('MessageService', ['Restangular', function (Restangular) {
+								var restAngular = Restangular.withConfig(function (Configurer) {
+									Configurer.setBaseUrl('/api/v2/messages');
+								});
+
+								var _messagesService = restAngular.all('messages');
+
+								return {
+									getMessages: function () {
+										return _messagesService.getList();
+									}
+								};
+							}]);
+						</script>
+</html>

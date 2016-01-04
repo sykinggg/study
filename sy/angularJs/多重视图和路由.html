@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		
+
+		<!-- 除了用 ng-include 指令在视图中引用多个模板外，更好的做法是将视图分解成布局和模板视图，并且根据用户当前访问的URL来展示对应的视图。 -->
+
+		<!-- AngularJS允许我们在 $route服务的提供者 $routeProvider 中通过声明路由来实现这个功能。 -->
+
+		<!-- AngularJs中将router（路由）模块分离因此必须引用！ -->
+		<!-- 要使用则在定义的模板中依赖注入 -->
+	</body>
+	<script src = 'angular.js'></script>
+	<script src = 'angular-router.js'></script>
+	<script>
+	// ngRouter是angularjs中的路由模块名称内置！
+		var app = angular.module('app',['ngRouter']);
+	</script>
+</html>

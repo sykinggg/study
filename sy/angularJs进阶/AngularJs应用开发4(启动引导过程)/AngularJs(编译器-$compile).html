@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	编译器/$compile
+	基础思想：编译器$compile是一个AngularJS的内置服务，它负责遍历DOM树来查找匹配指令， 并调用指令的实现代码进行处理。
+	HTML编译：
+		1.匹配指令
+			实质：$compile遍历DOM树，如果发现有元素匹配了某个指令，那么这个指令将被加入 该DOM元素的指令列表中。
+			注意：一个DOM元素可能匹配多个指令。
+		2.执行指令的编译函数
+			执行顺序:
+				1.当一个DOM元素的所有指令都找齐后，编译器根据指令的优先级/priority指令进行排序。
+				2.每个指令的compile函数被依次执行。
+				3.每个compile执行的结果产生一个link函数，这些 link函数合并成一个复合link函数。
+		3.执行生成的链接函数
+			实质：$compile通过执行指令的link函数，将模板和scope链接起来。
+				结果就是一个DOM视图和scope对象模型 之间的动态数据绑定。
+	关键问题：将编译和连接两个步骤分开
+		注意：当数据模型的变化会导致DOM结构变化时，指令就需要分别定义compile()函数和link函数。
+		例如，ng-repeat指令需要为数据集合中的每个成员复制DOM元素。
+			将编译和链接过程分开可以有效 地提高性能，因为DOM的复制放在compile()里，
+			仅需要执行一次，但链接则发生在每个生成的DOM元素 上，所以指令的link()函数会执行多次。
+	使用注意：指令很少需要compile函数，
+		因为大多数指令考虑的是作用于特定的DOM元素实例，而不是改变DOM 的结构。所以link函数更常用。
+	<body>
+		<p>一幅动画</p>
+		<ez-duang></ez-duang>
+	</body>
+	<script>
+		angular.element(document).ready(function(){
+			var injector = angular.injector(["ng", "ezstuff"]);
+			angular.element(document).data("$injector", injector);
+			var rootScope = injector.get("$rootScope");
+			angular.element(document).data("$rootScope", rootScope);
+			var compile = injector.get("$compile")
+			compile(document)(rootScope);
+		});
+		angular.module("ezstuff", [])
+		.directive("ezDuang", function(){
+			return {
+				restrict : "E",
+				template : "<img src='http://ww4.sinaimg.cn/bmiddle/757eb2ffjw1eptcr4qobjg209205dthh.gif'>"
+			}
+		})
+		
+	</script>
+</html>

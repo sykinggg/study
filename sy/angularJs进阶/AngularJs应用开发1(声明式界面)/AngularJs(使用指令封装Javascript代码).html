@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	<body>
+		使用指令封装JavaScript代码
+		Angular的执行方法与顺序：
+			angular.min.js引入了基本的angularJS库，它会在浏览器载入HTML文档并且 建立好DOM树后，执行以下操作：
+			1.找到有ng-app属性的DOM节点
+			2.以这个节点为根节点，搜索自定义指令，发现ez-clock
+			3.调用ez-clock指令的实现函数（指令类工厂）进行展开
+		根据我们的定义，ez-clock的展开操作如下：
+			1.使用一个div元素替换这个自定义标签
+			2.创建一个定时器，在定时器触发时刷新div元素的innerText
+		ez-clock这样的非HTML标准标签，在AngularJS中之所以称为指令/directive， 就是指看到它时，基础框架需要对其进行解释，
+			以便展开成浏览器可以理解 的东西（HTML元素和脚本），而这个解释的过程被称为：编译。
+		执行方法：AngularJS框架要求将HTML文档和JavaScript代码分割的更清晰，通常混杂在 HTML文档中的JavaScript代码，需要以指令的形式进行封装
+			关键：模板、指令 实现代码这两个部件，则由基础框架负责拼装运行。
+	</body>
+</html>

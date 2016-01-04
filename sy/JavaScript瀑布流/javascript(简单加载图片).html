@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>简单加载图片示例</title>
+		设置css样式
+			1.首先用通配符"*"来设置页面中所有Html标签的所有内边距padding:0px和外边距margin:0px,
+			    选用通配符是因为它的优先级比所有其他选择器都要低（id选择器>类选择器>Html选择器>通配符选择器）
+			2.设置id="container"相对定位，
+			3.设置class="box"的div容器外边距padding:5px，可以得到两种图片间的距离为10px,设置浮动float:left为向左浮动，让它一次布局排开
+			4.设置class="box_img"外边距padding和边框border和阴影box-shadow圆角border-radius的效果，
+			5.设置图片的宽度width:150和高度height:auto自适应
+		示例： <img src="image/javascript(结构).png" alt="" />
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			#container{
+				position: relative;
+			}
+			.box{
+				padding:5px;
+				float:left;
+			}
+			.box_img{
+				padding:5px;
+				/*边框样式*/
+				border:1px solid #cccccc;
+				/*阴影样式*/
+				box-shadow:0 0 5px #ccc;
+				/*圆角样式*/
+				border-radius:5px;
+			}
+			.box_img img{
+			/*图片自动缩放*/
+				width: 150px;
+				height: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id = "container">
+		<!--图片容器-->
+			<div class = "box">
+			<!--图片边框-->
+				<div class = "box_img">
+					<img src="image/javascript(结构).png" alt="" />
+				</div>
+			</div>
+			<!--图片容器-->
+			<div class = "box">
+				<!--图片边框-->
+				<div class = "box_img">
+					<img src="image/javascript(结构).png" alt="" />
+				</div>
+			</div>
+			<!--图片容器-->
+			<div class = "box">
+				<!--图片边框-->
+				<div class = "box_img">
+					<img src="image/javascript(结构).png" alt="" />
+				</div>
+			</div>
+			<!--图片容器-->
+			<div class = "box">
+				<!--图片边框-->
+				<div class = "box_img">
+					<img src="image/javascript(结构).png" alt="" />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

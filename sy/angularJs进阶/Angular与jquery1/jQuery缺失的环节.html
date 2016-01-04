@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery缺失的环节</title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+		<style>
+			div#clock{
+				padding:10px;
+				width:400px;
+				background:#000;
+				color:#0f0;
+			}
+		</style>
+	</head>
+	<body>
+	jQuery有点像C语言，威力很大，不过要弄出点像样的前端界面，还得花不少功夫 处理琐碎的事情。
+	注意：AngularJS引入了三个主要的概念，期望让前端开发更系统化一些：
+		1.声明式界面开发
+		2.双向数据绑定
+		3.使用依赖注入解耦
+	jQuery相当于前端的库而AngularJs则是一个框架
+	注意：在DOM操作方面，没有人比jQuery做的更好。
+		内置精简版的jQuery - jqLite，和jQuery一样，jqLite兼容多个浏览器。
+		jqLite以angular.element接口提供出来，兼容jQuery API的一个子集。 
+	注意：在AngularJS的所有API中的element对象，都不是纯粹的DOM对象，而是经过jqLite 封装过的。
+	
+	使用：选择符的问题
+		问题：从开发者的角度，jqLite最明显的精简是不支持选择符。
+		解决方法：你只能向 angular.element传入一个DOM对象。
+		详细解决方法：看起来AngularJS将这部分功能让位给浏览器 原生的支持了，我们可以先使用浏览器的querySelector获得一个DOM对象：
+	示例： var tpl = document.querySelector('#clock');
+		  angular.element(tpl).text(...)
+		  
+	可以绕开的问题;jQuery库的兼容性
+		可以在AngularJS之前引入jQuery库。 AngularJS自动地将jqLite升级成jQuery，angular.element等同于 $ 。 这样又可以使用熟悉的选择符了。
+	
+	jqLite的扩展的方法
+		jqLite包括一些额外的方法以适应AngularJS框架：
+			1.controller(name) - 获得元素对应的控制器对象
+			2.injector() - 获得元素对应的注入器对象
+			3.scope() - 获得元素对应的作用域对象
+			4.isolateScope() - 获得元素对应的隔离作用域对象，如果有的话。
+			5.inheritedData() - 和data()一样，但如果当前元素没有指定的数据，会向上级 节点继续找。
+	jqLite的扩展的事件
+		jqLite还提供一个$destroy事件，当DOM对象被从DOM树删除时，AngularJS将触发 这个事件，以便指令进行一些善后清理工作。
+		
+	<!--时钟示例:-->
+	<div id="clock"></div>
+	</body>
+	<script>
+		angular.element(document).ready(function(){
+			setInterval(function(){
+				var d = new Date();
+				var tpl = document.querySelector("#clock");
+				angular.element(tpl).text(d.toString());
+			},1000)
+		})
+	</script>
+</html>

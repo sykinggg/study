@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	join函数的基本用法
+	基本概念:join函数将传入的多个路径拼接为标准路径并将其格式化，返回规范后的路径，避免手工拼接路径字符串的繁琐
+	代码实现:
+	<script>
+		var path = require('path');
+		var data = path.join('///you', '/are', '//beautiful');
+		console.log(data);
+	</script>
+	运行结果:
+	'/you/are/beautiful'
+	<body>
+	</body>
+</html>

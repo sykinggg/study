@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html ng-app>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 		limitTo 过滤器会根据传入的参数生成一个新的数组或字符串，新的数组或字符串的长度取
+		决于传入的参数，通过传入参数的正负值来控制从前面还是从后面开始截取。
+		如果传入的长度值大于被操作数组或字符串的长度， 那么整个数组或字符串都会被
+		返回。
+		对数组也可以进行同样的操作(但从一开始)。 -->
+		<!-- angular版本升高后不支持了 -->
+		{{San Francisco is very cloudy | limitTo:3}}
+		{{ ['a','b','c','d','e','f'] | limitTo:1 }}
+	</body>
+	<script src = 'angular.js'></script>
+	
+</html>

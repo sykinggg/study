@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-app = 'app'>
+		<div ng-controller = 'ctrl'>
+			<input type="text" ng-model = 'expr'>
+			<div ng-bind = 'parseexpr'></div>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var apps = angular.module('app',[]);
+		apps.controller('ctrl',['$scope','$parse',function ($scope, $parse) {
+			$scope.person = {
+				name:'hello world'
+			};
+			$scope.$watch('expr',function(newval, oldval, scope){
+				if(newval != oldval){
+					var parseFun = $parse(newval);
+					scope.parseexpr = parseFun(scope);
+				}
+			});
+		}]);
+	</script>
+</html>

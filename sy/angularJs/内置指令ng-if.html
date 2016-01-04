@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'appctrl'>
+		<!-- ng-if/ng-show/ng-hide三种指令之间的区别 -->
+
+
+		<!-- 指令的传参在同一公用的作用域中直接使用即可 -->
+
+
+		<!-- ng-if 同 no-show 和 ng-hide 指令最本质的区别是，它不是通过CSS显示或隐藏DOM节点，而是真正生成或移除节点。 -->
+
+
+		<!-- 当一个元素被 ng-if 从DOM中移除， 同它关联的作用域也会被销毁。 而且当它重新加入DOM中时，会通过原型继承从它的父作用域生成一个新的作用域。 -->
+
+
+
+
+		<!-- ， ngIf 重新创建元素时用的是它们编译后的状态。 如果 ng-if内部的代码加载之后被jQuery修改过（例如用 .addClass ） ，那么当 ng-if 的表达式值为 false 时，这个DOM元素会被移除，表达式再次成为 true 时这个元素及其内部的子元素会被重新插入DOM，此时这些元素的状态会是它们的原始状态，而不是它们上次被移除时的状态。也就是说无论用jQuery的 .addClass 添加了什么类都不会存在了。 -->
+
+
+		<p ng-bind = 'hello' ng-if = dd1></p>
+		<button ng-click = do1()>点击1</button>
+		<p ng-bind = 'hello' ng-show = dd2></p>
+		<button ng-click = do2()>点击2</button>
+		<p ng-bind = 'hello' ng-hide = dd3></p>
+		<button ng-click = do3()>点击3</button>
+
+		<div ng-if = '2+2 === 5'>
+			Won't see this DOM node, not even in the source code
+		</div>
+		<div ng-if = '2+2 === 4'>
+			Hi, I do exist
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.hello = 'hello world';
+			$scope.dd1 = 'false';
+			$scope.do1 = function(){
+				if($scope.dd1 == 'true'){
+					$scope.dd1 = 'false';
+				}else{
+					$scope.dd1 = 'true';
+				};
+				alert($scope.dd1);
+			};
+
+			$scope.dd2 = 'true';
+			$scope.do2 = function(){
+				if($scope.dd2 == 'true'){
+					$scope.dd2 = 'false';
+				}else{
+					$scope.dd2 = 'true';
+				};
+			};
+			$scope.dd3 = 'true';
+			$scope.do3 = function(){
+				if($scope.dd3 == 'true'){
+					$scope.dd3 = 'false';
+				}else{
+					$scope.dd3 = 'true';
+				};
+			};
+		});
+	</script>
+</html>

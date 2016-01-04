@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div ng-controller = 'book.list'>
+			<ul>
+				<li ng-repeat = 'b in Book'>
+					<p>
+						<span ng-bind = ''></span>
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div ng-controller = 'myCtrl'>
+			<button add-book>点击</button>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app', []);
+
+		// 定义服务
+		app.service('Book', ['$rootScope', function ($rootScope) {
+			var service	= {
+				book:[
+					{title:'tlt1', author:'con1'},
+					{title:'tlt2', author:'con2'}
+				],
+
+				addBook: function (book) {
+					service.book.push(book);
+					$rootScope.$boradcast('book.update');
+				}
+			}
+
+			return service;
+		}])
+		// 定义控制器内的函数
+
+		var ctrl = ['$scope', 'Book', function (scope, Book) {
+			scope.$on('book.update', function (event) {
+				scope.books = Book.books;
+			});
+
+			scope.book = Book.books;
+		}];
+
+		app.controller('book.list', ctrl)
+
+		app.directive('addBook', ['Book', function (Book) {
+			return{
+				restrict:'A',
+				link:function (scope, element, attrs) {
+					element.bind('click', function () {
+						Book.addBook( { title: 'Star Wars', author: 'George Lucas'} );
+					});
+				}
+			}
+		}]);
+
+		app.controller('myCtrl', function ($scope) {
+			$scope.addBook = function () {
+				Book.addBook( { title:'Start Wars', author } )
+			}
+		})
+	</script>
+</html>

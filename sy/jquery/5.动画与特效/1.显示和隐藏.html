@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	显示和隐藏
+	基本概念:在jQuery中使用 hide() 和 show() 方法来隐藏和显示 HTML 元素：
+	hide()的语法形式:$(selector).hide(speed,callback);
+	show()的语法形式:$(selector).show(speed,callback);
+	语法描述:speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast"或毫秒。
+		   callback 参数是隐藏或显示完成后所执行的函数名称.
+		   注意:两个参数都是可选的。
+	示例如下:
+	<script>
+		$(function(){
+			$("#hide").click(function(){
+				$("div").hide(1000);
+			});
+			$("#show")。click(function(){
+				$("div").show(1000);
+			})
+		})
+		$(function(){
+			$("#a1").removeAttr("href");
+		})
+	</script>
+	<body>
+	</body>
+</html>

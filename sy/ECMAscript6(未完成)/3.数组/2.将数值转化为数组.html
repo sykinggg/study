@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	将值转换为数组
+	基本概念:Array.of方法用于将一组值，转换为数组。
+	代码实现:
+	<script>
+		Array.of(3, 11, 8);// [3, 11, 8]
+		Array.of(3); //[3]
+		Array.of(3).length; //1
+	</script>
+	代码描述:这个方法的主要目的，是弥补数组构造函数Array()的不足。
+		因为参数个数的不同，会导致Array()的行为有差异。
+	<script>
+		Array(); //[]
+		Array(3); //[undefined, undefined, undefined]
+		Array(3, 11, 8); //[3, 11, 8]
+	</script>
+	代码描述:只有当参数个数不少于2个，Array()才会返回由参数组成的新数组。
+	<body>
+	</body>
+</html>

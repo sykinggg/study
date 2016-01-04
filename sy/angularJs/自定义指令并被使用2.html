@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html ng-app = 'module'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div ng-controller = 'ctrl1'>
+			<button loader loaddatafn = 'load1()'>点击1</button>
+		</div>
+		<div ng-controller = 'ctrl2'>
+			<button loader loaddatafn = 'load2()'>点击2</button>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var module = angular.module('module', []);
+
+		module.controller('ctrl1', function ($scope) {
+			$scope.load1 = function () {
+				alert('加载数据1！')
+			}
+		})
+
+		module.controller('ctrl2', function ($scope) {
+			$scope.load2 = function () {
+				alert('加载数据2！')
+			}
+		})
+
+		// 自定义指令
+		module.directive('loader', function () {
+			return{
+				restive:'A',
+				link:function (scope, element, attr) {
+					element.bind('mouseenter', function () {
+						scope.$apply(attr.loaddatafn);
+					})
+				}
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head >
+	<!-- 根据js原型继承机制作用域互相嵌套控制器与指令数据绑定传参 -->
+	<body ng-controller = 'appctrll'>
+		<div ng-controller = 'appctrl'>
+			<p my-directive>asdasd</p>
+			<p ng-bind = 'test'></p>
+			<button ng-click = 'ctrl()'> 点击</button>
+			<p mydir></p>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+	// 自定义一个简单的指令
+		var app = angular.module('app',[]);
+		app.directive('myDirective',function () {
+			return{
+				// restrict：定义指令的引入方式
+				// 元素（E） 、属性（A） 、类（C）或注释（M）
+				restrict:'AE',
+				scope:{
+					test: '@'
+				},
+				//replace：定义指令的执行顺序：false的执行顺序是按dom结构来执行；true的执行顺序是按angular逻辑结构来执行（controller）
+				replace:'false', 
+				// template：这个属性规定了指令被Angular编译和链接（link）后生成的HTML标记。这个属性值不一定要是简单的字符串。可以非常复杂，而且经常包含其他的指令，以及表达式({{ }})等但不能用ng-bind或直接引用即只能在dom中操作。就是对dom的操作
+				template:'<h3>{{test}}</h3>'
+			};
+		});
+		app.controller('appctrl',function($scope){
+			$scope.ctrl = function(){
+				//  $scope是作用域不能省略
+				$scope.test = 'hello'
+			}
+		})
+		app.controller('appctrll',function($scope){
+			$scope.test = 'hello World';
+		})
+		
+	</script>
+</html>

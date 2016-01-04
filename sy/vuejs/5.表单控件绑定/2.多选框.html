@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<!--Checkbox
+	基本概念:多个勾选逻辑值
+	代码示例:
+	<input type="checkbox" id="jack" value="jack" v-model="checkedNames" />
+	<label for="jack">Jack</label>
+	<input type="checkbox" id="john" value="john" v-model="checkedNames" />
+	<label for="john">john</label>
+	<input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+	<label for="mike">Mike</label>
+	<br />
+	<span>checked name:{{checkedNames}}</span>
+	注意:当我们要绑定值时可以用v-bind来绑定
+	代码示例:
+	<div>
+		<input type="checkbox"
+			v-model="toggle"
+			v-bind:true-value="a"
+			v-bind:false-value="b" />
+	</div>
+	代码描述:当checkbox为true时，值为a；当为fals时，值为b。-->
+	<script src="../vue.js"></script>
+	<body>
+		<div>
+			<span>checked value is {{toggle}}</span>
+			<input type="checkbox" v-model="toggle" v-bind:true-value="a" 			v-bind:false-value="b"/>
+		</div>
+	</body>
+	<script>
+		var vm = new Vue({
+			el:'div',
+			data:{
+				a:"a",
+				b:"b"
+			}
+		})
+	</script>
+</html>

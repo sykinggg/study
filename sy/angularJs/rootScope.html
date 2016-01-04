@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html ng-app = 'myapp'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<p ng-bind = 'name'></p>
+		<!-- <div ng-app="myApp">
+		<h1>Hello {{ name }}</h1>
+		</div> -->
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+	// 定义一个angular对象使用run()在全局作用域上定义对象name并赋值
+		angular.module('myapp',[]).run(function ($rootScope) {
+			$rootScope.name = 'world';
+		});
+
+		// angular.module('myApp', [])
+		// .run(function($rootScope) {
+		// $rootScope.name = "World";
+		// });
+	</script>
+</html>
+<!-- 注意：Run代码块用来启动你的应用，并且在注射器创建完成之后开始执行。
+为了避免在这一点开始之后再对系统进行配置操作，只有实例和常量可以被注入到Run代码块中。
+在AngularJS中，Run代码块是与main方法最类似的东西 -->

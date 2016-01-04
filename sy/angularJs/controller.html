@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app = 'Angularmodule'>
+	<head>
+		<meta charset='utf-8'>
+	</head>
+	<body 	ng-controller='angularctrl'>
+		<div>{{greeting.test}}</div>
+		<p>asdasdasdasd</p>
+	</body>
+	<script src='angular.js'></script>
+	<script>
+	// 直接裸的一个控制器
+	// function helloangular ($scope) {
+	// 	$scope.greeting = {
+	// 		test:'helloangular'
+	// 	};
+	// }
+	// 模块化开发同json的理念对象数组
+	// 定义模块（模块可相互调用）
+	// .module和.controller都是方法直接括号引用即可
+	var angularmodule = angular.module('Angularmodule',[]);
+	// 定义控制器以及控制器内的指令（构造函数）并指明作用域
+	angularmodule.controller('angularctrl',['$scope',function($scope){
+		// greeting.test = 'helloangular';
+		// 实例化对象不实例化是错的
+		$scope.greeting = {
+			test:'helloangular'
+		};
+	}]);
+	</script>
+</html>

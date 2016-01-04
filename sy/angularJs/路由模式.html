@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 路由模式决定你的站点的URL长成什么样子。 -->
+
+		<!-- 标签模式 -->
+		<!-- 标签（hashbang）是AngularJS用来同你的应用内部进行链接的技巧。 -->
+		<!-- 标签模式是HTML5模式的降级方案，URL路径会以 # 符号开头。 -->
+		<!-- 标签模式不需要重写 <a href=""></a> 标签，也不需要任何服务器端的支持。如果没有进行额外的指定，AngularJS将默认使用标签模式。 -->
+
+		<!-- 使用标签模式的URL看起来是这样的： -->
+		<!-- http://yoursite.com/#!/inbox/all -->
+		
+
+
+
+
+		<!-- HTML5模式 -->
+		<!-- AngularJS支持的另外一种路由模式是 html5 模式。例如，同样的路由在HTML5模式中看起来是这样的： -->
+		<!-- http://yoursite.com/inbox/all -->
+
+		<!-- 在AngularJS内部， $location 服务通过HTML5历史API让应用能够使用普通的URL路径来路由。 -->
+		<!-- 当浏览器不支持HTML5历史API时， $location 服务会自动使用标签模式的URL作为替代方案。 -->
+		<!-- $location 服务还有一个有趣的功能，当一个支持HTML5历史API的现代浏览器加载了一个带标签的URL时，它会为用户重写这个URL。 -->
+
+		<!-- 注意：在HTML5模式中，AngularJS会负责重写 <a href=""></a> 中的链接。也就是说AngularJS会根据浏览器的能力在编译时决定是否要重写 href="" 中的链接。 -->
+
+		<!-- 举个栗子 -->
+		<!-- 例如 <a href="/person/42?all=true">Person</a> 这个标签，在老式浏览器中会被重写成标签模式的URL： /index.html#!/person/42?all=true 。但在现代浏览器中会URL会保持本来的样子。 -->
+
+		<!-- 后端服务器也需要支持URL重写， 服务器需要确保所有请求都返回index.html， 以支持HTML5模式。这样才能确保由AngularJS应用来处理路由。 -->
+
+
+		<!-- 重点注意：当在HTML5模式的AngularJS中写链接时，永远都不要使用相对路径。 -->
+		<!-- 如果你的应用是在根路径中加载的，这不会有什么问题，但如果是在其他路径中，AngularJS应用就无法正确处理路由了。 -->
+			<!-- 另一个选择是在HTML文档的HEAD中用 <base> 标签来指定应用的基础URL： -->
+			<!-- <base href="/base/url" /> -->
+	</body>
+	<script src = 'angular.js'></script>
+	<script src = 'angular-route.js'></script>
+	<script>
+	// 举个栗子：
+		// 如果要显式指定配置并使用标签模式，需要在应用模块的 config 函数中进行配置：
+		var app = angular.module('app',[]);
+		app.config(['$locationProvider',function ($locationProvider) {
+			$locationProvider.html5Model(false);
+		}]);
+
+		// 我们还可以配置 hashPrefix ，也就是标签模式下标签默认的前缀 ! 符号。这个前缀也是AngularJS在比较老的浏览器中降级机制的一部分。
+		app.config(['$locationProvider',function ($locationProvider) {
+			$locationProvider.html5Model(false);
+			$locationProvider.hashPrefix('!');
+		}])
+	</script>
+</html>

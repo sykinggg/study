@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'appctrls'>
+		<!-- ng-model:将表单控件和当前作用域的属性进行绑定 -->
+		<input type="text" ng-model = 'person.name'>
+		<p ng-bind = 'person.name'></p>
+		<p>{{person.name}}</p>
+		<button ng-click = 'hello()'>点击</button>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var apps = angular.module('app',[])
+		apps.controller('appctrls',function ($scope) {
+			// 定义person对象的跨域(true与false效果基本一样)
+			$scope.person = {greeted:false}
+			$scope.person.name = 'sss';
+			$scope.hello = function(){
+				$scope.person.name = 'Ari lerner';
+			};
+		});
+	</script>
+</html>

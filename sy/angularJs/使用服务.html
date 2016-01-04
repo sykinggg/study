@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<!--使用服务-->
+	可以在控制器、指令、过滤器或另外一个服务中通过依赖声明的方式来使用服务。
+	将服务的名字当作参数传递给控制器函数，可以将服务注入到控制器中。
+	当服务成为了某个控制器的依赖，就可以在控制器中调用任何定义在这个服务对象上的方法。
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('ServiceController', function($scope, githubService) {
+//			可以调用对象的事件函数
+			$scope.event = githubService.event('auser');
+		});
+	</script>
+	githubService服务已经被注入到ServiceController中，可以想使用其他服务一样来使用它。
+</html>

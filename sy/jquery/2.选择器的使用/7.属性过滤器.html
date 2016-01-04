@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	属性过滤选择器
+	选择器								功能								返回值
+	[attribute] 						获取包含给定属性的元素				元素集合
+	[attribute=value] 					获取等于给定的属性是某个特定值得元素		元素集合
+	[attribute!=value] 					获取不等于给定的属性是某个特定值得元素		元素集合
+	[attribute^=value] 					获取给定的属性是以某些值开始的元素 		元素集合
+	[attribute$=value] 					获取给定的属性是以某些值结尾的元素 		元素集合
+	[attribute*=value] 					获取给定的属性是以包含某些值得元素		元素集合
+	[selector1][selector2][selectorN] 	获取满足多个条件的复合属性的元素 			元素集合
+	示例如下：
+	<script>
+		$(function(){//显示所有包含id属性的元素 1
+			$("div[id]").show(3000);
+		})
+		$(function(){//显示所有属性title的值是"A"的元素  2
+			$("div[titl='A']").show(3000);
+		})
+		$(function(){//显示所有属性title的值不是"A"的元素  3
+			$("div[title!='A']").show(3000);
+		})
+		$(function(){//显示所有属性title的值是"A"开始的元素  4
+			$("div[title^='A']").show(3000);
+		})
+		$(function(){//显示所有属性title的值是"C"结束的元素  5
+			$("div[title$='C']").show(3000);
+		})
+		$(function(){//显示所有属性title的值中含有"B"的元素  6
+			$("div[title*='B']").show(3000);
+		})
+		$(function(){//显示所有属性title的值中含有"B"且属性id的值是“divAB”的元素   7
+			$("div[id='divAB'][title*='B']").show(3000);
+		})
+	</script>
+	<body>
+	</body>
+</html>

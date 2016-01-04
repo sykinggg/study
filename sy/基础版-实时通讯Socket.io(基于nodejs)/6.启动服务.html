@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	启动服务
+	客户端基础:为了在浏览器中能够访问到我们的服务，我们还需要在服务端搭建一个简单的web服务器，让浏览器能够访问我们的客户端页面。
+	代码实现:
+		栗子:选用node.js中常用的express框架来实现web服务
+	<script>
+		var express = require('express');
+		var app = express();
+		app.get('/', function(req, res){
+			res.status(200).send('nodejs世界');
+		});
+		var server = require('http').createServer(app);
+		var io = require('http').createServer(app);
+		var io = require('socket.io')(server);
+		io.on('connection', function(socket){
+			
+		});
+		server.listen(80);
+	</script>
+	<body>
+	</body>
+</html>

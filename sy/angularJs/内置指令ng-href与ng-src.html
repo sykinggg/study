@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- ng-href 和 ng-src 都能有效帮助重构和避免错误，因此在改进代码时强烈建议用它们代替原来的 href 和 src 属性。 -->
+		<!-- ng-href使用当前作用域中的属性创建URL时，应该用ng-href代替href 经测试速度快-->
+		<a ng-href = '{{myHref}}'>I'm feeling lucky, when I load</a>
+		<a href="{{myHref}}">I'm feeling lucky, when I load</a>
+		<!-- AngularJS会告诉浏览器在 ng-src 对应的表达式生效之前不要加载图像 经测试有图显示图片地址错误不显示-->.
+		<h1>test1</h1>
+		<img src="{{imgSrc}}">
+		<h1>test2</h1>
+		<img ng-src="{{imsrc}}">
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.run(function ($rootScope,$timeout) {
+			$timeout(function(){
+				$rootScope.myHref = 'http://www.baidu.com'
+				$rootScope.imgSrc = 'http://pos.baidu.com/cclick.php?K600000HELKespTXoUIGod43g8NIyO9aJglZWfq_ftF7XR2XrhCIFCHR50vAL56kAcNSe0jyDF89zZH7GdtfZFZwNl_TbZxyOZzeN474bB06eKwSEGsgFaAom8Py.7Y_a5K7wuB8WwKW6qrNnPj5nhr9K83qMQZjIspuSSW017LzUo5OSthl1oX1BsTEpMfk8eQS1gxE3tUqX4Mga-mhPqI-I-hOxzqMQjWhyAp7WFYqhemC.mhwGujdaPbN7rjmLnHfvP1FawDnzwjc3rDFAf1mdnYfvPHfzPfKWTA-b5RfvPjRdn1R3P1TdP1-anWmYnYDvnWn4wRc1fHbvnHbL0ZIbg17YTh7buHYkrfKLu7tzIZF9uARqnHbsnfKbUvd9py4xuh-zTLwxIZF9uARqP0KbUvd9py4xTvNWUv4bgLwzmyw-5Hfsr0KsU1Y1n0Ksm1YdnH60mv9VujYk0ZPWpAdb5H00TL0qnfK9uZfqnfKvpyw-UdqWpA78UhN_5H00IgP-T-qYXgK-5HD0TvNzIh-8udqYXgK-5H00mywWUA71T1Ys0Zwd5Hm1rH63rfKYUHYkPjnYPW030Zwb5HbznWn1P1csn1cdPWf1njR1nH00IA7z5H00TLPs5HD0IZws5HD0mvqVTAk-5H00ULnqnH00mMcqnHc0myI-5HRknjc0uZws5HD0IgF_5y9YIZ0lQzqlpA-bmyt8mh7GuZR8mvqVQL7dugPYpyq8Q1nsrjRdPHTLPi4CIAd_0ZIGuZwC5Hcdn0KCuy-MpZfqnWRs0A7bX7qBpywxmLKV5HDkn6K9IywGuy4WuNqYTh7buHYYrjT0mv9GUAwxTLw9uvNxpyfqnW0d0AI-Uhw-T-qGujYznjD0Uy7zTh-9uvNxpyfqn16v0ZPYmgwGmdqsThqsugFYXHYkrHcWPHndc1fsnsKWThnqn1fzPWm0'
+			},2000);
+		});
+	</script>
+</html>

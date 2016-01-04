@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	rest参数
+	基本概念:rest参数（形式为“...变量名”）可以称为不定参数，用于获取函数的多余参数，
+		优点:这样就不需要使用arguments对象了。
+	代码示例:rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
+	<script>
+		function add(...values) {
+			let sm = 0;
+			for(var val of value) {
+				sum += val;
+			}
+			return sum;
+		}
+		add(1, 2, 3);// 6
+	</script>
+	注意:不定参数的格式是三个句点后跟代表所有不定参数的变量名。比如以上示例中，...values 代表了所有传入add函数的参数。
+	<body>
+	</body>
+</html>

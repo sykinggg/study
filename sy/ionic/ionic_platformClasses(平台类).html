@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Platform Classes</title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	<body>
+		<!--该类主要适用于不同设备的类-->
+		Platform Device Classes(平台设备类)
+		<!--主要用于赋给平台不同的样式属性，既可以自动区分设备类型以及浏览器-->
+		Platform(平台)						Class(类名)								Description
+		Browser(浏览器)						platform-browser 						Whether the application is running on the Desktop Browser - applied if you are running
+																					(检测是否在桌面浏览器运行)
+		Cordova(android运行的插件)			platform-cordova 						Whether the application is running on the device, as the device uses Cordova to display the application
+																					(检测是否在Android内部的Cordova插件上运行)
+		webview(浏览器中的webview组件)		platform-webview 						Whether the application is running within a webview on the device within a native application
+																					(webview中是否应用程序运行在本机应用程序在设备上)
+		iOS 								platform-ios 							The device is iOS; therefore, the "look and feel" will be given the iOS treatment
+		
+		iPad 								platform-ipad 							iOS device is an iPad - this class is applied, in addition to platform-ios
+		
+		Android 							platform-android 						The device is Android; therefore, the "look and feel" will be given the Android treatment
+		
+		Windows Phone 						platform-windowsphone 					The device is Windows Phone; therefore, the "look and feel" will be given the Windows Phone treatment
+		
+		
+		
+		Platform OS Version Classes(平台操作系统版本的类)
+		
+		描述：Ionic also adds classes based on the OS version. 
+		This can be used to customize your project for a specific OS version. A class is added for the major version and the major + minor versions.
+		ionic还增加了类基于操作系统版本。这可以用于定制您的项目为一个特定的操作系统版本。添加一个类主要版本和主要+次要版本。
+		
+		统一操作系统不同版本：The class is created by looking at the User Agent of the OS version. The major + minor class is created by replacing the . 
+		separating the major and minor version numbers with a _. 
+		So, if you are running your project on a device running iOS 8.4, it will add the platform-ios8 and platform-ios8_4 classes. 
+		Below are some example classes, but you are not limited to these.
+		创建的类是通过查看用户代理的操作系统版本。主要+小类是由取代。分离的主要和次要版本号_。
+		所以,如果你运行你的项目在设备上运行iOS 8.4,它将加入platform-ios8和platform-ios8_4类。下面是一些示例类,但你并不仅限于这些。
+		
+		
+	</body>
+</html>

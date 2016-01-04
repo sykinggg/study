@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	factory方法
+	注意：factory方法要求提供一个对象工厂，调用该类工厂将返回服务实例。
+	示例：var myServiceFactory = function(){
+		return ...
+	};
+	angular.module("myModule", [])
+	.fectory("myService", myServiceFactory);
+	重点注意：AngularJS会将factory方法封装为provider，上面的示例 等同于：
+	示例：var myServiceFactory = function(){
+		return ...
+	};
+	angular.module("myModule", [])
+	.provider("myService", function(){
+		this.$get = myServiceFactory;
+	});
+	<body>
+		<button onclick="doCalc()">3+4=?</button>
+		<div id="result"></div>
+	</body>
+	<script>
+		function doCalc(){
+			var injector = angular.injector(["ezstuff"]),
+				mycalculator = injector.get("ezCalculator"),
+				ret = mycalculator.add(3,4);
+			document.querySelector("#result").textContent = ret;
+		}
+		angular.module("ezstuff", [])
+		.factory("ezCalculator", function(){
+			return{
+				add : function(a,b){return a+b;},
+				subtract : function(a,b){return a-b;},
+				multiply : function(a,b){return a*b},
+				divide : function(a,b){return a/b;}
+			}
+		})
+	</script>
+</html>

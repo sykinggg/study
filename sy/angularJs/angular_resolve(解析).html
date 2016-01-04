@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+		<title>解析angularjs表达式看不出效果</title>
+	</head>
+	<body ng-controller = 'myctrl'>
+		<p ng-bind = 'expr'></p>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var apps = angular.module('app',[]);
+		apps.controller('myctrl',function($scope,$parse) {
+			$scope.expr = 'hello';
+			$scope.$watch('expr',function(newval,oldval,scope){
+				if(newval !== oldval){
+					var parseFun = $parse(newval);
+					$scope.parsedValue = parseFun(scope);
+				};
+			});
+		});
+	</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html ng-app>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- orderBy 过滤器可以用表达式对指定的数组进行排序。 -->
+		<!-- orderBy 可以接受两个参数，第一个是必需的，第二个是可选的。 -->
+		<!-- 第一个参数是用来确定数组排序方向的谓词。 -->
+		<!-- 下面分情况讨论第一个参数的类型。 -->
+		<!--   函数 -->
+		<!-- 当第一个参数是函数时，该函数会被当作待排序对象的getter方法。 -->
+		<!--   字符串 -->
+		<!-- 对这个字符串进行解析的结果将决定数组元素的排序方向。 我们可以传入 + 或 - 来强制进行升
+		序或降序排列。 -->
+		<!--   数组 -->
+		<!-- 在排序表达式中使用数组元素作为谓词。对于与表达式结果并不严格相等的每个元素，则使
+		用第一个谓词。 -->
+		<!-- 第二个参数用来控制排序的方向（是否逆向）[true/false] 。 -->
+		{{ [{
+			'name': 'Ari',
+			'status': 'awake'
+			},{
+			'name': 'Q',
+			'status': 'sleeping'
+			},{
+			'name': 'Nate',
+			'status': 'awake'
+			}] | orderBy:'name' }}.
+			{{ [{
+				'name': 'Ari',
+				'status': 'awake'
+				},{
+				'name': 'Q',
+				'status': 'sleeping'
+				},{
+				'name': 'Nate',
+				1
+				2
+				3
+				4
+				5
+				18
+				6
+				7
+				8
+				9
+				10
+				11
+				12
+				13
+				14
+				15
+				16
+				17
+				'status': 'awake'
+				}] | orderBy:'name':true }}
+	</body>
+	<script src = 'angular.js'></script>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 路由事件 -->
+		<!-- $route 服务在路由过程中的每个阶段都会触发不同的事件， 可以为这些不同的路由事件设置监听器并做出响应。 -->
+
+		<!-- 这个功能对于控制不同的路由事件，以及探测用户的登录和授权状态等场景是非常有用的。 -->
+
+		<!-- 我们需要给路由设置事件监听器，用 $rootScope 来监听这些事件。 -->
+
+
+
+
+		<!-- 1.  $routeChangeStart -->
+
+		<!-- AngularJS在路由变化之前会广播 $routeChangeStart 事件。 -->
+		<!-- 在这一步中，路由服务会开始加载路由变化所需要的所有依赖，并且模板和 resolve 键中的promise也会被resolve。 -->
+		<!-- var app = angular.module('app',[]); -->
+		<!-- app.run(['$rootScope', '$location', function ($rootScope, $location) { -->
+			<!-- $rootScope.$on('$routeChangeStart',function(evt, next, current){ -->
+			<!-- }); -->
+		<!-- }]); -->
+		<!-- $routeChangeStart 事件带有两个参数： -->
+			<!-- 将要导航到的下一个URL； -->
+			<!-- 路由变化前的URL。 -->
+
+
+
+
+
+		<!-- 2.  $routeChangeSuccess -->
+
+		<!-- AngularJS会在路由的依赖被加载后广播 $routeChangeSuccess 事件。 -->
+		<!-- var app = angular.module('app',[]); -->
+		<!-- app.run(['$rootScope', '$location', function ($rootScope, $location) { -->
+			<!-- $rootScope.$on('$routeChangeSuccess',function(evt, next, current){ -->
+			<!-- }); -->
+		<!-- }]); -->
+		<!-- $routeChangeStart 事件带有三个参数： -->
+			 <!-- 原始的AngularJS  evt 对象； -->
+			 <!-- 用户当前所处的路由； -->
+			 <!-- 上一个路由（如果当前是第一个路由，则为 undefined ） 。 -->
+
+
+
+
+
+		<!-- 3.  $routeChangeError -->
+		<!-- AngularJS会在任何一个promise被拒绝或者失败时广播 $routeChangeError 事件。 -->
+		<!-- var app = angular.module('app',[]); -->
+		<!-- app.run(['$rootScope', '$location', function ($rootScope, $location) { -->
+			<!-- $rootScope.$on('$routeChangeError',function(evt, next, current){ -->
+			<!-- }); -->
+		<!-- }]); -->
+		<!-- $routeChangeError 事件有三个参数： -->
+			<!-- 当前路由的信息； -->
+			<!-- 上一个路由的信息； -->
+			<!-- 被拒绝的promise的错误信息。 -->
+
+
+
+
+
+
+		 <!-- 4. $routeUpdate -->
+		 <!-- AngularJS在 reloadOnSearch 属性被设置为 false 的情况下，重新使用某个控制器的实例时，会广播 $routeUpdate 事件。 -->
+
+
+
+
+		 <!-- 注意：$location 服务不会重新加载整个页面，它只会单纯地改变URL。如果我们想重新加载整个页面，需要用 $window 服务来设置地址。 -->
+
+		 <!-- 即：$window.location.href = "/reload/page"; -->
+
+
+
+
+
+		 <!-- 异步的地址变化 -->
+		 <!-- 如果我们想要在作用域的生命周期外使用 $location 服务，必须用 $apply 函数将变化抛到应用外部。因为 $location 服务是基于 $digest 来驱动浏览器的地址变化，以使路由事件正常工作的。 -->
+	</body>
+	<script src = 'angular.js'></script>
+	<script src = 'angular-router.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.run(['$rootScope', '$location', function ($rootScope, $location) {
+			$rootScope.$on('$routeChangeStart',function(evt, next, current){
+			});
+		}]);
+	</script>
+</html>

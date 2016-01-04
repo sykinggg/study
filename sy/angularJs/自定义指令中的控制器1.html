@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div appdir></div>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.directive('appdir',function () {
+			return{
+				restrict:'A',
+				// 生成指令内容
+				template:'<h4>{{myController.msg}}</h4>',
+				// 将匿名控制器起名为myController并用与该指令中
+				controllerAs : 'myController',
+				// 设置匿名控制器并设置对象初始化
+				controller:function(){
+					this.msg = 'hello world'
+				}
+			};
+		});
+	</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- ng-model 指令用来将 input 、 select 、 text area 或自定义表单控件同包含它们的作用域中的属性进行绑定。它可以提供并处理表单验证功能，在元素上设置相关的CSS类（ ng-valid 、ng-invalid 等） ，并负责在父表单中注册控件。 -->
+
+		<!-- 我们应该始终用 ngModel 来绑定 $scope 上一个数据模型内的属性，而不是 $scope 上的属性，这可以避免在作用域或后代作用域中发生属性覆盖。 -->
+
+		<form ng-controller = 'appctrl'>
+			<input type="text" ng-model = 'f.name'>
+			<input type="password" ng-model = 'f.psd'>
+			<p ng-bind = 'f.name'></p>
+			<p ng-bind = 'f.psd'></p>
+			<button ng-click = 'test1()'>点击1</button>
+			<button ng-click = 'test2()'>点击2</button>
+			<!-- 注意如果用ng-bind绑定函数则会永恒执行函数但不执行该绑定函数的内容 -->
+			<div ng-bind = 'test1()'> 设置执行函数 {{f.name}}</div>
+		</form>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.test1 = function () {  
+				// 注意对象的属性之间的值要用,结尾
+				$scope.f = {
+					name : 'asd',
+					psd : 'asd',
+				}
+			}
+			$scope.test2 = function () {
+				$scope.f = {
+					name : 'zxc',
+					psd : 'zxc',
+				}
+			}
+		});
+	</script>
+</html>

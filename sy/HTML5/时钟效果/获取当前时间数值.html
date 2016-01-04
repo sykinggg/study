@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	获取当前时间的毫秒、秒、分钟、小时数值
+	var ms = now.getMilliseconds();
+	var sec = now.getSeconds();
+	var min = now.getMinutes();
+	var hr = now.getHours();
+	hr = hr>=12 ? hr-12 : hr;
+	ctx.fillStyle = "black";
+	<body>
+		<canvas id="canvas">浏览器不支持canvas</canvas>
+	</body>
+	<script>
+		$(function(){
+			init();
+		})
+		function init(){
+			clock();
+			setInterval(clock, 1000);
+		}
+		function clock(){
+			var now = new Date();
+			
+			var ctx = document.getElementById("canvas").getContext("2d");
+			ctx.save();
+			ctx.clearRect(0, 0, 150, 150);
+			ctx.translate(75, 75);
+			ctx.scale(0.4, 0.4);
+			ctx.rotate(-Math.PI/2);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "white";
+			ctx.lineWidth = 8;
+			ctx.lineCap = "round";
+			
+			ctx.save();
+			for (var i=0; i<12; i++){
+				ctx.beginPath();
+				ctx.rotate(Math.PI/6);
+				ctx.moveTo(100, 0);
+				ctx.lineTo(120, 0);
+				ctx.stroke();
+			}
+			ctx.restore();
+			
+			ctx.save();
+			ctx.lineWidth = 5;
+			for (i=0; i<60; i++){
+				if(i%5!=0) {
+					ctx.beginPath();
+					ctx.moveTo(117, 0);
+					ctx.lineTo(120, 0);
+					ctx.rotate(Math.PI/30);
+				}
+				ctx.rotate(Math.PI/30);
+			}
+			ctx.restore();
+			
+			var ms = now.getMilliseconds();
+			var sec = now.getSeconds();
+			var min = now.getMinutes();
+			var hr = now.getHours();
+			hr = hr>=12 ? hr-12 : hr;
+			
+			ctx.fillStyle = "black";
+			
+			ctx.beginPath();
+			ctx.lineWidth = 14;
+			ctx.strokeStyle = "#325FA2";
+			ctx.arc(0, 0, 142, 0, Math.PI*2, true);
+			ctx.stroke();
+			
+			ctx.restore();
+		}
+	</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	加载服务器数据
+	基本概念:使用ajax()方法是最底层、功能最强大的请求服务器数据的方法，
+		它不仅可以获取服务器返回的数据，还能向服务器发送请求并传递数值
+	语法使用:$.ajax([settings]);
+	语法描述:参数settings为发送ajax请求时的配置对象
+		在该对象中,url表示服务器请求的路径
+				data为请求时传递的数据
+				dataType为服务器返回的数据类型
+				success为请求成功的执行的回调函数
+				type为发送数据请求的方式
+					注意:默认为get.
+	代码实现:
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script>
+		$(function(){
+			$("#b01").click(function(){
+				htmlobj = $.ajax({url:"/example/data/ajax.txt",async:false});
+				$("#myDiv").html(htmlobj.responseText);
+			});
+		})
+	</script>
+	<body>
+		<div id="myDiv"><h2>通过 AJAX 改变文本</h2></div>
+	    <button id="b01" type="button">改变内容</button>
+	</body>
+</html>

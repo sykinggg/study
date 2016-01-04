@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>实例1</title>
+	</head>
+	<body>
+		<form>
+			<img src="" id = "logoimg" class = "img-polaroid" />
+			<input type="file" name	= "userPhoto" id = "userPhoto" />
+			<input type="button" value = "上传" id = "put" />
+		</form>
+	</body>
+	<script src = "js/jquery.min.js" type="text/javascript"></script>
+	<script>
+		$("#put").click(function(){    
+               var file = $("#userPhoto").val();    
+               if(file==""){    
+                   alert("请选择上传的图片");    
+                   return;    
+               }    
+               else{    
+                   //判断上传的文件的格式是否正确    
+                   var fileType = file.substring(file.lastIndexOf(".")+1);    
+                   if(fileType!="png"&&fileType!="jpg"){    
+                       alert("上传文件格式错误");    
+                       return;    
+                   }    
+                   else{    
+                       var url = "...";    
+                       $.ajaxFileUpload({    
+                           url:url,    
+                           secureuri:false,    
+                           fileElementId:"userPhoto",        //file的id    
+                           dataType:"text",                  //返回数据类型为文本,不能填json,不然会报错    
+                           success: function (data, status){  
+                               $("#logoImg").attr("src",data);
+                               alert("success");
+                                 
+                           },  
+                           error: function (data, status, e){  
+            					alert(e);  
+                           }    
+                       })    
+                   }    
+               }    
+           })
+	</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	过滤器
+	基本概念:
+		Vue.js 允许在表达式后添加可选的“过滤器 (Filter) ”，以“管道符(|)”指示。
+	详细解释:
+		过滤器本质上是一个函数，这个函数会接收一个值，将其处理并返回。
+	代码示例:
+		{{message|uppercase}}
+	代码描述:
+		这个过滤器其实只是一个 JavaScript 函数，返回大写化的值,
+	代码示例:
+		{{message|filterA|filterB}}
+		<div id="demo">
+			<span>{{msg|lowercase|capitalize}}</span>
+		</div>
+		var data={msg:'Hello!'};
+		new Vue({
+			el:'#demo',
+			data:data
+		})
+	运行结果:Hello
+	<body>
+	</body>
+</html>

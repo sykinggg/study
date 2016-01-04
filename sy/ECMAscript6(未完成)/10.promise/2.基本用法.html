@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	基本用法
+	基本概念:Promise对象是一个构造函数，用来生成Promise实例
+	代码实现:
+	<script>
+		//创建promise
+		var promise = new Promise(function(resolve, reject){
+			// 进行一些异步或耗时操作
+			if(/*如果成功 */) {
+				resolve("Stuff worked!");
+			}else{
+				reject(Error("It broke"));
+			}
+		});
+		//绑定处理程序
+		promise.then(function(result) {
+			//promise成功的话会执行这里
+			document.write(result); // "Stuff worked!"
+		}, function(err) {
+			//promise失败会执行这里
+			document.write(err);// Error: "It broke"
+		})
+	</script>
+	代码描述:
+		resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从Pending变为Resolved）
+			在异步操作成功时调用，并将异步操作的结果，作为参数传递出去
+		reject函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从Pending变为Rejected）
+			在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去
+	<body>
+	</body>
+</html>

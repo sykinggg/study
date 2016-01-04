@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	可配置的服务
+	主导思想：服务可以进行配置。
+	使用流程：首先,AngularJS使用模块的config()方法对服务进行配置.
+			   其次,需要将实例化的服务提供者 （而不是服务实例）注入到配置函数中：
+	使用示例：angular.module("myModule", [])
+			 .config(["myServiceProvider", function(myServiceProvider){
+			 	//do some configuration.
+			 }]);
+	注意：服务提供者provider对象在注入器中的登记名称是：服务名+Provider。 
+	例如： $http的服务提供者实例名称是"$httpProvider"。
+	<body>
+		<button onclick="doCalc();">3+4=?</button>
+		<div id="result"></div>
+	</body>
+	<script>
+		function doCalc(){
+			var injector = angular.injector(["ezstuff"]),
+				mycalculator = injector.get("ezCalculator"),
+				ret = myCalculator.add(3,4);
+			document.querySelector("#result").textContent = ret;
+		}
+		angular.module("ezstuff", [])
+			.provider("ezCalculator", function(){
+				var currency = "$";
+				this.setLocal = function(1){
+					var repo = {
+						"CN" : "¥",
+						"CU" : "$",
+						"JP" : "¥",
+						"EN" : "€"
+					};
+					if(repo[1]) currency = repo[1];
+				};
+				this.$get = function(){
+					return {
+						add : function(a,b) {return currency + (a+b);},
+						subtract : function(a,b) {return currency + (a-b);},
+						multiply : function(a,b) {return currency + (a*b);},
+						divide : function(a,b) {return currency + (a/b);},
+					}
+				};
+			})
+			.config(function(ezCalculatorProvider){
+				ezCalculatorProvider.setLocal("CN");
+			});
+	</script>
+</html>

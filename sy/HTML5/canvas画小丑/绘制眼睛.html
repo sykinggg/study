@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		body {
+			margin: 0px;
+			padding: 0px;
+		}
+		#container {
+			background-color: black;
+		}
+
+	</style>
+	<body>
+		<div id = "container"></div>
+	</body>
+	<script type = "text/javascript" src = "js/kinetic-v5.1.0.min.js"></script>
+	<script>
+		window.onload = function(){
+			//定义全局变量
+			var sw = 578;
+			var sh = 400；
+			//创建Kinetic舞台，并绑定容器
+			var stage = new Kinetic.stage({
+				container: 'container',//绑定容器
+				width:578,//绑定容器的宽
+				height:400//绑定容器的高
+			});
+			//创建Kinetic用户层
+			var layer = new Kinetic.Layer({
+				y:-30
+			});
+			//创建一Kinetic线形对象
+			var leftEye = new Kinetic.liner({
+				x: 500,//x中的位置
+				points: [0, 200, 50, 190, 100, 200, 50, 210],//位置点
+				tension: 0.5,//线条弹性
+				closed: true,
+				stroke: 'while',//线条颜色
+				strokeWidth: 10//线条宽度
+			});
+			var rightEye = new Kinetic.line({
+				x: sw-200,
+				points: [0, 200, 50, 190, 100, 200, 50, 210],
+				tension: true,
+				stroke: 'while',
+				strokeWidth: 10
+			})
+			//向用户层中添加上面的线形
+			layer.add(leftEye).add(rightEye);
+			//将上面的用户层添加到舞台上
+			stage.add(layer);
+		}
+	</script>
+</html>

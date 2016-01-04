@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	parse函数 —— 条件解析
+	基本概念:parse函数的第二个参数是布尔类型，当参数为true时，会将查询条件也解析成json格式的对象。
+	代码实现:
+	<script>
+		var url = require("url");
+		url.parse('http://www.baidu.com?page=1', true);
+	</script>
+	运行结果:
+	{ protocol: 'http:',
+	  slashes: true,
+	  auth: null,
+	  host: 'www.baidu.com',
+	  port: null,
+	  hostname: 'www.baidu.com',
+	  hash: null,
+	  search: '?page=1',
+	  query: { page: '1' },
+	  pathname: '/',
+	  path: '/?page=1',
+	  href: 'http://www.baidu.com/?page=1' }
+	<body>
+	</body>
+</html>

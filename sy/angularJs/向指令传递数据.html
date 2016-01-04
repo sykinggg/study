@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'test'>
+		<p my-directive my->asdasd</p>
+		<button ng-click = 'click()'> 点击</button>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		// 注意自定义指令的大小写在html中的对应是大写之前有连接符。例如：my-directive ==> myDirective
+		app.directive('myDirective',function () {
+			return{
+				restrict:'A',
+				replace:true,
+				template:"<a href = '{{urll}}'>{{icon}}</a>"
+			};
+		});
+		app.controller('test',function($scope){
+			$scope.click = function(){
+				// 不能直接更改，需要数据绑定
+				$scope.icon = 'click to go to google ';
+				$scope.urll = 'http://google.com';
+				alert(111);
+			};
+		});
+	</script>
+</html>

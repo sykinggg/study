@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	service方法
+	使用方法：service方法要求提供一个构造函数，AngularJS使用这个构造函数创建服务实例：
+	示例：
+	var myServiceClass = function(){
+		this.methodl = function(){...}
+	};
+	angular.module("myModule",[])
+	.service("myService", myServiceClass);
+	注意:AngularJS会将service方法封装为provider，上面的示例 等同于：
+	var myServiceClass = function(){
+		// class defintion
+	};
+	angular.module("myModule",[])
+	.provider("myService", function(){
+		this.$get = function(){
+			return new myServiceClass();
+		};
+	});
+	实例：该栗子预置了使用service方法改写的ezCalculator示例，感受下和factory方法的区别！
+	<body>
+		<button onclick="doCalc()">3+4=?</button>
+		<div id="result"></div>
+	</body>
+	<script>
+		function doCalc(){
+			var injector = angular.injector(["ezstuff"]),
+				mycalculator = injector.get("ezCalculator"),
+				ret = mycalculator.add(3,4);
+			document.querySelector("#result").textContent = ret;
+		}
+		var ezCalculatorClass = function(){
+			this.add = function(a,b){return a+b;},
+			this.subtract = function(a,b){return a-b;},
+			this.multiply = function(a,b){return a*b;},
+			this.divide = function(a,b){return a/b;};
+		};
+		angular.module("ezstuff",[])
+		.service("ezCalculator", ezCalculatorClass);
+	</script>
+</html>

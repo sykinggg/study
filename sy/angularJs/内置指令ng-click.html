@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'appctrl'>
+		<p ng-bind = 'hello.world'></p>
+		<p ng-bind = 'hello.man'></p>
+		<button ng-click = 'dohello()'>点击</button>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.hello = {
+				world : 'hello  world',
+				man : 'hello  man',
+			},
+			// console.log($scope.hello.world);
+			$scope.dohello = function(){
+				// 比较时注意赋值中的空格
+				if($scope.hello.world == 'hello  world'){
+					$scope.hello = {
+					world : 'world hello',
+					man:'man hello',
+					}
+				}else{
+					$scope.hello = {
+					world : 'hello  world',
+					man : 'hello  man',
+					}
+				}
+			};
+		});
+	</script>
+</html>

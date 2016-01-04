@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	以GET方式从服务器获取数据
+	基本概念:$.get() 方法通过 HTTP GET 请求从服务器上请求数据。
+	语法使用:$.get(URL,callback);
+	语法描述:url参数规定你请求的路径，是必需参数
+			callback参数为数据请求成功后执行的函数
+	代码实现:
+	<script>
+		$(function(){
+			$("#btn").click(function(){
+				$.get("/example/data/get.asp", function(data, status){
+					alert("数据" + data + "状态" + status);
+				});
+			})
+		})
+	</script>
+	<body>
+	</body>
+</html>

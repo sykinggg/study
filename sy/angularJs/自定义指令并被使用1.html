@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html ng-app = 'module'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'ctrl'>
+		<button loader>点击</button>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var module = angular.module('module', []);
+		module.controller('ctrl', function ($scope) {
+			$scope.load = function () {
+				alert('数据加载')
+			}
+		})
+		module.directive('loader', function () {
+			return{
+				restrict:'A',
+				link:function (scope, element, attr) {
+					// 数据绑定事件并处触发动作
+					element.bind('mouseenter', function () {
+						scope.load();
+					})
+				}
+			}
+		})
+
+	</script>
+</html>

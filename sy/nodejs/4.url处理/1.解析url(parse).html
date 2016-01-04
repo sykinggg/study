@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	parse函数的基础用法	
+	基本概念:parse函数的作用是解析url，返回一个json格式的数组
+	代码实现:
+	<script>
+		var url = require('url');
+		url.parse('http://www.baidu.com');
+	</script>
+	运行结果:
+	{
+		protocol: 'http:',
+		slashes: null,
+		auth: null,
+		host: null,
+		port: null,
+		hostname: null,
+		hash: null,
+		search: null,
+		query: null,
+		pathname: 'www.baidu.com',
+		path: 'www.baidu.com',
+		href: 'http://www.baidu.com'
+	}
+	<body>
+	</body>
+</html>

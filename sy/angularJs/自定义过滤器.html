@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html ng-app = 'myAppModule'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+			<p>{{'ginger loves dog treats' | lowercase | reverse}}</p>
+			<p>{{'ginger loves dog treats' | uppercase | reverse}}</p>
+			<p>{{'ginger loves dog treats'}}</p>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		// var app = angular.module('app',[]);
+		// // 接下来在模块的基础上，创建过滤器：
+		// app.filter('appctrl',function () {
+		// 	return function(input){
+		// 		if(input){
+		// 			return input[0].toUpperCase() + input.slice(1);
+		// 		};
+		// 	};
+		// });
+		// angular.module('myApp.filters', []).filter('capitalize', function() {
+		// 	return function(input) {
+		// 	// input是我们传入的字符串
+		// 	if (input) {
+		// 	return input[0].toUpperCase() + input.slice(1);
+		// 	}
+		// });
+		var myAppModule = angular.module('myAppModule',[]);
+		// 接下来在模块的基础上，创建过滤器：.
+		// 其中reverse是过滤器的名字，后面跟着过滤器的方法声明，在方法中返回另一个方法
+		// 内部返回的方法包含了两个参数，一个是输入的值，就是我们过滤器接受的值。
+		// input就是其中name代表的值。
+		myAppModule.filter("reverse",function(){
+                return function(input,uppercase){
+                    var out = "";
+                    for(var i=0 ; i<input.length; i++){
+                    	// 反向输出
+                        out = input.charAt(i)+out;
+                    }
+                    if(uppercase){
+                        out = out.toUpperCase();
+                    }
+                    return out;
+                }
+                console.log(charAt,charset)
+            });
+	</script>
+</html>

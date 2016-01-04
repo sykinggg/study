@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	输入组件容器：.item-input
+	在ionic中，各种输入组件被定义成不同的HTML模板，以便将描述标签和输入元素 打包在一起。在这个模板的根元素上，需要声明.item-input样式：
+	<any class = "item-input">...</any>
+	不同的输入元素有不同的模板定义。比如，文本输入通常包含一个描述标签：
+	<div class = "item-input">
+		<label for="" class = "input-label">用户名</label>
+		<input type="text" placeholder = "输入账号"/>
+	</div>
+	ionic预定义了文本输入、开关、复选按钮、单选按钮、选择框、滑动条等常用 输入组件的样式：
+	<img src="image/ionic.item-input(输入组件容器).png" alt="" />
+	<body>
+		<div class = "bar bar-header">
+			<h1 class = "title">表单输入</h1>
+		</div>
+		<div class = "scroll-content has-header padding">
+			<div class = "item-input">
+				<span class = "input-label">账号</span>
+				<input type="text" placeholder = "zhang san"/>
+			</div>
+			<div class = "item-input">
+				<span class = "input-label">口令</span>
+				<input type="password" placeholder = "*********"/>
+			</div>
+		</div>
+	</body>
+</html>

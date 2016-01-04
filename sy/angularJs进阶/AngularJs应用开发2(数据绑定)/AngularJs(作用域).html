@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	作用域/Scope
+	AngularJS引入了一个自用的命名空间，也就是$rootScope对象，这样sb变量就可以 挂在$rootScope上了，即$rootScope.sb。
+	注意：在HTML模板中，我们用了两个内置指令：
+		1.ng-app指令会在启动引导时创建一个$rootScope对象。
+		2.ng-init指令用来在作用域上初始化变量，这个指令将在$rootScope上建立sb对象。
+	注意：在指令的实现代码中，与之前使用eval函数进行表达式估值不同，我们直接使用scope的$eval方法获 得sb变量的值。
+	<body>
+	</body>
+</html>

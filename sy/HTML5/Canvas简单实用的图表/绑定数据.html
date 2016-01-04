@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	绑定数据
+	注意:为了实现显示的每次数值都不一样，我们创建一组随机数(randomScalingFactor)赋值给下面lineChartData中data:
+	示例:
+	var randomScalingFactor = function(){
+		return Math.round(Math.random()*100);
+	}
+	页面加载是数据绑定
+	window.onload = function(){
+		var ctx = document.getElementById("canvas").getContext("2d");
+		window.myLine = new Chart(ctx).Line(lineChartData, {  // lineChartData为绑定模拟数据
+			responsive: true
+		});
+	}
+	注意:下面lineChartData为在一组模拟数据，赋值给new Chart(ctx).Line(lineChartData)
+	var lineChartData = {
+		labels: ["January","February","March","April","May","June","July"],
+		datasets: [
+			{
+				label: "My First dataset",
+				fillColor:  "rgba(220,220,220,0.2)", //填充颜色
+				strokeColor: "rgba(220,220,220,1)",  // 线条颜色
+				pointColor: "rgba(220,220,220,1)",   // 点颜色
+				...
+				data: [randomScalingFactor(),...]  // 随机数赋值
+			},
+			{
+                label: "My Second dataset",
+                ...,
+                data : [randomScalingFactor(),...]
+            }
+		]
+	}
+	<body>
+		小结：线图需要一个数据点的数组。
+			这是在轴上显示。线图的数据被分解成一系列的数据集。
+			每一个数据集都有一个颜色为填充，颜色为线和颜色的点和中风的点。
+			这些颜色是字符串就像CSS。
+			你可以使用RGBA，RGB，HEX或HSL的符号。
+			每一个数据集上的标签键是可选的，并且可以在图表中生成一个表时使用。
+	</body>
+</html>

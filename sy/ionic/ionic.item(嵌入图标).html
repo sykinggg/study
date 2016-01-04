@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	.item:嵌入图标
+	注意：要查如图标需要满足：
+		1.在.item元素上声明图标位置。图标可以位于列表的左侧或右侧分别使用.item-icon-left和.item-icon-right声明
+		2.在.item元素内部插入
+	<body>
+		<div class = "bar bar-header bar-positive">
+			<button class = "button icon ion-ios-arrow-left">返回</button>
+			<h1 calss = "title">酒店搜索</h1>
+			<button class = "button">首页</button>
+		</div>
+		<div class = "scroll-content has-header">
+			<div calss = "list list-inset">
+				<div class = "item item-icon-left item-icon-right">
+					<i class = "icon ion-location"></i>
+					<h2>入住城市：当前位置</h2>
+					<i class = "icon ion-ios-arrow-right"></i>
+				</div>
+				<div class = "item item-icon-left item-icon-right">
+					<i class = "icon ion-calendar"></i>
+					<h2>入住日期：7月27日星期五</h2>
+					<i class = "icon ion-ios-arrow-right"></i>
+				</div>
+				<div class = "item item-icon-left item-icon-right">
+					<i calss = "icon ion-social-yen"></i>
+					<h2>价格范围：不限价格</h2>
+					<i class = "icon ion-ios-arrow-right"></i>
+				</div>
+			</div>
+			<div calss = "padding">
+				<button	class = "button button-block button-assertive">搜索</button>
+			</div>
+		</div>
+	</body>
+</html>

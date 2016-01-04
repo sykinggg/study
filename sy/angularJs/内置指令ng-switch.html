@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<!-- 这个指令和 ng-switch-when 及 on="propertyName" 一起使用. -->
+	<body ng-controller = 'appctrl'>
+		<input type="text" ng-model="hello.name"/>
+		<div ng-switch on="hello.name">
+			<!-- 默认显示：ng-switch-default -->
+			<p ng-switch-default>And the winner is</p>
+			<!-- 当ng-switch-when判断成功后会更改上面的 -->
+			<h1 ng-switch-when="Ari" nh-bind = 'hello.name'></h1>
+		</div>
+		<button ng-click = 'dhello()'>点击</button>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.hello = {
+				name : 'hello world'
+			}
+			$scope.dhello = function(){
+				$scope.hello.name = 'Ari'
+			}
+		});
+	</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	文本输入 : input[type="text"]
+		文本输入通常包含一个文本input元素和一个描述型标签：
+		<img src="image/ionic.item(文本输入).png" alt="" />
+		在ionic中，使用以下HTML模板建立一个带有文本标签的输入框：
+		<any class = "item-input">
+			<span class = "input-label">...</span>
+			<input type="text" placeholder = "..." />
+		</any>
+	<body>
+		<div class = "scroll-content padding">
+			<div class = "list list-borderless">
+				<div class = "item item-image">
+					<img src="image/ionic.input(txt文本输入).png" alt="" />
+				</div>
+			</div>
+			<div class = "list list-inset">
+				<label for="" class = "item item-input">
+					<span class = "input-label">Username</span>
+					<input type="text" placeholder = "..." />
+				</label>
+				<label for="" class = "item item-input">
+					<span class = "input-label">Password</span>
+					<input type="text" placeholder = "..." />
+				</label>
+			</div>
+			<!--button-block:块级元素-->
+			<button class = "button button-block button-balanced">Sign In</button>
+			<button class = "button button-block button-balanced">Reset</button>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	客户端
+	基础原理:较服务端而言，客户端提供更多的监听事件，在实时应用中，我们可以为这些事件注册监听并作出反应
+	例如：connect提示用户连接成功，disconnect时提示用户停止服务等等。
+	connect 						成功连接到服务器
+	connection 						正在连接
+	disconnect 						断开连接
+	connect_failed 					连接失败
+	error 							连接错误
+	message 						监听服务端send的信息
+	reconnect_failed 				重新连接失败
+	reconnect 						重新连接成功
+	reconnecting 					正在重连
+	连接顺序:
+		当第一次连接时，事件触发顺序为： connecting → connect；
+		当失去连接时，事件触发顺序为：disconnect → reconnecting → connecting → reconnect → connect。
+	<body>
+	</body>
+</html>

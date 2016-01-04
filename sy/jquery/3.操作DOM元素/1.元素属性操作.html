@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	元素属性操作
+	注意:removeAttr()方法可以删除某一指定的属性。
+		1.获取元素的属性
+			语法：attr(name)
+			参数name表示属性的名称
+		2.设置元素的属性
+			单个属性设置语法：attr(key,value)
+			多个属性设置语法：attr({key0:value0,key1:value1})
+		3.删除元素的属性
+			语法：removeAttr(name)
+		示例如下：
+		注意:使用attr()方法设置、获取、删除a标记中href属性。
+		<script>
+		$(function(){
+			$("#a1").attr("href","http://www.baidu.com");//设置a标记中的href属性
+			var $url = $("#a1").attr("herf");//获取a标记中的href属性
+			$("#tip").html($url);
+		})
+		$(function(){
+			$("#a1").removeAttr("href");
+		})
+		</script>
+	<body>
+	</body>
+</html>

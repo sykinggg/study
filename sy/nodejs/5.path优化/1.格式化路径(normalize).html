@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	normalize函数的基本用法
+	基本概念:normalize函数将不符合规范的路径经过格式化转换为标准路径,解析路径中的.与..外，还能去掉多余的斜杠。
+	代码实现:
+	<script>
+		var path = require('path');
+		var data = path.normalize('/path//normalize/hi/...');
+		console.log(data);
+	</script>
+	运行结果:
+	'/path/normalize'
+	<body>
+	</body>
+</html>

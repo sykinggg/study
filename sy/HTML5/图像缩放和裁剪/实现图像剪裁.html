@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	实现图像裁剪
+	特别关键原理：
+		首先：这个主要是实现一个居中的覆盖矩形（overlay），
+		其次：通过计算背景图片和该覆盖矩形的偏移来获取图片裁剪区域的坐标，
+		最后：通过Canvas的drawImage和toDataURL完成裁剪图的绘制。
+	示例：
+	<script>
+		crop = function(){
+			var crop_canvas,
+				left = $(".overlay").offset().left - $container.offset().left,
+				top = $(".overlay").offset().top - $container.offset().top,
+				width = $(".overlay").width(),
+				height = $(".overlay").height();
+				
+			crop_canvas = document.createElement("canvas");
+			crop_canvas.width = width;
+			crop_canvas.height = height;
+			
+			crop_canvas.getContent("2d").drawImage(image_target, left, top, width, height, 0, 0, width, height);
+			window.open(crop_canvas.toDataURL("Image/png"))
+		}
+	</script>
+	<body>
+	</body>
+</html>

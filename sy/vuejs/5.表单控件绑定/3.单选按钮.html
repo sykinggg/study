@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<!--Radio
+	基本概念:-->
+	<!--<input type="radio" id="one" value="One" v-model="picked" />
+	<label for="one"></label>
+	<br />
+	<input type="radio" id="two" value="Tow" v-model="picked" />
+	<label for="two"></label>
+	<br />-->
+	<!--<span>Picked:{{picked}}</span>-->
+	<!--可以用v-bind指令来绑定数据-->
+	<!--<input type="radio" v-model="pick" v-bind:value="a" />-->
+	<script src="../vue.js"></script>
+	<body>
+		<div>
+			<span>radio value is :{{pick}}</span>
+			<input type="radio" v-model="pick" v-bind:value="a" />
+		</div>
+		<script>
+			var vm = new Vue({
+				el:'div',
+				data:{
+					a:"a"
+				}
+			})
+		</script>
+	</body>
+</html>

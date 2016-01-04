@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 在模块的加载阶段，AngularJS会在提供者注册和配置的过程中对模块进行配置。 -->
+		<!-- 注意：在整个AngularJS的工作流中，这个阶段是唯一能够在应用启动前进行修改的部分。 -->
+
+
+
+		<!-- 注意大部分都在使用config()函数，并在配置阶段执行 -->
+			<!-- 例如在某个模块上创建一个服务或指令时： -->
+
+			<!-- 注意：唯一例外的是 constant() 方法，这个方法总会在所有配置块之前被执行。 -->
+		
+
+
+		<!-- 注意：当对模块进行配置时，需要格外注意只有少数几种类型的对象可以被注入到 config() 函数中：提供者和常量。如果我们将一个服务注入进去，会在真正对其进行配置之前就意外地把服务实例化了。 -->
+		<!-- 注意：这种对配置服务进行严格限制的另外一个副作用就是，我们只能注入用 provider() 语法构建的服务，其他的则不行。 -->
+		<p my-directive></p>
+		<p myFactory></p>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.config(function ($provide) {
+			// body...
+		})
+		// 创建服务
+		app.factory('myFactory',function(){
+			var service = {},
+			return service;
+		})
+		// 创建指令
+		app.directive('myDirective',function*(){
+			return{
+				template:'<button>click me</button>'
+			}
+		})
+		// AngularJS会在编译时执行这些辅助函数。它们在功能上等同于下面的写法：
+		app.config(function($provide, $compileProvider){
+			$provide.factory('myFactory',function(){
+				var service = {},
+				return service;
+			})
+			$compileProvider.directive('myDirective',function(){
+				return{
+					template:'<button>click me<button>'
+				};
+			});
+		});
+
+		app.config(function($routeProvider){
+			$routeProvider.when('/',{
+				controller:'WelcomeController',
+				template:'views/welcome.html'
+			});
+		})
+		app.config(function(ConnectionProvider){
+			ConnectionProvider.setApiKey('SOME_API_KEY')
+		})
+
+		// config() 函数接受一个参数。
+		  // configFunction （函数） ：AngularJS在模块加载时会执行这个函数。
+	</script>
+</html>

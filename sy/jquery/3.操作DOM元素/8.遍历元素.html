@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	遍历元素
+	使用环境:在DOM元素操作中，有时需要对同一标记的全部元素进行统一操作。
+	关键:使用each()方法可以实现元素的遍历。
+	使用格式:语法形式：$(selector).each(callback)
+	详细描述:参数callback是一个function函数，该函数还可以接收一个行参index，这个形参为遍历元素的序号，
+	千万注意：：：：：：序号从0开始；
+		扩展:如果需要访问元素中的属性，可以借助形参index，配合this关键字来实现元素属性的设置或获取。
+	示例如下:
+	<script>
+		$(function(){
+			$("div").each(function(index){
+				if(index == 3){
+					$(this).addClass("red");
+				}
+			})
+		})
+	</script>
+	<body>
+	</body>
+</html>

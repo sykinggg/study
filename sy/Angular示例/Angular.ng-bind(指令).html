@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	指令ng-bind和AngularJS表达式{{}}有异曲同工之妙，但不同之处就在于ng-bind是在angular解析渲染完毕后才将数据显示出来的。
+	<body>
+		<div ng-app="">
+			请输入一个名字： <input type="text" ng-model = "name" />
+			Hello : <p ng-bind = "name"></p>
+		</div>
+	</body>
+	<script src = "angular.js"></script>
+</html>

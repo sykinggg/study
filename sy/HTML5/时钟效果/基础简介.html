@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		介绍
+	注意：绘制时钟效果，主要是应用 HTML5 canvas 中的一些方法，我们就可以在canvas标签里面绘制任意的图形。
+	使用canvas的方法和步骤：
+		1.创建canvas上下文对象ctc var ctx = document.getElementById('canvas').getContext('2d');
+		2.beginPath()是用来启动绘制路径的，中间的moveTo(开始位置),lineTo(所到位置),都是绘制路径的方法过程，最后通过stroke方法来结束绘制。
+		3.ctx.translate(x,y)方法，重新设置画布的坐标源点，设置后，x,y坐标处为变为起始坐标(0,0);
+		4.ctx.arc(圆心x坐标, 圆心Y坐标, 圆半径, 起始点弧度,结束点弧度, 是否顺时针) 方法绘制圆形，或者圆弧;
+		5.ctc.rotate(弧度) 方法接受一个弧度制参数，旋转画布，然后绘制图形，相当于给绘制的图形旋转一个角度；
+		6.ctc.save() 和 context.restore() 方法，记录起始状态和回复状态
+		7.ctc.fillRect(矩形左上角X坐标，Y坐标，宽度，高度): 绘制矩形
+		8.ctc.fillText(text,左上角x坐标，Y坐标): 绘制文字
+	</body>
+</html>

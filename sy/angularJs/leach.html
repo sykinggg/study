@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html ng-app = 'apps'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'appctrl'>
+		<!-- 创建一个函数进行过滤 -->
+		{{[{'name': 'Ari','City': 'San Francisco','favorite food': 'Pizza'},
+			{'name': 'bri','City': 'dan Francisco','favorite food': 'eizza'},
+			{'name': 'cri','City': 'can Francisco','favorite food': 'qizza'},
+			{'name': 'dri','City': 'xan Francisco','favorite food': 'rizza'}] | filter :iscapitalized
+		}}
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+			var app = angular.module('apps',[]);
+			app.controller('appctrl',function($scope){
+				// 建立一个函数用来查看首字母是否为大写但前面的update（）已经污染该控制器的命名空间注意！
+			$scope.iscapitalized = function(str){
+				return str[0] == str[0].toUpperCase();
+			};
+		});
+	</script>
+</html>

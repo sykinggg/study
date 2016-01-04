@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	动画效果
+	基本概念:在jQuery中，提供了animate()方法创建自定义的动画
+	语法使用:$(selector).animate({params},speed,callback);
+	语法描述:params为必需的参数定义形成动画的CSS属性。
+			speed和callback是可选参数，
+			前者规定效果的时长，取值为："slow"、"fast"和毫秒；后者是动画完成后执行的函数名称。
+	示例如下:
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script>
+		$(function(){
+			$("#btn").click(function(){
+				$("div").animate({
+					height:"200px",
+					width:"660px"
+				},"slow",function(){
+					$("div").animate({
+						height:"80px",
+						width:"80px"
+					},"slow")
+				});
+			})
+		})
+	</script>
+	<body>
+		<h3>动画效果</h3>
+	    <input type="button" id="btn" value="点击看效果"/>
+	    <div style="width:80px;height:80px;background-color:#FF9966"></div>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	基础
+	基本概念:可以使用 Vue.directive(id, definition) 的方法传入指令 id 和定义对象来注册一个全局自定义指令
+		定义对象需要提供一些钩子函数（全部可选）:
+		bind:仅调用一次，当指令第一次绑定元素的时候
+		update:第一次是紧跟在 bind 之后调用，获得的参数是绑定的初始值
+			以后每当绑定的值发生变化就会被调用，获得新值与旧值两个参数
+		unbind:仅调用一次，当指令解绑元素的时候
+	代码示例:
+	<script>
+		Vue.directive('my-directive',{
+			bind:function(){
+				// 准备工作
+    			// 例如，添加事件处理器或只需要运行一次的高耗任务
+			},
+			update:function(newValue,oldValue){
+				// 值更新时的工作
+    			// 也会以初始值为参数调用一次
+			},
+			unbind:function(){
+				// 清理工作
+    			// 例如，删除 bind() 添加的事件监听器
+			}
+		})
+	</script>
+	使用:在注册之后，便可以在 Vue.js 模板中这样用（记着添加前缀 v-）
+	代码示例:
+	<div v-my-directive="someValue"></div>
+	注意:当只需要 update 函数时，可以传入一个函数替代定义对象
+	代码示例:
+	Vue.directive('my-directive',function(value){
+		<!--这个函数用作update()-->
+	})
+	js代码如下:
+	<script>
+		Vue.directive('my-directive',{
+			bind:function(){
+				console.log('my-directive')
+			},
+			update:function(){
+				this.el.innerHTML='value -' + value
+			}
+		})
+		var demo = new Vue({
+			el:'#demo',
+			data:{
+				my-directive:'hello!'
+			}
+		})
+	</script>
+	<script src="../vue.js"></script>
+	<body>
+		<div id="demo" v-my-directive="someValue"></div>
+	</body>
+	<script>
+		Vue.directive('my-directive',{
+			bind:function(){
+				console.log('my-directive')
+			},
+			update:function(value){
+				this.el.innerHTML = 'value - '+value
+			}
+		})
+		var demo = new Vue({
+			el:'#demo',
+			data:{
+				someValue:'Hello!'
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	创建指令
+	指令的特点：指令也是一种服务，只是这种服务的定义有几个特殊要求：
+		1.必须使用模块的directive()方法注册服务
+		2.必须以对象工厂/factory()方法定义服务实现
+		3.对象工厂必须返回一个指令定义对象
+	示例：
+	//定义指令的类工厂
+	var directiveFactory = function(injectables) {
+		//指令定义对象
+		var directiveDefinationObject = {
+			...
+		};
+		return directiveDefinationObject;
+	};
+	//在模块上注册
+	angular.module("someModule",[])
+	.directive("directiveName", directiveFactory);
+	注意：指令在注入器中的登记名称是：指令名+Directive。
+	例如，ng-app指令的服务名称是："ngAppDirective"。
+	线面的实例描述：这个指令被限制只能 出现在属性的位置，每个具有这个指令的HTML元素，将在鼠标移入 时以虚线边框突出显示。
+	<body ng-app="ezstuff">
+		<span ez-hoverable>span</span>
+		<button ez-hoverable>button</button>
+		<p ez-hoverable>p</p>
+		<div ez-hoverable>div</div>
+	</body>
+	<script>
+		var ezHoverableFactory = function(){
+			return {
+				restrict: "A",
+				link: function(scope, element, attrs){
+					element.on("mouseover", function(){
+						element.css({outline: "#ff0000 dotted thick"});
+					})
+					.on("mouseout", function(){
+						element.css({outline:"none"});
+					})
+				}
+			};
+		};
+		angular.module("ezstuff", [])
+		.directive("ezHoverable", ezHoverableFactory);
+	</script>
+</html>

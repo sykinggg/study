@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<header>
+			<h1>header</h1>
+		</header>
+		<div class="content">
+			<!-- ng-view 是由 ngRoute 模块提供的一个特殊指令， 它的独特作用是在HTML中给 $route 对应的视图内容占位。 -->
+			<!-- 注意：mg-view 是一个优先级为1000的终极指令。AngularJS不会运行同一个元素上的低优先级指令（例如 <div ng-view></div> 元素上其他指令都是没有意义的） 。 -->
+			<div class="ng-view"></div>
+
+			<!-- ngView 指令遵循以下规则。 -->
+				 <!-- 每次触发 $routeChangeSuccess 事件，视图都会更新。 -->
+				 <!-- 如果某个模板同当前的路由相关联： -->
+				 	<!-- 创建一个新的作用域； -->
+				 	<!-- 移除上一个视图，同时上一个作用域也会被清除； -->
+				 	<!-- 将新的作用域同当前模板关联在一起； -->
+				 	<!-- 如果路由中有相关的定义，那么就把对应的控制器同当前作用域关联起来； -->
+				 	<!-- 触发 $viewContentLoaded 事件； -->
+				 	<!-- 如果提供了 onload 属性，调用该属性所指定的函数。 -->
+
+
+
+			<!-- 使用AngularJS提供的 when 和 otherwise 两个方法来定义应用的路由。 -->
+		</div>
+		<flooer>
+			<h5>Footer</h5>
+		</flooer>
+	</body>
+	<script src = 'angular.js'></script>
+	<script src = 'angular-router.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.config(['$routeProvider',function ($routeProvider) {
+			// 这里定义路由
+			$routeProvider.when('/',{
+				templateUrl: 'view/home.html'
+				// 第一个参数是路由路径，这个路径会与 $location.path 进行匹配， $location.path 也就是当前URL的路径。如果路径后面还有其他内容，或使用了双斜线也可以正常匹配。我们可以在URL中存储参数，参数需要以冒号开头（例如 :name ） .
+				controller:'HomeController'
+				// 第二个参数是配置对象，决定了当第一个参数中的路由能够匹配时具体做些什么。配置对象中可以进行设置的属性包括 controller 、 template 、 templateURL 、 resolve 、 redirectTo 和reloadOnSearch 。
+			});
+			
+
+
+
+			
+			//例如： 一个复杂的路由方案会包含多个路由，以及一个可以将所有意外路径进行重定向的捕获器。
+			$routeProvider
+				.when('/',{
+					templateUrl: 'views/home.html',
+					controller: 'HomeController'
+				})
+				.when('/',{
+					templateUrl: 'views/login.html',
+					controller: 'LoginController'
+				})
+				.when('/dashboard',{
+					templateUrl: 'views/dashboard.html',
+					controller: 'DashboardController'
+					resolve: {
+						user: function(SessionService){
+							return SessionService.getCurrentUser();
+						}
+					}
+				})
+				.otherwise({
+					redirectTo:'/'
+				});
+				// 1.  controller
+					// controller: 'MyController'
+					// controller: function($scope) {}
+					// 如果配置对象中设置了 controller 属性，那么这个指定的控制器会与路由所创建的新作用域关联在一起。
+					// 如果参数值是字符型，会在模块中所有注册过的控制器中查找对应的内容，然后与路由关联在一起。
+					// 如果参数值是函数型，这个函数会作为模板中DOM元素的控制器并与模板进行关联。
+
+
+
+
+
+				// 2.  template
+					// template: '<div><h2>Route</h2></div>'
+					// AngularJS会将配置对象中的HTML模板渲染到对应的具有 ng-view 指令的DOM元素中。
+
+
+
+				// 3.  templateUrl
+					// templateUrl: 'views/template_name.html'
+					// 应用会根据 templateUrl 属性所指定的路径通过XHR读取视图 （或者从 $templateCache 中读取） 。
+					// 如果能够找到并读取这个模板，AngularJS会将模板的内容渲染到具有 ng-view 指令的DOM元素中。
+
+
+				// 4.  resolve(举个栗子)
+				resolve: {
+					'data' : ['$http',function($http){
+						return $http.get('/api').when(
+							function success(resp) { return response.data; },
+							function error(reason) { return false; }
+							);
+					}];
+				}
+				// 如果设置了 resolve 属性，AngularJS会将列表中的元素都注入到控制器中。如果这些依赖是promise对象，它们在控制器加载以及 $routeChangeSuccess 被触发之前，会被resolve并设置成一个值。
+
+				// 注意：列表对象可以是：
+					 // 键，键值是会被注入到控制器中的依赖的名字；
+					 // 工厂，即可以是一个服务的名字，也可以是一个返回值，它是会被注入到控制器中的函数或可以被resolve的promise对象。
+
+				// 在上面的例子中， resolve 会发送一个 $http 请求，并将 data 的值替换为返回结果的值。
+				// 列表中的键 data 会被注入到控制器中，所以在控制器中可以使用它。
+
+
+
+
+				// 5.  redirectTo
+					// redirectTo: '/home'
+						// 如果 redirectTo 属性的值是一个字符串，那么路径会被替换成这个值，并根据这个目标路径触发路由变化。
+					// redirectTo: function(route,path,search)
+						// 如果 redirectTo 属性的值是一个函数，那么路径会被替换成函数的返回值，并根据这个目标路径触发路由变化。
+
+				// 注意：如果 redirectTo 属性的值是一个函数，AngularJS会在调用它时传入下面三个参数中：
+					// 从当前路径中提取出的路由参数；
+					// 当前路径；
+					// 当前URL中的查询串。
+
+
+
+
+
+				// 6.  reloadOnSearch
+				// 如果 reloadOnSearch 选项被设置为 true （默认） ， 当 $location.search() 发生变化时会重新加载路由。
+					// 如果设置为 false ，那么当URL中的查询串部分发生变化时就不会重新加载路由。
+				// 注意：对路由嵌套和原地分页等需求非常有用。
+		}]);
+				// 例子中设置了两个路由：一个首页路由和一个收件箱路由，同时首页路由被设置成默认路由。
+				var myapp = angular.module('myapp',[]);
+				myapp.config(['$routeProvider',function($routeProvider){
+					$routeProvider
+						.when('/',{
+							controller:'HomeController',
+							templateUrl:'view/home.html'
+						})
+						.when('/inbox/:name'{
+							controller : 'inboxController',
+							templateUrl: 'views/inbox.html'
+						})
+						.otherwise({redirectTo:'/'})
+				}])
+				 // otherwise 方法会在没有任何路由匹配时被调用，我们用它设置了一个默认跳转到'/'路径的路由。
+				 // 当浏览器加载AngularJS应用时，会将URL设置成默认路由所指向的路径。
+
+
+				 // $routeParams
+				 // 前面提到如果我们在路由参数的前面加上 : ， AngularJS就会把它解析出来并传递给 $routeParams 。
+				 // AngularJS会在 $routeParams 中添加一个名为 name 的键，它的值会被设置为加载进来的URL中的值。
+				 // 如果浏览器加载 /inbox/all 这个URL，那么 $routeParams 对象看起来会是下面这样：
+				 // { name: 'all' }
+
+				 // 需要注意，如果想要在控制器中访问这些变量，需要把 $routeParams 注入进控制器：
+				 app.controller('inboxController',function($scope,$routeParams){
+				 	// 在这里访问$routeParams
+				 });
+	</script>
+</html>

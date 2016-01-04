@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	双向过滤器
+	基本概念:使用过滤器都是在把来自模型的值显视在视图之前转换它
+		不过也可以定义一个过滤器，在把来自视图（< input > 元素）的值写回模型之前转化它
+	代码示例:
+	Vue.filter('currencyDisplay',{
+		// model -> view
+  		// 在更新 `<input>` 元素之前格式化值
+  		read:function(val) {
+  			return "¥" + val.toFixed(2)
+  		},
+  		// view -> model
+  		// 在写回数据之前格式化值
+  		write: function(val, oldVal){
+  			var number = +val.replace(/[^\d.]/g, '')
+  			return isNaN(number) ? 0:presFloat(number.toFixed(2))
+  		}
+	})
+	html代码:
+	<div id="example">
+		<input type="text" v-model="msg|currencyDisplay" /><br>
+		<span>{{msg}}</span>
+	</div>
+	<script src="../vue.js"></script>
+	<body>
+		<div id="example">
+			<input type="text" v-model="msg|currencyDisplay" /><br>
+			<span>{{msg}}</span>
+		</div>
+	</body>
+	<script>
+		//在这里面写Vue.js代码
+		Vue.filter('currencyDisplay',{
+			// model -> view
+  			// 在更新 `<input>` 元素之前格式化值
+			read:function(val){
+				return '¥' + val.toFixed(2)
+			},
+			// view -> model
+  			// 在写回数据之前格式化值
+			write:function(val,oldval){
+				var number = +val.replace(/[^\d.]/g, '')
+				return isNaN(number) ? 0 : parseFloat(number.toFixed(2))
+			}
+		})
+		var vm=new Vue({
+			el:'#example',
+			data:{
+				msg:22
+			}
+		})
+	</script>
+</html>

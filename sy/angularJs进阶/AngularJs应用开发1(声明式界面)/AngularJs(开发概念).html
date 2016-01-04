@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	将指令看做API
+		将DOM操作封装成指令，更容易进行分工与代码复用。
+	<body>
+		定义自己的指令
+			1.增强标准DOM元素的行为
+				比如，希望一个DOM元素是可拖拽的，那么可以这样写：
+				<p ez-draggable="true">...</p>
+				通过ez-draggable指令，我们赋予DOM元素可拖拽的能力。
+			2.自定义组件
+				比如，我希望一个图片裁剪功能，那么可以这样写：
+				<ez-draggable src="a.jpg"></ez-draggable>
+				通过ez-photoshop指令，我们定义了一个包含交互行为的web组件。
+			3.封装其他组件库
+				不是AngularJS鼓励的方向，但是确实有强劲的需求。
+	</body>
+</html>

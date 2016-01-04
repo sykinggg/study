@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	文本输入：使用占位符做标签
+		有时可以将描述标签省略，这样可以获得一种简洁的效果：
+		例如：<img src="image/ionic.item(文本输入,使用占位符的简洁示例).png" alt="" />
+	这是input元素原生的功能，设置其placeholder属性 即可实现：
+		<label for="" class = "item item-input">
+			<input type="text" placeholder = "..." />
+		</label>
+	<body>
+		<div class = "scroll-content">
+			<div class = "list">
+				<div class = "item item-thumbnail-left item-positive">
+					<img src="image/ionic.item(文本输入,使用占位符的简洁示例).png" alt="" />
+					<h1 class = "light">user login</h1>
+				</div>
+				<label for="" class = "item item-input">
+					<i class = "icon ion-ios-person-outline	 positive"></i>
+					<input type="text" placeholder = "输入用户名" />
+				</label>
+				<label for="" class = "item item-input">
+					<i class = "icon ion-ios-unlocked-outline positive"></i>
+					<input type="text" placeholder = "请输入密码" />
+				</label>
+				<label for="" class = "item item-checkbox">
+					<label for="" class = "checkbox">
+						<input type="checkbox" checked />
+					</label>
+					记住密码
+				</label>
+			</div>
+			<div class = "padding-left padding-right">
+				<button class = "button button-block button-positive">登录系统</button>
+			</div>
+		</div>
+	</body>
+</html>

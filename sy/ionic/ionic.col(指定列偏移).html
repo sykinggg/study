@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	.col-offset-{width-percent} : 指定列偏移
+		列可以从默认位置偏移，ionic预置了一些CSS类供我们快速设置列偏移：
+		1.col-offset-10 - 偏移默认位置10%容器宽度
+		2.col-offset-20 - 偏移默认位置20%容器宽度
+		3.col-offset-25 - 偏移默认位置25%容器宽度
+		4.col-offset-33 - 偏移默认位置33%容器宽度
+		5.col-offset-50 - 偏移默认位置50%容器宽度
+		6.col-offset-67 - 偏移默认位置67%容器宽度
+		7.col-offset-75 - 偏移默认位置75%容器宽度
+		8.col-offset-80 - 偏移默认位置80%容器宽度
+		9.col-offset-90 - 偏移默认位置90%容器宽度
+	实质：这实际上是通过设置子元素的margin-left样式实现的，所以如果你需要让它 偏移正常位置78%，可以这样：
+		示例样式设置：.col-offset-78{
+							margin-left:78%;
+						}
+	<body>
+		<div class = "bar bar-header">
+			<h1 class = "title">指定列偏移</h1>
+		</div>
+		<div class = "scroll-content has-header">
+			<div class = "row">
+				<div class = "col col-33 col-offset-33">.col</div>
+				<div class = "col">.col</div>
+			</div>
+			<div class = "row">
+				<div class = "col col-33">.col</div>
+				<div class = "col col-33 col-offset-33">.col</div>
+			</div>
+			<div class = "row">
+				<div class = "col col-33 col-offset-67">.col</div>
+			</div>
+		</div>
+	</body>
+</html>

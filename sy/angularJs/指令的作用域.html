@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<!-- 任何具有 ng-app 属性的DOM元素将被标记为 $rootScope 的起始点。 -->
+		<!-- $rootScope 是作用域链的起始点，任何嵌套在 ng-app 内的指令都会继承它。 -->
+		{{someproperty}}
+		<!-- <div ng-app="myApp"ng-init="someProperty = 'some data'"></div> -->
+		<!-- <div ng-init="siblingProperty = 'more data'"> -->
+			<!-- Inside Div Two -->
+			<!-- <div ng-init="aThirdProperty"></div> -->
+		<!-- </div> -->
+		<!-- 从这里开始，DOM中每个指令调用时都可能会： -->
+		<!-- 直接调用相同的作用域对象； -->
+		<!-- 从当前作用域对象继承一个新的作用域对象； -->
+		<!-- 创建一个同当前作用域相隔离的作用域对象。 -->
+		<!-- 前两个 div 是兄弟元素， 可以通过 get 和 set 访问 $rootScope 。 -->
+		<!-- 第二个 div 内部的 div 同样可以通过 get 和 set 访问相同的根作用域。 -->
+		<!-- 指令嵌套并不一定意味着需要改变它的作用域。默认情况下，子指令会被付予访问父DOM元素对应的作用域的能力，这样做的原因可以通过介绍指令的 scope 参数来理解， scope 参数默认是 false 。 -->
+		<p ng-controller = 'appctrl'>
+			<p ng-bind = 'someproperty'></p>
+		</p>
+		<button ng-click = 'someAction()'>点击</button>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.run(function ($rootScope) {
+			$rootScope.someproperty = 'hello';
+			$rootScope.someAction = function(){
+				$rootScope.someproperty = 'hello world'
+			};
+		});
+		app.controller('appctrl',function($scope){
+			// 不仅会继承而且还会因为优先级而覆盖
+			$scope.someproperty = 'hello man'
+		})
+	</script>
+</html>

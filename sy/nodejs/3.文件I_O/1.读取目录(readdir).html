@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	readdir函数的基本用法
+	基本概念:readdir函数可以读取到指定目录下所有的文件
+	代码实现:
+	<script>
+		var fs = require("fs");
+		fs.readdir(目录, 回调函数(err, files));
+	</script>
+	代码描述:回调函数 (callback) 接受两个参数 (err, files) 
+		注意: files 是一个存储目录中所包含的文件名称的数组，数组中不包括 '.' 和 '..'。
+	<body>
+	</body>
+</html>

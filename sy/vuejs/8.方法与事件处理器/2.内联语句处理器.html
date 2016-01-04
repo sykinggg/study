@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	内联语句处理器
+	基本概念:除了直接绑定到一个方法，也可以用内联 JavaScript 语句
+	代码示例:
+	<div id="example-2">
+		<button v-on:click="say('hi')">Say Hi</button>
+		<button v-on:click="say('what')">Say What</button>
+	</div>
+	<script>
+		new Vue({
+			el:'#example',
+			data:{
+				say:function(msg){
+					alert(msg)
+				}
+			}
+		})
+	</script>
+	代码示例:需要在内联语句处理器中访问原生 DOM 事件
+		可以用特殊变量 $event 把它传入方法
+	代码示例:
+	<button v-on:click="say('Hello!',$event)">Submit</button>
+	<script>
+		new Vue({
+			methods:{
+				say:function(msg,event){
+					// 现在我们可以访问原生事件对象
+					event.preventDefault();
+				}
+			}
+		})
+	</script>
+	<script src="../vue.js"></script>
+	<body>
+		<div id="example">
+			<button v-on:click="say('hi')">Say Hi</button>
+			<button v-on:click="say('What')">Say What</button>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el:'#example',
+			methods:{
+				say:function(msg) {
+					alert(msg)
+				}
+			}
+		})
+	</script>
+</html>

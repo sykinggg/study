@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	事件修饰符
+	基本概念:在事件处理器中经常需要调用 event.preventDefault() 或 event.stopPropagation()
+		不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好
+		Vue.js 为 v-on 提供两个事件修饰符：.prevent 与 .stop
+	代码示例:
+	<!-- 阻止单击事件冒泡 -->
+	<a v-on:click.stop="doThis"></a>
+	<!-- 提交事件不再重载页面 -->
+	<form v-on:submit.prevent="onSubmit"></form>
+	<!-- 修饰符可以串联 -->
+	<a v-on:click.stop.prevent="doThat"></a>
+	<!-- 只有修饰符 -->
+	<form v-on:submit.prevent></form>
+	<script src="../vue.js"></script>
+	<body>
+		<div id="example">
+			<button v-on:click.stop="doThis">do This</button>
+		</div>
+	</body>
+	<script>
+		new Vue({
+			el:'#example',
+			methods:{
+				doThis: function(){
+					alert("do this");
+				}
+			}
+		})
+	</script>
+</html>

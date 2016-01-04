@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	.item:嵌入缩略图
+	注意：在ionic中，缩略图被定义为80px大小，比头像大，适合新闻图片。 和插入头像类似，向.item中插入缩略图需要满足两个条件：
+			1.在.item元素上声明缩略图位置。缩略图可以位于列表的左侧或右侧， 分别使用.item-thumbnail-left和.item-thumbnail-right声明
+			2.在.item元素内使用img标签插入头像
+	重点注意：将img标签放到.item内容的开头！
+	<body>
+		<div class = "bar bar-header bar-assertive">
+			<h1 class = "title">今日头条<i class = "icon ion-load-c"></i></h1>
+			<a href="" class = "button button-clear icon ion-person-stalker"></a>
+		</div>
+		<div class = "scroll-content has-header">
+			<ul calss = "list">
+				<li calss = "item">
+					<h2>国务院常务会议部署推进公司注册资本登记制度改革</h2>
+					<p>中国青年报</p>
+				</li>
+				<li class = "item item-thumbnail-right">
+					<img src="image/0027.png" alt="" />
+					<h2>国务院常务会议部署推进公司注册资本登记制度改革</h2>
+					<p>中国青年报</p>
+				</li>
+				<li calss = "item">
+					<h2>国务院常务会议部署推进公司注册资本登记制度改革</h2>
+					<p>中国青年报</p>
+				</li>
+				<li class = "item item-thumbnail-right">
+					<img src="image/0029.png" alt="" />
+					<h2>国务院常务会议部署推进公司注册资本登记制度改革</h2>
+					<p>中国青年报</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

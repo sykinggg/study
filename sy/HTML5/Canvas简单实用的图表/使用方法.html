@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	使用方法
+	关键注意:
+		1.要创建一个图标，需要实例化一个Chart对象。
+		2.要实例化一个Chart对象，可以通过创建一个带2D上下文的 < canvas > 元素来实现：
+	示例：
+	<canvas id="canvas" height="480" width="600"></canvas>
+	
+	// Get the context of the canvas element we want to select
+	<!--得到我们想要的画布元素的上下文选择-->
+	var ctx = document.getElementById("canvas").getContext("2d");
+	var myNewChart = new Chart(ctx).Line(data);
+	
+	注意:也可以通过jQuery来获取 < canvas > 元素的上下文：
+	// Get context with jQuery - using jQuery's .get() method.
+	var ctx = 	$("#canvas").get(0).getContext("2d");
+	// This will get the first returned node in the jQuery collection.
+	var myNewChart = new chart(ctx);
+	<body>
+	</body>
+</html>

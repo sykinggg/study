@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	获得注入器对象
+	注意：要使用AngularJS的功能，必须首先获取注入器。有两种方法取得注入器。
+	使用：1.创建一个新的注入器
+		方法：可以使用angular.injector()创建一个新的注入器：
+		示例： angular.injector(modules, [strictDi]);
+		  2.获取已经创建的注入器
+		方法：如果AngularJS框架已经启动，那么可以使用DOM对象的injector()方法获 得已经创建的注入器：
+		示例： var element = angular.element(dom_element);
+			  var injector = element.injector();
+	通过注入器调用API
+	注意：注入器有两个方法可供进行API调用：invoke()和get()。
+	使用：1.invoke()
+		方法：使用注入器的invoke()方法，可以直接调用一个用户自定义的函数体，并通过函数参数 注入所依赖的服务对象，
+		示例：这是AngularJS推荐和惯例的用法：
+			 angular.injector(['ng'])
+			 .invoke(function($http) {
+			 	//do sth. with $http
+			 });
+		  2.get()
+		方法：使用注入器的get()方法，获得指定名称的服务实例：
+		示例： var my$http = angular.injector(['ng']).get('$http');
+	<body>
+		<!--在这里显示ezHello实例内容-->
+		<div id="logger"></div>
+	</body>
+	<script>
+	//在ezstuff模块上登记一个服务ezHello
+		angular.module("ezstuff", [])
+		.provider("ezHello", function(){
+			//$get方法是一个类工厂，返回服务示例
+			this.$get = function(){
+				return "hello,world";
+			};
+		});
+		angular.element(document).ready(function(){
+			//直接通过注入器获取ezHello实例对象
+			var myHello = angular.injector(["ng","ezstuff"]).get("ezHello");
+			//将ezHello实例对象转化成字符串显示出来
+			var e = document.querySelector("#logger");
+			angular.element(e).text(myHello);
+		});
+	</script>
+</html>

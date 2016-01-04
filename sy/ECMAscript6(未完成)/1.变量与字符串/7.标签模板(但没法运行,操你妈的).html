@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="http://google.github.io/traceur-compiler/bin/traceur.js" type="text/javascript"></script>
+	<script src="http://google.github.io/traceur-compiler/src/bootstrap.js" type="text/javascript"></script>
+	标签模板
+	代码示例:
+	<script>
+		var a = 5;
+		var b = 10;
+		tag`Hello ${ a + b } world ${ a + b }`;
+		console.log(tag`Hello ${ a + b } world ${ a + b }`);
+	</script>
+	代码描述:模板字符串前面有一个标识名tag，它是一个函数。整个表达式的返回值，就是tag函数处理模板字符串后的返回值。
+		tag函数所有参数的实际值
+			第一个参数：['Hello ', ' world ']
+			第二个参数: 15
+			第三个参数：50
+	tag函数实际上以下面的形式调用
+	<script>
+		tag(['Hello ', ' world'], 15, 50);
+	</script>
+	tag函数的一种写法
+	代码实现:
+	<script>
+		var a = 5;
+		var b = 10;
+		function(s, v1, v2){
+			document.write(s[0]);
+			document.write(s[1]);
+			document.write(v1);
+			document.write(v2);
+			return "OK";
+		}
+		tag`Hello $( a + b ) world $( a + b )`;
+	</script>
+	据说的执行结果:
+	// "Hello "
+	// " world "
+	// 15
+	// 50
+	// "OK"
+	<body>
+	</body>
+</html>

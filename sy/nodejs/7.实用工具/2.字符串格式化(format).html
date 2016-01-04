@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	format函数的基本用法
+	基本概念:format函数根据第一个参数，返回一个格式化字符串，第一个参数是一个可包含零个或多个占位符的字符串。
+	注意:每一个占位符被替换为与其对应的转换后的值
+		1."%s(字符串)"
+		2."%d(数字<整型和浮点型>)"
+		3."%j(JSON)"
+		4."%(单独一个百分号则不作为一个参数)"
+	代码实现:
+	栗子1:如果占位符没有相对应的参数，占位符将不会被替换.
+	<script>
+		var util = require('util');
+		var result = util.format('%s:%s', 'foo');
+		console.log(result);
+	</script>
+	运行结果:
+	foo:%s
+	栗子2:如果有多个参数占位符，额外的参数将会调用util.inspect()转换为字符串。
+		这些字符串被连接在一起，并且以空格分隔。
+	<script>
+		var util = require('util');
+		var result = util.format('%s:%s', 'foo', 'bar', 'baz');
+		console.log(result);
+	</script>
+	运行结果:
+	'foo:bar baz'
+	栗子3:如果第一个参数是一个非格式化字符串，则会把所有的参数转成字符串并以空格隔开拼接在一块，而且返回该字符串。
+	<script>
+		var util = require(util);
+		var result = util.format(1, 2, 3);
+		conosle.log(result);
+	</script>
+	运行结果:
+	'1 2 3'
+	<body>
+	</body>
+</html>

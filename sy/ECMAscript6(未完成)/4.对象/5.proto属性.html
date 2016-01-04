@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	proto属性
+	基本概念:proto属性，用来读取或设置当前对象的prototype对象。
+	代码实现:
+	<script>
+		// es6的写法
+		var obj = {
+			_proto_:someOtherObj,
+			method:function() {.....}
+		}
+		// es5的写法
+		var obj = Object.create(someOtherObj);
+		obj.method = function() {...}
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	基础选择器
+	基础选择器是jQuery中使用最频繁的选择器，它由元素id、class、多个选择符组成，通过基本选择器可以实现大多数页面元素的查找
+	选择器						功能								返回值
+	#id 						根据给定的id匹配一个元素 				单个元素
+	element 					根据给定的元素名匹配所有元素 			元素集合
+	.class 						根据给定的类匹配元素 					元素集合
+	* 							匹配所有元素 						元素集合
+	selector1,selectorN 		将每一个选择器匹配到的元素合并后一起返回	元素集合
+	示例如下：
+	1.所有的元素标记全部显示，然后通过jQuery基础选择器隐藏相对应的页面标记。
+	2.代码实现
+	<script>
+		$(function(){
+			$("#divOne").css("display", "none"); //id匹配元素
+			$("div span").css("display", "none");//元素名匹配元素
+			$(".clsFrame .clsOne").css("display", "none");//类匹配元素
+			$("*").css("display", "none");//匹配所有元素
+			$("#divOne, span").css("display", "none");//合并匹配元素
+		})
+	</script>
+	<body>
+	</body>
+</html>

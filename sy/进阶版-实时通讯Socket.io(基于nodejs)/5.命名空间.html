@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	命名空间
+	代码实现:
+		1.在服务端，通过of("")的方式来划分新的命名空间：
+	<script>
+		io.of('chat').on('connection', function(socket){
+			
+		});
+	</script>
+		2.我们创建一个名为chat的房间，客户端可以通过如下方式连接到指定的房间：
+	<script>
+		var socket = io.connect('/chat');
+	</script>
+		3.虽然连接到指定的房间，但是我们也可以在服务端操作，自由的进出房间：
+	<script>
+		socket.join('chat');//进入chat房间
+		socket.leave('chat');//离开chat房间
+	</script>
+	实现顺序:在客户端按默认方式连接到服务器，然后在服务端通过join的方式进入chat房间。
+	<body>
+	</body>
+</html>

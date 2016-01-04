@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+	在列表中使用按钮
+	和插入图标类似，向.item中插入按钮需要满足两个条件：
+		1.在.item元素上声明按钮位置。按钮可以位于列表的左侧或右侧， 分别使用.item-button-left和.item-button-right声明.
+		2.在.item元素内插入按钮。
+	<body class = "stable">
+		<div class = "bar bar-header">
+			<h1 class = "title">列表中使用按钮</h1>
+		</div>
+		<div class = "scroll-content has-header">
+			<ul class = "list">
+				<li class = "item item-button-left">
+					<h2>新闻</h2>
+					<a href="" class = "button button-clear icon ion-ios-arrow-right"></a>
+				</li>
+				<li class = "item item-button-right">
+					<h2>邮件</h2>
+					<a href="" class = "button button-clear icon ion-ios-arrow-right"></a>
+				</li>
+				<li class = "item item-button-right">
+					<h2>电话</h2>
+					<a href="" class = "button button-clear icon ion-ios-telephone"></a>
+				</li>
+				<li class = "item item-button-right">
+					<h2>设置</h2>
+					<a href="" class = "button button-clear icon ion-ios-gear"></a>
+				</li>
+				<li class = "item item-button-right">
+					<h2>云服务</h2>
+					<a href="" class = "button button-clear icon ion-ios-child"></a>
+				</li>
+				<li class = "item item-button-right">
+					<h2>在线帮助</h2>
+					<a href="" class = "button button-clear icon ion-ios-help"></a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

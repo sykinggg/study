@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	指令定义对象
+	注意：每个指令定义的工厂函数，需要返回一个指令定义对象。
+	指令定义对象就是 一个具有约定属性的JavaScript对象，编译器/$compile在编译时就根据这 个定义对象对指令进行展开。
+	重点：指令定义对象的常用属性如下：
+		1.template : string
+			使用template指定的HTML标记替换指令内容（或指令自身）
+		2.restrict : string
+			用来限定指令在HTML模板中出现的位置。
+		3.replace : true|false
+			使用这个属性指明template的替换方式。
+		4.scope : true|false|{...}
+			scope属性为指令创建私有的作用域，这在创建可复用的Widget时非常有用。
+		5.link : function(..){...}
+			link属性是一个函数，用来在指令中操作DOM树、实现数据绑定。
+		6.transclude : true|false|'element'
+			允许指令包含其他HTML元素，这通常用于实现一个容器类型的Widget。
+	<body ng-app="ezstuff">
+		<span ez-hoverable>span</span>
+		<p ez-hoverable>p</p>
+		<div ez-hoverable>div</div>
+		<button ez-hoverable>button</button>
+	</body>
+	<script>
+		var ezHoverableFactory = function(){
+			return {
+				restrict: "A",
+				link: function(scope,element,attrs){
+					element.on("mouseover", function(){
+						element.css({outline: "#ff0000 dotted thick"});
+					})
+					.on("mouseout", function(){
+						element.css({outline:"none"});
+					})
+				}
+			};
+		};
+		angular.module("ezstuff", [])
+		.directive("ezHoverable", ezHoverableFactory);
+	</script>
+</html>

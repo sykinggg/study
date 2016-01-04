@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	内容过滤选择器
+	概念:内容过滤选择器根据元素中的文字内容或所包含的子元素特征获取元素
+	原理:其文字内容可以模糊或者绝对匹配进行元素定位
+	选择器						功能								返回值
+	:contains(text) 			获取包含给定文本的元素 				元素集合
+	:empty 						获取所有不包含子元素或者文本的空元素		元素集合
+	:has(selector) 				获取含有选择器所匹配的元素的元素			元素集合
+	:parent 					获取获取含有子元素或者文本的元素			元素集合
+	示例如下：
+	<script>
+		$(function(){//显示包含给定文本的元素
+			$("div:contains('Div')").css("display","block");
+		})
+		$(function(){//显示所有不包含子元素或者文本的空元素  
+			$("div:empty").css("display","block");
+		})
+		$(function(){//显示含有选择器所匹配的元素
+			$("div:has(span)").css("display","block");//显示含有span标记的元素
+		})
+		$(function(){//显示含有子元素或者文本的元素
+			$("div:parent").css("display","nlock");
+		})
+	</script>
+	<body>
+	</body>
+</html>

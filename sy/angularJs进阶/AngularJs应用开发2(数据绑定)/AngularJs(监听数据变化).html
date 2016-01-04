@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+		<style>
+			.namecard {
+				border: 1px solid #000;
+				border-radius: 10px;
+				padding: 10px;
+				width: 300px;
+				background: #f0f0f0;
+			}
+		</style>
+	</head>
+	监听数据的变化
+	由于编译仅仅在启动引导时执行一次，这意味着我们的link函数只会被调用一次，
+	那么， 如果数据变化，在界面上将不会有任何反馈，即界面和数据将变得不同步了。
+	这需要持续监听数据的变化。
+	注意：好在AngularJS的scope对象可以使用$watch()方法，对建立在其上的变量的变化进行监听：
+	示例: $watch(watchExpression, listener, [objectEquality]);
+	概念：$watch方法要求传入三个参数：
+			1.watchExpression - 要监听的表达式，比如："sb"
+			2.listener - 变化发生时的回调函数，AngularJS将向这个函数传入新值和旧值
+			3.objectEquality - 如果监听表达式的值是一个对象，应当将这个参数置为true。
+	<body ng-app="ezstuff" ng-init="sb = {name: 'somebody', gender: 'male', age: 28}">
+		<ez-namecard data = "sb"></ez-namecard>
+	</body>
+	<script>
+		angular.module("ezstuff", [])
+		.directive("ezNamecard", function($rootScope){
+			return {
+				restrict: "EA",
+				template: "<div class='namecard'>",
+				replace: true,
+				link: function(scope, element, attrs){
+					element.append("<div>name: <span class='name'></span></div>")
+						.append("<div>gender: <span field='gende r'></span></div>")
+						.append("<div>age: <span field='age'></span></div>")
+						//监听sb变量的变化，并在变化时更新DOM
+					scope.$watch(attrs.data,function(nv,ov){
+						var fields = element.find("span");
+						fields[0].textContent = nv.name;
+						fields[1].textContent = nv.gender;
+						fields[2].textContent = nv.age;
+					}, true);
+					//验证代码， 1秒改变一次age的值
+					setInterval(function(){
+						scope.$apply("sb.age=sb.age+1;")
+					}, 1000);
+				}
+			};
+		});
+	</script>
+</html>

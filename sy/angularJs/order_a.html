@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'app-controller'>
+		<a href="" ng-click = 'alert()'>点击</a>
+		<button ng-click = 'alert()'>点击</button>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('app-controller',function ($scope) {
+			console.log($scope);
+			$scope.alert = function(){
+				alert(111);
+			};
+		});
+	</script>
+</html>

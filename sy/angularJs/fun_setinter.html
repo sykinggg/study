@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body ng-controller = 'clock'>
+		<p ng-bind = 'myclock.now'></p>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+	// 将上面的实例分开不用$timeout 而是用javascript的setInterval
+		function clock ($scope) {
+			// 定义一个对象(myclock)和他的子对象(now)并实例化Date()
+			$scope.myclock = {
+				now : new Date()
+			};
+			// 定义方法将new Date()的数据赋给上面定义的子对象
+			var update = function() {
+				$scope.myclock.now = new Date()
+			};
+			// 定义一个函数每隔1s执行上面赋值函数一次
+			setInterval(function(){
+				$scope.$apply(update);
+			},1000);
+			update();
+		}
+	</script>
+</html>

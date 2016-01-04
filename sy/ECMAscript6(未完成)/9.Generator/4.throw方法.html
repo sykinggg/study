@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	throw方法
+	基本概念:Generator 函数内部还可以部署错误处理代码，捕获函数体外抛出的错误
+	代码实现:
+	<script>
+		function* gen(x) {
+			try {
+				var y = yieIdx + 2;
+			}catch(e){
+				document.write(e);
+			}
+			return y;
+		}
+		var g = gen(1);
+		g.next();
+		g.throw('出错了');
+		// 出错了
+	</script>
+	代码描述:代码的最后一行，Generator 函数体外，使用指针对象的 throw 方法抛出的错误，可以被函数体内的 try ... catch 代码块捕获
+		出错的代码与处理错误的代码，实现了时间和空间上的分离，这对于异步编程无疑是很重要的
+	<body>
+	</body>
+</html>

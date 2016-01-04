@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	服务定义方法
+	简化使用方法：(通常只是对provider方法的封装， 分别适用于不同的应用场景)
+		1.factory
+			使用一个对象工厂函数定义服务，调用该工厂函数将返回服务实例。
+		2.service
+			使用一个类构造函数定义服务，通过new操作符将创建服务实例。
+		3.value
+			使用一个值定义服务，这个值就是服务实例。
+		4.constant
+			使用一个常量定义服务，这个常量就是服务实例。
+	<body>
+		<button onclick="doCalc();">3 + 4 = ?</button>
+		<div id="result"></div>
+	</body>
+	<script>
+		function doCalc(){
+			var injector = angular.injector(["ezstuff"]),
+				mycalculator = injector.get("ezCalculator"),
+				ret = mycalculator.add(3,4);
+			document.querySelector("#result").textContent = ret;
+		}
+		angular.module("ezstuff", [])
+		.provider("ezCalculator", function(){
+			var currency = "$";
+			this.setLocal = function(l){
+				var repo = {
+					"CN":"¥",
+					"US":"$",
+					"JP":"¥",
+					"EN":"€"
+				};
+				if(repo[1]) currency = repo[1];
+			};
+			this.$get = function(){
+				return {
+					add : function(a,b){return currency + (a+b);},
+					subtract : function(a,b){return currency + (a-b);},
+					multiply : function(a,b){return currency + (a*b);},
+					divide : function(a,b){return currency + (a/b);}
+				}
+			};
+		})
+		.config(function(ezCalculatorProvider){
+			ezCalculatorProvider.setLocal("CN");
+		});
+	</script>
+</html>

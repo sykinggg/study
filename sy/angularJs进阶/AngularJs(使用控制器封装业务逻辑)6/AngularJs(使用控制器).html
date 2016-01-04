@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+	</head>
+	在模板中声明控制器
+	自动使用：在一个HTML元素上使用ng-controller指令，就可以引入一个控制器对象：
+	示例： <div ng-controller="myController">...</div>
+	控制器的实现
+	控制器的实质：就是一个JavaScript的类/构造函数：
+	//控制器类定义
+	var myControllerClass = function($scope) {
+		//模型属性定义
+		$scope.text = "...",
+		//模型方法定义
+		$scope.do = function(){...},
+	};
+	//在模块中注册控制器
+	angular.module("someModule", [])
+	.controller("myController", myControllerClass);
+	控制器的一次性
+	注意关键点：控制器构造函数仅在AngularJS对HTML文档进行编译时被执行一次。
+		， 就更容易理解为何将控制器称为对scope对象的增强：
+				一旦控制器创建完毕，就意味着scope对 象上的业务模型构造完毕，此后就不再需要控制器了- scope对象接管了一切。
+	<body>
+	</body>
+</html>

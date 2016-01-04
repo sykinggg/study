@@ -1,0 +1,26 @@
+<!doctype html>
+<html ng-app = 'module'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<ul ng-controller = 'myController'>
+			<li ng-repeat = 's in a'>
+				<p>
+					<span ng-bind = 's.a'></span>: <span ng-bind = 's.b'></span>	
+				</p>
+			</li>
+		</ul>
+	</body>
+	<script src = 'angular.js'></script>
+	<script>
+		var module = angular.module('module', []);
+		module.controller('myController', function ($scope) {
+			$scope.a = [
+				{a:'a1',b:'b1'},
+				{a:'a2',b:'b2'},
+				{a:'a3',b:'b3'}
+			]
+		})
+	</script>
+</html>

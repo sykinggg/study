@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id = "content"></div>
+	</body>
+	<script src = "js/kinetic-v5.1.0.js"></script>
+	<script>
+		window.onload = function(){
+			var sw = 578;
+			var sh = 400;
+			var stage = new Kinetic.Stage({
+				container: 'content',
+				width: 578,
+				height: 400
+			});
+			var layer = new Kinetic.layer({
+				y: -30
+			});
+			var leftEye = new Kinetic.Line({
+				x: 150,
+				points: [0, 200, 50, 190, 100, 200, 50, 210],
+				tension: 0.5,
+				closed: true,
+				stroke: 'while',
+				strokeWidth: 10
+			});
+			var rightEye = new Kinetic.Line({
+				x: sw - 250,
+				points:[0, 200, 50, 190, 100, 200, 50, 210],
+				tension: 0.5,
+				closed: true,
+				stroke:'while',
+				storkeWidth: 10
+			});
+			var nose = new Kinetic.Line({
+				points: [240, 280, sw/2, 300, sw-240, 280],
+				tension: 0.5,
+				closed: true,
+				stroke: 'while',
+				storkeWidth: 10
+			});
+			var mouth = new Kinetic.Line({
+				points: [150, 340, sw/2, 380, sw - 150, 340, sw/2, sh],
+				tension: 0.5,
+				closed: true,
+				stroke: 'red',
+				strokeWidth: 10
+			});
+			layer.add(leftEye)
+				 .add(rightEye)
+				 .add(nose)
+				 .add(mouth);
+			stage.add(layer);
+		}
+	</script>
+</html>

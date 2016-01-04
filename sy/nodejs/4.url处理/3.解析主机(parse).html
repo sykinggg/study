@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	parse函数 —— 解析主机
+	基本概念:parse函数的第三个参数也是布尔类型的
+		当参数为true，解析时会将url的"//"和第一个"/"之间的部分解析为主机名
+	代码实现:
+	<script>
+		var url = require('url');
+		url.parse('http://www.baidu.com/news', false, true);
+	</script>
+	运行结果:
+	{ protocol: 'http:',
+	  slashes: true,
+	  auth: null,
+	  host: 'www.baidu.com',
+	  port: null,
+	  hostname: 'www.baidu.com',
+	  hash: null,
+	  search: null,
+	  query: null,
+	  pathname: '/news',
+	  path: '/news',
+	  href: 'http://www.baidu.com/news' }
+	<body>
+	</body>
+</html>

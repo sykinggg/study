@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	连接服务
+	基本概念:
+		1.当客户端成功加载socket.io客户端文件后会获取到一个全局对象io，我们将通过io.connect函数来向服务端发起连接请求。
+	代码实现:
+	<script>
+		var socket = io.connect('/');
+		socket.on('connect', function(){
+			//连接成功
+		});
+		socket.on('disconnect', function(){
+			//连接断开
+		});
+	</script>
+		2.connect函数可以接受一个url参数，url可以socket服务的http完整地址，也可以是相对路径，如果省略则表示默认连接当前路径。
+			注意:客户端连接成功的事件是connect。
+	代码实现:
+		创建网页index.html，并添加如下内容(保存):
+	<script>
+		window.onload = function(){
+			var socket = io.connect('/');
+			socket.on('connect', function(){
+				document.write('连接成功');
+			});
+		};
+	</script>
+		页面添加完毕还要记得在服务端app.js中为它添加路由，让我们可以访问测试网页：
+	<script>
+		app.get('/index', function(req, res){
+			res.sendFile('index.html', {root: __dirname});
+		});
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	调用默认Iterator接口的场合
+	基本概念:默认调用iterator接口（即Symbol.iterator方法）
+		解构赋值
+			描述:对数组和Set结构进行解构赋值时,会默认调用iterator接口
+	代码实现:
+	<script>
+		let set = new Set().add('a').add('b').add('c');
+		let [x, y] = set;
+		// x='a';y='b'
+		let [first, ...rest] = set
+		// first='a'; rest=['b', 'c'];
+	</script>
+		扩展运算符
+			描述:扩展运算符（...）也会调用默认的iterator接口
+	代码实现:
+	<script>
+		// 例一
+		var str = 'hello';
+		[...str] // ['h', 'e', 'l', 'l', 'o']
+		// 例二
+		let arr = ['b', 'c'];
+		['a', ...arr, 'd']
+		//['a', 'b', 'c', 'd']
+	</script>
+		其他场合
+			描述:用到默认的iterator接口
+			1.yieid*
+			2.Array.from()
+			3.Map(), Set(), WeakMap(), WeakSet()
+			4.Promise.all(), Promise.race()
+	<body>
+	</body>
+</html>

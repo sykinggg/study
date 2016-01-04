@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<!--绘制分钟刻度-->
+	ctx.save(); // 记录旋转画布之前初始状态
+	ctx.lineWidth = 5;
+	for(i=0; i<60; i++){		//绘制分钟刻度
+		if(i%5!=0){
+			ctx.beginPath();
+			ctx.moveTo(117, 0);
+			ctx.lineTo(120, 0);
+			ctx.stroke();
+		}
+		ctx.rotate(Math.PI/30); // 旋转画布绘制刻度
+	}
+	ctx.restore();  // 恢复初始状态，未旋转前
+	<body>
+		<canvas id="canvas">浏览器不支持canvas标签</canvas>
+	</body>
+	<script>
+		$(function(){
+			init();
+		})
+		function init(){
+			clock();
+			setInterval(clock, 1000);
+		}
+		function clock(){
+			var now = new Date();
+			
+			var ctx = document.getElementById('canvas').getContext('2d');
+			ctx.save();
+			ctx.clearRect(0, 0, 150, 150);// 清空给定矩形内的指定像素
+			ctx.translate(75, 75);// 重新设置画布的坐标源点
+			ctx.scale(0.4, 0.4);// 缩放当前绘图，更大或更小。
+			ctx.rotate(-Math.PI/2);// 弧度
+			ctx.strokeStyle = "black";// 要绘制的线条的颜色
+			ctx.fillStyle = "white";// 填充颜色
+			ctx.lineCap = "round";//圆形线头
+			
+			// 绘制小时刻度
+			ctx.save();
+			ctx.lineWidth = 8;// 线段的宽度
+			for(var i=0; i<12; i++){
+				ctx.beginPath();
+				ctx.rotate(Math.PI/6);
+				ctx.moveTo(100, 0);
+				ctx.lineTo(120, 0);
+				ctx.stroke()
+			}
+			ctx.restore();
+			
+			// 绘制分钟刻度
+			ctx.save();
+			ctx.lineWidth = 5;
+			for(i=0; i<60; i++){
+				if(i%5 != 0){
+					ctx.beginPath();
+					ctx.moveTo(117, 0);
+					ctx.lineTo(120, 0);
+					ctx.stroke();
+				}
+				ctx.rotate(Math.PI/30);
+			}
+			ctx.restore();
+			
+			// 绘制时钟圆形外框
+			ctx.beginPath();
+			ctx.lineWidth = 14;
+			ctx.strokeStyle = "#325FA2";
+			ctx.arc(0, 0, 142, 0, Math.PI*2, true);
+			ctx.stroke();
+			
+			ctx.restore();
+		}
+	</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html ng-app = 'app'>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div ng-controller = 'appctrl'>
+			<p ng-bind = 'hello.world'></p>
+			<button ng-click = 'dohello()'>点击</button>
+			<!-- ng-init指令是重置的意思与初始化键值对 -->
+			<button ng-init = "hello.world = 'h'" >重置</button>
+		</div>
+	</boy>
+	<script src = 'angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+		app.controller('appctrl',function ($scope) {
+			$scope.dohello = function(){
+				$scope.hello.world = 'hello';
+			}
+		});
+		app.controller('appctrl1',function ($scope) {
+			$scope.hello = {
+				world : 'hello world'
+			}
+		})
+	</script>
+</html>

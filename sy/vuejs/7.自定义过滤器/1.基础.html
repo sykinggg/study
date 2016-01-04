@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	基本概念:可以用全局方法 Vue.filter() 注册一个自定义过滤器，它接收两个参数：过滤器ID和过滤器函数
+		过滤器函数以值为参数，返回转换后的值
+	基本概念:
+		Vue.filter('split0', function(value){
+			return value.split('.')[0];
+		})
+	<!--html代码:-->
+	<div id="demo">{{msg|split0}}</div>
+	<!--js代码:-->
+	Vue.filter('split0', function(value){
+		return value.split('.')[0]
+	})
+	var vm=new Vue({
+		el:'#example',
+		data:{
+			msg:'2.0'
+		}
+	})
+	<!--过滤器函数以值为参数，返回转换后的值-->
+	Vue.filter('wrap',function(value,begin,end){
+		return begin + value + end;
+	})
+	<!-- 'hello' => 'before hello after' -->
+	<span>{{msg|wrap 'before' 'after'}}</span>
+	<script src="../vue.js"></script>
+	<body>
+		<div id="example">
+			<div>{{msg|split0}}</div>
+		</div>
+	</body>
+	<script>
+	 	//在这里面写Vue.js代码
+		Vue.filter('split0', function(value){
+			return value.split('.')[0];
+		})
+		var vm = new Vue({
+			el:'#example',
+			data:{
+				msg:'2.0'
+			}
+		})
+	</script>
+</html>

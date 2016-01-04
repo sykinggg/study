@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = 'utf-8'>
+	</head>
+	<body>
+		<div ng-init="a=3">
+		    <ul ng-switch on="a">
+		      <li ng-switch-when="1">1</li>
+		      <li ng-switch-when="2">2</li>
+		      <li ng-switch-default>other</li>
+		    </ul>
+		</div>
+	</body>
+	<script src = 'angular.js'></script>
+	<!-- 基本概念：异步处理错误！ -->
+	<!-- promise是对象，代表了一个函数最终可能的返回值或者抛出的异常。也就是错误 -->
+	<!-- 注意：在与远程对象打交道时，promise会非常有用，可以把它们看作远程对象的一个代理。 -->
+	<!-- 注意：JavaScript使用闭包或者回调来响应非同步的有意义的数据，比如页面加载之后的XHR请求。 -->
+	<!-- 注意与传统回调函数的区别：在执行异步方法时触发一个函数，然后期待一个回调能运行起来。与之不同的是，promise提供了另外一种抽象：这些函数返回promise对象。 -->
+	<!-- 举个栗子： -->
+	<script>
+		// 例如， 在传统的回调代码中， 我们可能会有一个方法， 用户使用该方法向他的朋友发送数据。
+		User.get(fromId, {
+			success: function (err, user) {
+				if(err) return {error: err};
+				user.friends.find(told, function (err, friend) {
+					if(err) return {error: err};
+					user.sendMessage(friend, message, callback);
+				});
+			},
+			failure: function (err) {
+				return {error: err}
+			}
+		});
+	</script>
+	<!-- 注意：这个回调金字塔已经失控了，而且我们还没有加入健壮的错误处理代码。 -->
+	<!-- 举个栗子： -->
+	<script>
+		// 基于promise版本的代码看上去更接近于：
+		User.get(fromId)
+			.then(function (user) {
+				return user.friends.find(told);
+			}, function (err) {
+				// 没找到用户
+			})
+			.then(function (friend) {
+				return user.sendMessage(friend, message);
+			}, function (err) {
+				// 用户的朋友返回异常
+			})
+			.then(function (success) {
+				// 用户发送信息
+			}, function (err) {
+				// 发生错误
+			})
+	</script>
+	<!-- 注意优点：1.保证回调是一个值，而不用处理回调接口。 -->
+			  <!-- 2.promise对异步函数的操作基于同步函数，并可以按预期的来抓取返回值和异常值。 -->
+			  <!-- 3.可以在程序中的任何时刻捕捉错误，并且绕过依赖于程序异常的后续代码。 -->
+	<!-- 使用目的：获得功能组合和错误冒泡（error bubbling）能力的同时，保持代码异步运行的能力。 -->
+	<!-- 比如：控制器在运行时进行判断就启用服务进行结果调查而此时服务返回给该控制器一个promise对象而不影响控制器的运行(异步)。 -->
+		<!-- 实现：angular里有then函数对此进行判断返回参数的执行 -->
+	<!-- promise返回的两个参数：resolved(返回的是确定结果的参数[true/false]); -->
+						   <!-- rejected(返回的是不确定的结果参数) -->
+	<!-- 举个完整栗子： -->
+	<script>
+		// function somewhere in father-controller.js
+		var makePromiseWhithSon = function () {
+			// this service's function returns a promise, but we'll deal with that shortly
+				SonService.getWeather()
+			// then() called when son gets back
+					.then(function (data) {
+						// promise fulfilled
+						if(data.forecast === 'good') {
+							prepareFishingTrip();
+						}else{
+							prepareSundayRoastDinner();
+						}
+					}, function (error) {
+						// promise rejected, could log the error with: console.log('error', error);
+						prepareSundayRoastDinner();
+					});
+		};
+	</script>
+	<script>
+		// 从"Fishing Weather API"返回一个promise,如果is was resolved, 就格式化成{"forecase": "good"}.
+		app.factory('SonService', function ($http, $q) {
+			return {
+				// the $http API is based on the deferred/promise APIs exposed by the $q service
+			}
+		})
+	</script>
+</html>
